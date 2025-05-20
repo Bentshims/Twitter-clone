@@ -7,54 +7,72 @@
 
         <section class="space-y-8 mt-6">
           <div>
-            <P class="font-semibold text-lg capitalize">
-              logo
-            </P>
+            <img src="/public/uploads/twitter-logo.svg" alt="logo">
           </div>
           <div>
-            <P class="font-semibold text-lg capitalize">
-              home
-            </P>
+            <div class="flex items-center">
+              <img src="/public/uploads/home.svg" alt="">
+              <P class="pl-4 font-semibold text-lg capitalize">
+                home
+              </P>
+            </div>
           </div>
           <div>
-            <P class="font-semibold text-lg capitalize">
-              explore
-            </P>
+            <div class="flex items-center">
+              <img src="/public/uploads/diez.svg" alt="">
+              <P class="pl-4 font-semibold text-lg capitalize">
+                explore
+              </P>
+            </div>
           </div>
           <div>
-            <P class="font-semibold text-lg capitalize">
-              notification
-            </P>
+            <div class="flex items-center">
+              <img src="/public/uploads/notification.svg" alt="">
+              <P class="pl-4 font-semibold text-lg capitalize">
+                notification
+              </P>
+            </div>
           </div>
           <div>
-            <P class="font-semibold text-lg capitalize">
-              messages
-            </P>
+            <div class="flex items-center">
+              <img src="/public/uploads/message.svg" alt="">
+              <P class="pl-4 font-semibold text-lg capitalize">
+                messages
+              </P>
+            </div>
           </div>
           <div>
-            <P class="font-semibold text-lg capitalize">
+          <div class="flex items-center">
+            <img src="/public/uploads/badge.svg" alt="">
+            <P class="pl-4 font-semibold text-lg capitalize">
               bookmarks
             </P>
           </div>
-          <div>
-            <P class="font-semibold text-lg capitalize">
+          </div>
+          <div class="flex items-center">
+            <img src="/public/uploads/list.svg" alt="">
+            <P class="pl-4 font-semibold text-lg capitalize">
               lists
             </P>
           </div>
-          <div>
-            <P class="font-semibold text-lg capitalize">
+          <div class="flex items-center">
+            <img src="/public/uploads/profil.svg" alt="">
+            <P class="pl-4 font-semibold text-lg capitalize">
               profil
             </P>
           </div>
-          <div>
-            <P class="font-semibold text-lg capitalize">
+          <div class="flex items-center">
+            <img src="/public/uploads/etc-circle.svg" alt="">
+            <P class="pl-4 font-semibold text-lg capitalize">
               more
             </P>
           </div>
         </section>
 
-        @component('components/button1', {type:'submit'})
-        @endcomponent
+       <div class="pr-8">
+          @component('components/button1', {type:'submit'})
+          @endcomponent
+       </div>
       </section>
       <section class="border-x border-gray-700 w-1/2 lg:w-[35%] h-screen">
 
@@ -64,16 +82,16 @@
           </p>
           <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-auto" />
         </nav>
-        <div class="user">
-          <div class="p-4 flex space-x-4 border">
+        <div class="user border-b border-gray-700 flex justify-between p-4 h-36">
+          <div class="flex space-x-4">
             <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-16 h-16 rounded-full" />
-            <div class="">
-              <p class="text-gray-500 text-lg pb-8">
+            <div class="relative">
+              <p class="text-gray-500 text-lg pt-4">
                 What's happening ?
               </p>
-              <div class="flex items-center gap-4">
+              <div class="flex items-center gap-4 absolute bottom-0">
                 <div class="cursor-pointer">
-                  <i class="bi bi-image text-blue-400"></i>
+                  <img src="/public/uploads/image.svg" alt="image icon">
                 </div>
                 <div class="cursor-pointer">
                   <img src="/public/uploads/Gif.svg" alt="/public/uploads/Schedule.svg" />
@@ -86,18 +104,19 @@
                 </div>
 
                 <div class="cursor-pointer">
-                  <i class="bi bi-emoji-smile text-blue-400"></i>
+                  <img src="/public/uploads/smile.svg" alt="smile icon">
                 </div>
                 <div class="cursor-pointer">
                   <img src="/public/uploads/Schedule.svg" alt="/public/uploads/Schedule.svg" />
                 </div>
               </div>
             </div>
+          </div>
+          <div class="flex items-end">
             @component('components/button2', {  })
 
             @endcomponent
           </div>
-
         </div>
       </section>
       <section class="flex flex-col items-center py-4 w-[25%] lg:w-[15%] lg:mx-4 space-y-8">
