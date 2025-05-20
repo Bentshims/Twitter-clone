@@ -5,7 +5,7 @@
     
 
     <div class="flex justify-center">
-      <section class="w-[25%] lg:w-[15%] flex flex-col items-center space-y-10">
+      <section class="w-[25%] lg:w-[15%] space-y-10 p-4">
 
         <section class="space-y-8 mt-6">
             <div>
@@ -54,21 +54,31 @@
               </P>
             </div>
         </section>
-        <div>
-          <a href="#" class="px-10 py-4 bg-blue-400 rounded-full">Tweet</a>
-        </div>
+       
+        @component('components/button1', {type:'submit'})
+        @endcomponent
       </section>
       <section class="border-x border-gray-700 w-1/2 lg:w-[35%] h-screen">
-       {{--  <h1 class="text-center font-bold text-xl mt-8">
-        Hi tshims
-    </h1>  --}}
-
+    
       <nav class="flex items-center justify-between p-4 border-b  border-gray-700">
           <p class="capitalize font-semibold text-xl">
               home
           </p>
           <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-auto">
       </nav>
+      <div class="user">
+       <div class="p-4">
+        <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-16 h-16 rounded-full">
+        <div>
+          <p>
+            What's happening ?
+          </p>
+          <div>
+
+          </div>
+        </div>
+       </div>
+      </div>
       </section>
       <section class="flex flex-col items-center py-4 w-[25%] lg:w-[15%] lg:mx-4 space-y-8">
           <div class="flex justify-center items-center w-full">
