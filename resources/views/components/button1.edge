@@ -1,9 +1,11 @@
 <form action="#" method="GET">
-    {{ csrfField() }}
- <fieldset>
-    <button {{ $props.merge({ type: 'text', class:'bg-blue-400 text-center w-full p-4 rounded-full font-semibold' }).toAttrs() }}>
-        {{text || 'Tweet'}}
+  {{ csrfField() }}
+  <fieldset>
+    <button
+      {{ $props.merge({ type: 'text', class:'bg-blue-400 text-center w-full p-4 rounded-full font-semibold' }).toAttrs() }}
+    >
+      {{ text || 'Tweet' }}
     </button>
- </fieldset>
-    
+  </fieldset>
+
 </form>
