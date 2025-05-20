@@ -119,19 +119,22 @@
           </div>
         </div>
       </section>
-      <section class="flex flex-col items-center py-4 w-[25%] lg:w-[15%] lg:mx-4 space-y-8">
-        <div class="flex justify-center items-center w-full">
-          <input
+      <section class="flex flex-col py-4 w-[25%] lg:w-[20%] lg:mx-8 space-y-8">
+        <div class="flex items-center w-full">
+          <fieldset class="w-full relative">
+            <i class="bi bi-search absolute text-gray-500 left-4 top-2"></i>
+            <input
             type="search"
             name="search"
             id=""
-            class="bg-gray-800 rounded-full py-2 px-4"
+            class="bg-gray-800 rounded-full py-2 pl-12 w-full"
             placeholder="Search Twitter-X"
           />
+          </fieldset>
         </div>
-        <section class="bg-gray-800 rounded-lg w-full px-2">
+        <section class="bg-gray-800 rounded-lg w-full p-4 space-y-6">
           <div class="py-4">
-            <h2 class="font-bold text-lg">
+            <h2 class="font-bold text-xl">
               Trends for you
             </h2>
             <div>
@@ -139,17 +142,13 @@
             </div>
           </div>
 
-          <div class="py-6 space-y-6">
+          <div class="space-y-4">
             <div class="space-y-1">
               <div class="flex items-center justify-between">
                 <p class="text-gray-600">
                   Trending in Turkey
                 </p>
-                <div class="text-gray-500">
-                  <span>.</span>
-                  <span>.</span>
-                  <span>.</span>
-                </div>
+                <img src="/public/uploads/etc.svg" alt="">
               </div>
               <h3 class="text-md font-bold">
                 #SQUID
@@ -164,11 +163,7 @@
                 <p class="text-gray-600">
                   Trending in Turkey
                 </p>
-                <div class="text-gray-500">
-                  <span>.</span>
-                  <span>.</span>
-                  <span>.</span>
-                </div>
+                <img src="/public/uploads/etc.svg" alt="">
               </div>
               <h3 class="text-md font-bold">
                 #SQUID
@@ -183,11 +178,7 @@
                 <p class="text-gray-600">
                   Trending in Turkey
                 </p>
-                <div class="text-gray-500">
-                  <span>.</span>
-                  <span>.</span>
-                  <span>.</span>
-                </div>
+                <img src="/public/uploads/etc.svg" alt="">
               </div>
               <h3 class="text-md font-bold">
                 #SQUID
@@ -199,13 +190,13 @@
 
           </div>
           <div class="text-blue-400 mb-4">
-            <a href="#">Show more</a>
+            <a href="#" class="font-semibold">Show more</a>
           </div>
         </section>
 
-        <section class="bg-gray-800 rounded-lg w-full px-2">
-          <div class="py-4">
-            <h2 class="font-bold text-lg">
+        <section class="bg-gray-800 rounded-lg w-full p-4 space-y-4">
+          <div class="pb-6">
+            <h2 class="font-bold text-xl">
               Who to follow
             </h2>
             <div>
@@ -213,43 +204,73 @@
             </div>
           </div>
 
-          <div class="py-8 space-y-6">
-            <div class="space-y-1">
-              <p class="text-gray-600">
-                Trending in Turkey
-              </p>
-              <h3 class="text-md font-bold">
-                #SQUID
-              </h3>
-              <p class="text-gray-600">
-                2,066 Tweets
-              </p>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="/public/uploads/image-2(1).png" alt="">
+                <div class="">
+                  <div class="flex items-center gap-2">
+                    <p class="capitalize ">
+                      the new york times
+                    </p>
+                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                  </div>
+                  <p class="text-gray-500">
+                    @nytimes
+                  </p>
+                </div>
+              </div>
+              @component('components/followBtn', {  })
+                
+              @end
             </div>
+          </div>
 
-            <div class="space-y-1">
-              <p class="text-gray-600">
-                Trending in Turkey
-              </p>
-              <h3 class="text-md font-bold">
-                #SQUID
-              </h3>
-              <p class="text-gray-600">
-                2,066 Tweets
-              </p>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="/public/uploads/image-1(1).png" alt="">
+                <div class="">
+                  <div class="flex items-center gap-2">
+                    <p class="capitalize ">
+                      CNN
+                    </p>
+                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                  </div>
+                  <p class="text-gray-500">
+                    @CNN
+                  </p>
+                </div>
+              </div>
+              @component('components/followBtn', {  })
+                
+              @end
             </div>
+          </div>
 
-            <div class="space-y-1">
-              <p class="text-gray-600">
-                Trending in Turkey
-              </p>
-              <h3 class="text-md font-bold">
-                #SQUID
-              </h3>
-              <p class="text-gray-600">
-                2,066 Tweets
-              </p>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img src="/public/uploads/image-3.png" alt="">
+                <div class="">
+                  <div class="flex items-center gap-2">
+                    <p class="capitalize ">
+                      twitter
+                    </p>
+                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                  </div>
+                  <p class="text-gray-500">
+                    @Twitter
+                  </p>
+                </div>
+              </div>
+              @component('components/followBtn', {  })
+                
+              @end
             </div>
-
+          </div>
+          <div class="text-blue-400 my-4">
+            <a href="#" class="font-semibold">Show more</a>
           </div>
         </section>
 

@@ -1,0 +1,11 @@
+<form action="#" method="GET">
+    {{ csrfField() }}
+    <fieldset>
+      <button
+        {{ $props.merge({ type: 'text', class:'bg-white text-black text-center w-full  px-4 p-2 rounded-full font-semibold' }).toAttrs() }}
+      >
+        {{ text || 'Follow' }}
+      </button>
+    </fieldset>
+  
+  </form>
