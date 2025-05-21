@@ -1,8 +1,8 @@
-<form action="#" method="GET">
+<form action="/tweet" method="GET">
   {{ csrfField() }}
   <fieldset>
     <button
-      {{ $props.merge({ type: 'text', class:'bg-blue-500 text-center w-full  px-4 p-2 rounded-full font-semibold' }).toAttrs() }}
+      {{ $props.merge({ type: 'text', class:'bg-blue-500 text-center w-full  px-4 p-2 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600' }).toAttrs() }}
     >
       {{ text || 'Tweet' }}
     </button>

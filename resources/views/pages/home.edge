@@ -3,120 +3,445 @@
   @slot('main')
 
     <div class="flex justify-center">
-      <section class="w-[25%] lg:w-[15%] space-y-10 p-4">
+      <section class="w-[25%] lg:w-[15%] space-y-10 p-4 relative">
+        <div class="fixed space-y-6">
 
-        <section class="space-y-8 mt-6">
-          <div>
-            <img src="/public/uploads/twitter-logo.svg" alt="logo">
-          </div>
-          <div>
-            <div class="flex items-center">
-              <img src="/public/uploads/home.svg" alt="">
-              <P class="pl-4 font-semibold text-lg capitalize">
-                home
-              </P>
+          <section class="space-y-8 mt-6">
+            <div>
+              <img src="/public/uploads/twitter-logo.svg" alt="logo">
             </div>
-          </div>
-          <div>
-            <div class="flex items-center">
-              <img src="/public/uploads/diez.svg" alt="">
-              <P class="pl-4 font-semibold text-lg capitalize">
-                explore
-              </P>
+            <div>
+              <a href="#">
+                <div class="flex items-center">
+                  <img src="/public/uploads/home.svg" alt="">
+                  <P class="pl-4 font-semibold text-lg capitalize">
+                    home
+                  </P>
+                </div>
+              </a>
             </div>
-          </div>
-          <div>
-            <div class="flex items-center">
-              <img src="/public/uploads/notification.svg" alt="">
-              <P class="pl-4 font-semibold text-lg capitalize">
-                notification
-              </P>
+            <div>
+              <a href="#">
+                <div class="flex items-center">
+                  <img src="/public/uploads/diez.svg" alt="">
+                  <P class="pl-4 font-semibold text-lg capitalize">
+                    explore
+                  </P>
+                </div>
+              </a>
             </div>
-          </div>
-          <div>
-            <div class="flex items-center">
-              <img src="/public/uploads/message.svg" alt="">
-              <P class="pl-4 font-semibold text-lg capitalize">
-                messages
-              </P>
+            <div>
+             <a href="#">
+                <div class="flex items-center">
+                  <img src="/public/uploads/notification.svg" alt="">
+                  <P class="pl-4 font-semibold text-lg capitalize">
+                    notification
+                  </P>
+                </div>
+             </a>
             </div>
-          </div>
-          <div>
-          <div class="flex items-center">
-            <img src="/public/uploads/badge.svg" alt="">
-            <P class="pl-4 font-semibold text-lg capitalize">
-              bookmarks
-            </P>
-          </div>
-          </div>
-          <div class="flex items-center">
-            <img src="/public/uploads/list.svg" alt="">
-            <P class="pl-4 font-semibold text-lg capitalize">
-              lists
-            </P>
-          </div>
-          <div class="flex items-center">
-            <img src="/public/uploads/profil.svg" alt="">
-            <P class="pl-4 font-semibold text-lg capitalize">
-              profil
-            </P>
-          </div>
-          <div class="flex items-center">
-            <img src="/public/uploads/etc-circle.svg" alt="">
-            <P class="pl-4 font-semibold text-lg capitalize">
-              more
-            </P>
-          </div>
-        </section>
+            <div>
+              <a href="#">
+                <div class="flex items-center">
+                  <img src="/public/uploads/message.svg" alt="">
+                  <P class="pl-4 font-semibold text-lg capitalize">
+                    messages
+                  </P>
+                </div>
+              </a>
+            </div>
+            <div>
+                <a href="#">
+                  <div class="flex items-center">
+                    <img src="/public/uploads/badge.svg" alt="">
+                    <P class="pl-4 font-semibold text-lg capitalize">
+                      bookmarks
+                    </P>
+                  </div>
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                  <div class="flex items-center">
+                    <img src="/public/uploads/list.svg" alt="">
+                    <P class="pl-4 font-semibold text-lg capitalize">
+                      lists
+                    </P>
+                  </div>
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                  <div class="flex items-center">
+                    <img src="/public/uploads/profil.svg" alt="">
+                    <P class="pl-4 font-semibold text-lg capitalize">
+                      profil
+                    </P>
+                  </div>
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                  <div class="flex items-center">
+                    <img src="/public/uploads/etc-circle.svg" alt="">
+                    <P class="pl-4 font-semibold text-lg capitalize">
+                      more
+                    </P>
+                  </div>
+                </a>
+            </div>
+          </section>
 
-       <div class="pr-8">
-          @component('components/button1', {type:'submit'})
-          @endcomponent
+        <div class="">
+            @component('components/tweetBtn', {type:'submit'})
+            @endcomponent
+        </div>
+        </div>
+
+       <div class="profil flex items-center space-x-4 fixed bottom-10 right-[75%]">
+          <a href="/users">
+            <img src="/public/uploads/Profile-Photo.png" alt="profil" class="w-16 h-auto rounded-full">
+          </a>
+          <div>
+            <div class="flex items-center gap-1">
+              <p class="font-bold capitalize">
+                bradley  ortiz
+              </p>
+              
+              <img src="/public/uploads/lock.svg" alt="">
+
+            </div>
+            <p class="text-gray-600">
+              @bradley_
+            </p>
+          </div>
+          <img src="/public/uploads/etc.svg" alt="">
        </div>
       </section>
-      <section class="border-x border-gray-700 w-1/2 lg:w-[35%] h-screen">
+      <section class="border-x border-gray-700 w-1/2 lg:w-[35%] relative">
+        <div>
+          <nav class="flex items-center justify-between p-4 border-b  border-gray-700">
+            <p class="capitalize font-semibold text-xl">
+              home
+            </p>
+            <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-auto" />
+          </nav>
+          <div class="user border-b border-gray-700 flex justify-between p-4 h-36 relative">
+            <div class="flex space-x-4">
+             <div>
+                <a href="/users">
+                  <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-16 h-16 rounded-full"/>
+                </a>
+             </div>
+              <div>
+                <form action="/post" method="post">
+                  {{ csrfField() }}
+                  <fieldset class="w-full">
+                    <textarea name="tweet" class="appearance-none overflow-hidden resize-none w-80 bg-black outline-none border-none pt-4" placeholder="What's happening ?" required></textarea>
+                  </fieldset>
 
-        <nav class="flex items-center justify-between p-4 border-b  border-gray-700">
-          <p class="capitalize font-semibold text-xl">
-            home
-          </p>
-          <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-auto" />
-        </nav>
-        <div class="user border-b border-gray-700 flex justify-between p-4 h-36">
-          <div class="flex space-x-4">
-            <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-16 h-16 rounded-full" />
-            <div class="relative">
-              <p class="text-gray-500 text-lg pt-4">
-                What's happening ?
-              </p>
-              <div class="flex items-center gap-4 absolute bottom-0">
-                <div class="cursor-pointer">
-                  <img src="/public/uploads/image.svg" alt="image icon">
-                </div>
-                <div class="cursor-pointer">
-                  <img src="/public/uploads/Gif.svg" alt="/public/uploads/Schedule.svg" />
+                  <section class="flex justify-between pt-4">
+                    <div class="flex justify-between items-center gap-4">
+                      <div class="cursor-pointer">
+                        <img src="/public/uploads/image.svg" alt="image icon">
+                      </div>
+                      <div class="cursor-pointer">
+                        <img src="/public/uploads/Gif.svg" alt="/public/uploads/Schedule.svg" />
+                  
+                      </div>
+                  
+                      <div class="cursor-pointer">
+                        <img src="/public/uploads/bar.svg" alt="/public/uploads/Schedule.svg" />
+                  
+                      </div>
+                  
+                      <div class="cursor-pointer">
+                        <img src="/public/uploads/smile.svg" alt="smile icon">
+                      </div>
+                      <div class="cursor-pointer">
+                        <img src="/public/uploads/Schedule.svg" alt="/public/uploads/Schedule.svg" />
+                      </div>
+                    </div>
 
-                </div>
 
-                <div class="cursor-pointer">
-                  <img src="/public/uploads/bar.svg" alt="/public/uploads/Schedule.svg" />
+                    <fieldset class="flex justify-end absolute bottom-3 right-6">
+                      <button class="w-full bg-blue-500 px-6 py-3 rounded-full transition duration-300 ease hover:bg-blue-600" type="submit">
+                        tweet
+                      </button>
+                    </fieldset>
+                  </section>
+                
 
-                </div>
 
-                <div class="cursor-pointer">
-                  <img src="/public/uploads/smile.svg" alt="smile icon">
-                </div>
-                <div class="cursor-pointer">
-                  <img src="/public/uploads/Schedule.svg" alt="/public/uploads/Schedule.svg" />
-                </div>
+                </form>
               </div>
             </div>
           </div>
-          <div class="flex items-end">
-            @component('components/button2', {  })
+        </div>
+        <div class="tweets">
+            <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+              <a href="#">
+                <img src="/public/uploads/image-1(1).png" alt="profil1" class="w-48 lg:w-40 h-auto border border-gray-700 rounded-full">
+              </a>
+              <div class="space-y-2">
+                <div>
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        CNN
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <p class="text-gray-500">
+                        @CNN
+                      </p>
+                      <p class="text-gray-600">
+                        . 7min
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione culpa sapiente, sequi fugiat reprehenderit magni tenetur velit ex quia aperiam autem. Id odio vero tenetur excepturi voluptatum temporibus tempora doloremque.
+                  </p>
+                </div>
+                <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/comment.svg" alt="">
+                    <p>
+                      57
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/loop.svg" alt="">
+                    <p>
+                      144
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/love.svg" alt="">
+                    <p>
+                      184
+                    </p>
+                  </div>
+                  <div><img src="/public/uploads/doawnload.svg" alt=""></div>
+                </div>
+              </div>
+            </div>
 
-            @endcomponent
-          </div>
+
+
+            <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+              <a href="#">
+                <img src="/public/uploads/image-2(1).png" alt="" class="w-48 lg:w-40 h-auto border border-gray-700 rounded-full">
+              </a>
+              <div class="space-y-2">
+                <div>
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        the new york times
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <p class="text-gray-500">
+                        @nytimes
+                      </p>
+                      <p class="text-gray-600">
+                        . 2h
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione culpa sapiente, sequi fugiat reprehenderit magni tenetur velit ex quia aperiam autem. Id odio vero tenetur excepturi voluptatum temporibus tempora doloremque.
+                  </p>
+                  <img src="/public/uploads/photo.png" alt="" class="border border-gray-600 rounded-xl">
+                </div>
+                <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/comment.svg" alt="">
+                    <p>
+                      19
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/loop.svg" alt="">
+                    <p>
+                      48
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/love.svg" alt="">
+                    <p>
+                      482
+                    </p>
+                  </div>
+                  <div><img src="/public/uploads/doawnload.svg" alt=""></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+              <a href="#">
+                <img src="/public/uploads/image-3.png" alt=""class="w-18 h-auto border border-gray-700 rounded-full">
+              </a>
+              <div class="space-y-2">
+                <div>
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        Twitter
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <p class="text-gray-500">
+                        @CNN
+                      </p>
+                      <p class="text-gray-600">
+                        . Oct 29
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    BIG NEWS lol jk still Twitter
+                  </p>
+                </div>
+                <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/comment.svg" alt="">
+                    <p>
+                      6.8K
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/loop.svg" alt="">
+                    <p>
+                      36.6K
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/love.svg" alt="">
+                    <p>
+                      267.1K
+                    </p>
+                  </div>
+                  <div><img src="/public/uploads/doawnload.svg" alt=""></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+              <a href="#">
+                <img src="/public/uploads/image-3.png" alt="" class="w-18 h-auto border border-gray-700 rounded-full">
+              </a>
+              <div class="space-y-2">
+                <div>
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        Twitter
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <p class="text-gray-500">
+                        @CNN
+                      </p>
+                      <p class="text-gray-600">
+                        . Oct 4
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    hello literally everyone
+                  </p>
+                </div>
+                <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/comment.svg" alt="">
+                    <p>
+                      118.7K
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/loop.svg" alt="">
+                    <p>
+                      785.4K
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/love.svg" alt="">
+                    <p>
+                      3.3M
+                    </p>
+                  </div>
+                  <div><img src="/public/uploads/doawnload.svg" alt=""></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+              <a href="#">
+                <img src="/public/uploads/image-3.png" alt="" class="w-18 h-auto border border-gray-700 rounded-full">
+              </a>
+              <div class="space-y-2">
+                <div>
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        Twitter
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <p class="text-gray-500">
+                        @CNN
+                      </p>
+                      <p class="text-gray-600">
+                        . Oct 29
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    hello literally everyone
+                  </p>
+                </div>
+                <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/comment.svg" alt="">
+                    <p>
+                      6.8K
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/loop.svg" alt="">
+                    <p>
+                      36.6K
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img src="/public/uploads/love.svg" alt="">
+                    <p>
+                      267.1K
+                    </p>
+                  </div>
+                  <div><img src="/public/uploads/doawnload.svg" alt=""></div>
+                </div>
+              </div>
+            </div>
         </div>
       </section>
       <section class="flex flex-col py-4 w-[25%] lg:w-[20%] lg:mx-8 space-y-8">
@@ -128,7 +453,7 @@
             name="search"
             id=""
             class="bg-gray-800 rounded-full py-2 pl-12 w-full"
-            placeholder="Search Twitter-X"
+            placeholder="Search Twitter"
           />
           </fieldset>
         </div>
