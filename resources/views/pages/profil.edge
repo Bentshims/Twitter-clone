@@ -12,7 +12,7 @@
             </div>
             <div>
               <a href="/">
-                <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <img src="/public/uploads/home.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     home
@@ -22,7 +22,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <img src="/public/uploads/diez.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     explore
@@ -32,7 +32,7 @@
             </div>
             <div>
              <a href="#">
-                <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <img src="/public/uploads/notification.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     notification
@@ -42,7 +42,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <img src="/public/uploads/message.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     messages
@@ -52,7 +52,7 @@
             </div>
             <div>
                 <a href="#">
-                  <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                  <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                     <img src="/public/uploads/badge.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       bookmarks
@@ -62,7 +62,7 @@
             </div>
             <div>
                 <a href="#">
-                  <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                  <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                     <img src="/public/uploads/list.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       lists
@@ -72,7 +72,7 @@
             </div>
             <div>
                 <a href="/users">
-                  <div class="flex items-center bg-gray-900 rounded-full px-6 py-4">
+                  <div class="flex items-center bg-[#202327] rounded-full px-6 py-4">
                     <img src="/public/uploads/profil.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       profil
@@ -82,7 +82,7 @@
             </div>
             <div>
                 <a href="#">
-                  <div class="flex items-center transition duration-400 ease hover:bg-gray-900 rounded-full px-6 py-4">
+                  <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                     <img src="/public/uploads/etc-circle.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       more
@@ -118,11 +118,51 @@
           <img src="/public/uploads/etc.svg" alt="">
        </div>
       </section>
-      <section class="border-x border-gray-700 w-1/2 lg:w-[35%] relative">
-        <div class="relative">
-            <img src="#" alt="background profil" class="bg-gray-900 w-full min-h-48">
-            <img src="#" alt="profil image" class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 left-8 border-4 border-black">
+      <section class="border-x border-gray-700 w-1/2 lg:w-[35%] space-y-8 min-h-screen">
+        <div class="relative h-48 bg-[url(/public/uploads/pexels-mikhail-nilov-7988079.jpg)] bg-cover bg-center bg-gray-900 w-full ">
+            <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 z-10 left-8 border-4 border-black">
         </div>
+
+        <div class="pt-12 pb-2 px-4 space-y-4 relative">
+          <div class="flex gap-4">
+            <div class="">
+              <h1 class="font-bold capitalize">
+                bradley ortiz
+              </h1>
+              <p class="text-gray-700">
+                @bradley_
+              </p>
+            </div>
+            <div>
+              <a href="#" class="font-bold inline-block space-x-1 px-4 border border-gray-600 rounded-full transition duration-300 ease hover:bg-gray-900">
+                <i class="bi bi-patch-check-fill text-blue-400">
+  
+                </i>
+                <span>Get verified</span>
+              </a>
+            </div>
+          </div>
+  
+          <div class="space-y-3">
+            <p class="text-gray-700">
+              <i class="bi bi-calendar"></i> joined <span> October 2024</span>
+            </p>
+            <div class="flex items-center gap-4">
+              <p>
+                4 <span class="text-gray-700">Following</span> 
+              </p>
+              <p>
+                0 <span class="text-gray-700">Followers</span> 
+              </p>
+            </div>
+          </div>
+
+            <a href="#" class=" px-4 py-2 rounded-full capitalize inline-block transition duration-300 hover:bg-gray-900 border border-gray-700 absolute right-2 top-0">
+              edit profile
+            </a>
+
+        </div>
+
       </section>
       <section class="flex flex-col py-4 w-[25%] lg:w-[20%] lg:mx-8 space-y-8">
         <div class="flex items-center w-full">
@@ -132,12 +172,12 @@
             type="search"
             name="search"
             id=""
-            class="bg-gray-800 rounded-full py-2 pl-12 w-full"
+            class="bg-[#202327] rounded-full py-2 pl-12 w-full"
             placeholder="Search Twitter"
           />
           </fieldset>
         </div>
-        <section class="bg-gray-800 rounded-lg w-full p-4 space-y-6">
+        <section class="bg-[#202327] rounded-lg w-full p-4 space-y-6">
           <div class="py-4">
             <h2 class="font-bold text-xl">
               Trends for you
@@ -199,7 +239,7 @@
           </div>
         </section>
 
-        <section class="bg-gray-800 rounded-lg w-full p-4 space-y-4">
+        <section class="bg-[#202327] rounded-lg w-full p-4 space-y-4">
           <div class="pb-6">
             <h2 class="font-bold text-xl">
               Who to follow
