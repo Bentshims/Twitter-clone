@@ -6,13 +6,13 @@
       <section class="w-[25%] lg:w-[15%] space-y-10 p-4 relative">
         <div class="fixed space-y-6">
 
-          <section class="space-y-8 mt-6">
-            <div>
+          <section class="space-y-4 mt-6">
+            <div class="pl-6">
               <img src="/public/uploads/twitter-logo.svg" alt="logo">
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center">
+                <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                   <img src="/public/uploads/home.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     home
@@ -22,7 +22,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center">
+                <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                   <img src="/public/uploads/diez.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     explore
@@ -32,7 +32,7 @@
             </div>
             <div>
              <a href="#">
-                <div class="flex items-center">
+                <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                   <img src="/public/uploads/notification.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     notification
@@ -42,7 +42,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center">
+                <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                   <img src="/public/uploads/message.svg" alt="">
                   <P class="pl-4 font-semibold text-lg capitalize">
                     messages
@@ -52,7 +52,7 @@
             </div>
             <div>
                 <a href="#">
-                  <div class="flex items-center">
+                  <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                     <img src="/public/uploads/badge.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       bookmarks
@@ -62,7 +62,7 @@
             </div>
             <div>
                 <a href="#">
-                  <div class="flex items-center">
+                  <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                     <img src="/public/uploads/list.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       lists
@@ -71,8 +71,8 @@
                 </a>
             </div>
             <div>
-                <a href="#">
-                  <div class="flex items-center">
+                <a href="/users">
+                  <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                     <img src="/public/uploads/profil.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       profil
@@ -82,7 +82,7 @@
             </div>
             <div>
                 <a href="#">
-                  <div class="flex items-center">
+                  <div class="flex items-center transition duration-400 ease hover:bg-gray-700 rounded-full px-6 py-4">
                     <img src="/public/uploads/etc-circle.svg" alt="">
                     <P class="pl-4 font-semibold text-lg capitalize">
                       more
@@ -137,7 +137,7 @@
                 <form action="/post" method="post">
                   {{ csrfField() }}
                   <fieldset class="w-full">
-                    <textarea name="tweet" class="appearance-none overflow-hidden resize-none w-80 bg-black outline-none border-none pt-4" placeholder="What's happening ?" required></textarea>
+                    <textarea name="tweet" minlength="10" maxlength="255" class="appearance-none overflow-hidden resize-none w-80 bg-black outline-none border-none pt-4" placeholder="What's happening ?" required></textarea>
                   </fieldset>
 
                   <section class="flex justify-between pt-4">
@@ -315,7 +315,7 @@
                     BIG NEWS lol jk still Twitter
                   </p>
                 </div>
-                <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                <div class="flex justify-between items-center pt-2 mr-14 w-full">
                   <div class="flex items-center gap-4">
                     <img src="/public/uploads/comment.svg" alt="">
                     <p>
