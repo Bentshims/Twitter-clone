@@ -10,5 +10,5 @@
 import router from '@adonisjs/core/services/router'
 
 router.on('/').render('pages/home')
-router.resource('/tweet','#controllers/tweets_controller')
-router.resource('/users','#controllers/users_controller')
+router.resource('/tweet', '#controllers/tweets_controller')
+router.resource('/users', '#controllers/users_controller')

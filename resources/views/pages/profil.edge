@@ -3,18 +3,18 @@
   @slot('main')
 
     <div class="flex justify-center">
-      <section class="w-[25%] lg:w-[15%] space-y-10 p-4 relative">
+      <section class="hidden md:block md:w-[12%] lg:w-[15%] space-y-10 p-4 relative">
         <div class="fixed space-y-6">
 
           <section class="space-y-4 mt-6">
             <div class="pl-6">
-              <img src="/public/uploads/twitter-logo.svg" alt="logo">
+              <img src="/public/uploads/twitter-logo.svg" alt="logo" />
             </div>
             <div>
               <a href="/">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                  <img src="/public/uploads/home.svg" alt="">
-                  <P class="pl-4 font-semibold text-lg capitalize">
+                  <img src="/public/uploads/home.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     home
                   </P>
                 </div>
@@ -23,108 +23,114 @@
             <div>
               <a href="#">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                  <img src="/public/uploads/diez.svg" alt="">
-                  <P class="pl-4 font-semibold text-lg capitalize">
+                  <img src="/public/uploads/diez.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     explore
                   </P>
                 </div>
               </a>
             </div>
             <div>
-             <a href="#">
+              <a href="#">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                  <img src="/public/uploads/notification.svg" alt="">
-                  <P class="pl-4 font-semibold text-lg capitalize">
+                  <img src="/public/uploads/notification.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     notification
                   </P>
                 </div>
-             </a>
+              </a>
             </div>
             <div>
               <a href="#">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                  <img src="/public/uploads/message.svg" alt="">
-                  <P class="pl-4 font-semibold text-lg capitalize">
+                  <img src="/public/uploads/message.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     messages
                   </P>
                 </div>
               </a>
             </div>
             <div>
-                <a href="#">
-                  <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                    <img src="/public/uploads/badge.svg" alt="">
-                    <P class="pl-4 font-semibold text-lg capitalize">
-                      bookmarks
-                    </P>
-                  </div>
-                </a>
+              <a href="#">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
+                  <img src="/public/uploads/badge.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                    bookmarks
+                  </P>
+                </div>
+              </a>
             </div>
             <div>
-                <a href="#">
-                  <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                    <img src="/public/uploads/list.svg" alt="">
-                    <P class="pl-4 font-semibold text-lg capitalize">
-                      lists
-                    </P>
-                  </div>
-                </a>
+              <a href="#">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
+                  <img src="/public/uploads/list.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                    lists
+                  </P>
+                </div>
+              </a>
             </div>
             <div>
-                <a href="/users">
-                  <div class="flex items-center bg-[#202327] rounded-full px-6 py-4">
-                    <img src="/public/uploads/profil.svg" alt="">
-                    <P class="pl-4 font-semibold text-lg capitalize">
-                      profil
-                    </P>
-                  </div>
-                </a>
+              <a href="/users">
+                <div class="flex items-center bg-[#202327] rounded-full px-6 py-4">
+                  <img src="/public/uploads/profil.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                    profil
+                  </P>
+                </div>
+              </a>
             </div>
             <div>
-                <a href="#">
-                  <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                    <img src="/public/uploads/etc-circle.svg" alt="">
-                    <P class="pl-4 font-semibold text-lg capitalize">
-                      more
-                    </P>
-                  </div>
-                </a>
+              <a href="#">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
+                  <img src="/public/uploads/etc-circle.svg" alt="" />
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                    more
+                  </P>
+                </div>
+              </a>
             </div>
           </section>
 
-        <div class="">
+          <div class="">
             @component('components/tweetBtn', {type:'submit'})
             @endcomponent
-        </div>
+          </div>
         </div>
 
-       <div class="profil flex items-center space-x-4 fixed bottom-10 right-[75%]">
+        <div class="profil hidden lg:flex items-center space-x-4 fixed bottom-10 right-[75%]">
           <a href="/users">
-            <img src="/public/uploads/Profile-Photo.png" alt="profil" class="w-16 h-auto rounded-full">
+            <img src="/public/uploads/Profile-Photo.png" alt="profil" class="w-16 h-auto rounded-full" />
           </a>
           <div>
             <div class="flex items-center gap-1">
               <p class="font-bold capitalize">
                 bradley  ortiz
               </p>
-              
-              <img src="/public/uploads/lock.svg" alt="">
+
+              <img src="/public/uploads/lock.svg" alt="" />
 
             </div>
             <p class="text-gray-600">
               @bradley_
             </p>
           </div>
-          <img src="/public/uploads/etc.svg" alt="">
-       </div>
+          <img src="/public/uploads/etc.svg" alt="" />
+        </div>
       </section>
-      <section class="border-x border-gray-700 w-1/2 lg:w-[35%] space-y-8 min-h-screen">
-        <div class="relative h-48 bg-[url(/public/uploads/pexels-mikhail-nilov-7988079.jpg)] bg-cover bg-center bg-gray-900 w-full ">
-            <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 z-10 left-8 border-4 border-black">
+      <section class="md:border-x border-gray-700 w-full md:w-1/2 lg:w-[35%] space-y-8 min-h-screen">
+        <div
+          class="relative h-48 bg-[url(/public/uploads/pexels-mikhail-nilov-7988079.jpg)] bg-cover bg-center bg-gray-900 w-full "
+        >
+          <img
+            src="/public/uploads/Profile-Photo.png"
+            alt="profil image"
+            class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 z-10 left-8 border-4 border-black"
+          />
         </div>
 
-        <div class="pt-12 pb-2 px-4 space-y-4 relative">
-          <div class="flex gap-4">
+        <div class="pt-12 pb-2 space-y-4 relative">
+          <div class="flex gap-4 px-4 ">
             <div class="">
               <h1 class="font-bold capitalize">
                 bradley ortiz
@@ -134,49 +140,168 @@
               </p>
             </div>
             <div>
-              <a href="#" class="font-bold inline-block space-x-1 px-4 border border-gray-600 rounded-full transition duration-300 ease hover:bg-gray-900">
+              <a
+                href="#"
+                class="font-bold inline-block space-x-1 px-4 border border-gray-600 rounded-full transition duration-300 ease hover:bg-gray-900"
+              >
                 <i class="bi bi-patch-check-fill text-blue-400">
-  
+
                 </i>
                 <span>Get verified</span>
               </a>
             </div>
           </div>
-  
-          <div class="space-y-3">
+
+          <div class="space-y-3 px-4">
             <p class="text-gray-700">
-              <i class="bi bi-calendar"></i> joined <span> October 2024</span>
+              <i class="bi bi-calendar"></i>joined <span>October 2024</span>
             </p>
             <div class="flex items-center gap-4">
               <p>
-                4 <span class="text-gray-700">Following</span> 
+                4 <span class="text-gray-700">Following</span>
               </p>
               <p>
-                0 <span class="text-gray-700">Followers</span> 
+                0 <span class="text-gray-700">Followers</span>
               </p>
             </div>
           </div>
 
-            <a href="#" class=" px-4 py-2 rounded-full capitalize inline-block transition duration-300 hover:bg-gray-900 border border-gray-700 absolute right-2 top-0">
-              edit profile
-            </a>
+          <a
+            href="#"
+            class=" px-4 py-2 rounded-full capitalize inline-block transition duration-300 hover:bg-gray-900 border border-gray-700 absolute right-2 top-0"
+          >
+            edit profile
+          </a>
+
+          {{--  boutons d'activation de table   --}}
+
+          <section class="activity pt-12 w-full">
+            <div class="flex items-center justify-between px-2 lg:px-4">
+              <button onclick="openTable('tab1',event)" class="tab-button active border-b border-gray-700">
+                <span class="capitalize">posts</span>
+              </button>
+
+              <button onclick="openTable('tab2',event)" class="tab-button">
+                <span class="capitalize">replies</span>
+              </button>
+
+              <button onclick="openTable('tab3')" class="tab-button">
+                <span class="capitalize">highlights</span>
+              </button>
+
+              <button onclick="openTable('tab4')" class="tab-button">
+                <span class="capitalize">articles</span>
+              </button>
+
+              <button onclick="openTable('tab5')" class="tab-button">
+                <span class="capitalize">media</span>
+              </button>
+
+              <button onclick="openTable('tab6')" class="tab-button">
+                <span class="capitalize">likes</span>
+              </button>
+            </div>
+          </section>
+          <div class="border border-gray-800">
+          </div>
+
+          {{--  contenu des table   --}}
+          <section>
+
+            {{--  posts   --}}
+            <div id="tab1" class="mx-4 tab-content space-y-8">
+
+              <h1 class="text-2xl font-bold">
+                Who to follow
+              </h1>
+              <section class="content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi, atque deserunt illo, voluptate amet aperiam rerum voluptas ad et quam debitis consequuntur alias ullam. Obcaecati nisi consequatur sequi ut?
+                </p>
+              </section>
+            </div>
+
+            {{--  replies  --}}
+            <div id="tab2" class="mx-4 tab-content space-y-8 hidden">
+
+              <h1 class="text-2xl font-bold">
+                Who to replies
+              </h1>
+              <section class="content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam pariatur architecto perferendis, eveniet ipsam repellendus molestiae est nihil animi maxime ullam, provident accusantium, tempora laborum dolorum id soluta cum.
+                </p>
+              </section>
+            </div>
+
+            {{--  highlights   --}}
+            <div id="tab3" class="mx-4 tab-content space-y-8 hidden">
+              <h1 class="text-2xl font-bold">
+                Highlights
+              </h1>
+              <section class="content">
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores nihil, libero magni commodi amet necessitatibus numquam, fugit minima ipsum facere tenetur distinctio cumque earum suscipit, magnam et provident alias voluptatem?
+                </p>
+              </section>
+
+            </div>
+
+            {{--  articles  --}}
+            <div id="tab4" class="mx-4 tab-content space-y-8  hidden">
+              <h1 class="text-2xl font-bold">
+                Articles
+              </h1>
+              <section class="content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore possimus, maiores voluptas, sint facere molestias harum porro tenetur explicabo soluta doloremque illum omnis laboriosam facilis ab repellendus, reiciendis nam?
+                </p>
+              </section>
+            </div>
+
+            {{--  media   --}}
+            <div id="tab5" class="mx-4 tab-content space-y-8  hidden">
+              <h1 class="text-2xl font-bold">
+                Media
+              </h1>
+              <section class="content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis reiciendis, at possimus similique laboriosam voluptatibus eum asperiores architecto repellat sapiente exercitationem recusandae tempora earum illum dolore obcaecati unde. Odit.
+                </p>
+              </section>
+            </div>
+
+            {{--  likes  --}}
+            <div id="tab6" class="mx-4 tab-content space-y-8  hidden">
+              <h1 class="text-2xl font-bold">
+                Likes
+              </h1>
+              <section class="content">
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum inventore minima id magnam animi ratione qui dolorum placeat ex voluptas autem tenetur eos eum corporis pariatur doloribus odio nihil.
+                </p>
+              </section>
+            </div>
+
+          </section>
 
         </div>
 
       </section>
-      <section class="flex flex-col py-4 w-[25%] lg:w-[20%] lg:mx-8 space-y-8">
+      <section class="flex flex-col py-4 hidden md:block md:w-[35%] lg:w-[20%] md:mx-4 lg:mx-8 space-y-8">
         <div class="flex items-center w-full">
           <fieldset class="w-full relative">
             <i class="bi bi-search absolute text-gray-500 left-4 top-2"></i>
             <input
-            type="search"
-            name="search"
-            id=""
-            class="bg-[#202327] rounded-full py-2 pl-12 w-full"
-            placeholder="Search Twitter"
-          />
+              type="search"
+              name="search"
+              id=""
+              class="bg-[#202327] rounded-full py-2 pl-12 w-full"
+              placeholder="Search Twitter"
+            />
           </fieldset>
         </div>
+
         <section class="bg-[#202327] rounded-lg w-full p-4 space-y-6">
           <div class="py-4">
             <h2 class="font-bold text-xl">
@@ -193,7 +318,7 @@
                 <p class="text-gray-600">
                   Trending in Turkey
                 </p>
-                <img src="/public/uploads/etc.svg" alt="">
+                <img src="/public/uploads/etc.svg" alt="" />
               </div>
               <h3 class="text-md font-bold">
                 #SQUID
@@ -208,7 +333,7 @@
                 <p class="text-gray-600">
                   Trending in Turkey
                 </p>
-                <img src="/public/uploads/etc.svg" alt="">
+                <img src="/public/uploads/etc.svg" alt="" />
               </div>
               <h3 class="text-md font-bold">
                 #SQUID
@@ -223,7 +348,7 @@
                 <p class="text-gray-600">
                   Trending in Turkey
                 </p>
-                <img src="/public/uploads/etc.svg" alt="">
+                <img src="/public/uploads/etc.svg" alt="" />
               </div>
               <h3 class="text-md font-bold">
                 #SQUID
@@ -252,13 +377,13 @@
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <img src="/public/uploads/image-2(1).png" alt="">
+                <img src="/public/uploads/image-2(1).png" alt="" />
                 <div class="">
                   <div class="flex items-center gap-2">
                     <p class="capitalize ">
                       the new york times
                     </p>
-                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
                   </div>
                   <p class="text-gray-500">
                     @nytimes
@@ -266,7 +391,7 @@
                 </div>
               </div>
               @component('components/followBtn', {  })
-                
+
               @end
             </div>
           </div>
@@ -274,13 +399,13 @@
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <img src="/public/uploads/image-1(1).png" alt="">
+                <img src="/public/uploads/image-1(1).png" alt="" />
                 <div class="">
                   <div class="flex items-center gap-2">
                     <p class="capitalize ">
                       CNN
                     </p>
-                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
                   </div>
                   <p class="text-gray-500">
                     @CNN
@@ -288,7 +413,7 @@
                 </div>
               </div>
               @component('components/followBtn', {  })
-                
+
               @end
             </div>
           </div>
@@ -296,13 +421,13 @@
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <img src="/public/uploads/image-3.png" alt="">
+                <img src="/public/uploads/image-3.png" alt="" />
                 <div class="">
                   <div class="flex items-center gap-2">
                     <p class="capitalize ">
                       twitter
                     </p>
-                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto">
+                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
                   </div>
                   <p class="text-gray-500">
                     @Twitter
@@ -310,7 +435,7 @@
                 </div>
               </div>
               @component('components/followBtn', {  })
-                
+
               @end
             </div>
           </div>
@@ -322,8 +447,35 @@
         <section>
 
         </section>
+        <div class="text-[#6E767D] text-[13px] text-center flex flex-col items-center">
+          <div class="flex items-center gap-2 text-center">
+            <p>Terms of Service</p>
+            <p>Privacy Policy</p>
+            <p> Cookie Policy</p>
+          </div>
+          <div class="flex items-center gap-2 text-center">
+            <p> Imprint</p>
+            <p> Ads info</p>
+            <p> More...</p>
+            <p>&COPY;2025 Twitter, Inc.</p>
+          </div>
+        </div>
       </section>
     </div>
+
+    <script>
+      function openTable(tabId) {
+        document.querySelectorAll(".tab-content").forEach(content => {
+          content.classList.add("hidden");
+        });
+        document.querySelectorAll(".tab-button").forEach(button => {
+          button.classList.add('transition','duration-500');
+        });
+        document.getElementById(tabId).classList.remove("hidden");
+        event.currentTarget.classList.add("border-b", "border-gray-700");
+        // event.currentTarget.classList.remove("border-b", "border-gray-700");
+      }
+    </script>
 
   @endslot
   

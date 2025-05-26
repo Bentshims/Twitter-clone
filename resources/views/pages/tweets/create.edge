@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twitter Tweet Form Mockup with Tailwind CSS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Twitter Tweet Form Mockup with Tailwind CSS
+    </title>
     <!-- Inclure Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-xl bg-white border border-gray-200 rounded-lg shadow-md p-6">
-        <!-- En-tête avec logo et titre -->
-        <div class="flex items-center mb-4">
-            <img src="https://via.placeholder.com/40" alt="Profile Pic" class="w-10 h-10 rounded-full mr-3">
-            <h1 class="text-2xl font-bold text-blue-500">Twitter</h1>
-        </div>
+      <!-- En-tête avec logo et titre -->
+      <div class="flex items-center mb-4">
+        <img src="https://via.placeholder.com/40" alt="Profile Pic" class="w-10 h-10 rounded-full mr-3" />
+        <h1 class="text-2xl font-bold text-blue-500">
+          Twitter
+        </h1>
+      </div>
 
-        <!-- Boîte de saisie du tweet -->
-        <div class="relative">
-            <textarea 
-                class="w-full min-h-24 p-3 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none resize-none overflow-hidden" 
-                placeholder="Quoi de neuf ?"
-            ></textarea>
+      <!-- Boîte de saisie du tweet -->
+      <div class="relative">
+        <textarea
+          class="w-full min-h-24 p-3 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none resize-none overflow-hidden"
+          placeholder="Quoi de neuf ?"
+        ></textarea>
 
-            <!-- Actions : icônes et bouton -->
-            <div class="flex justify-between items-center mt-3">
-                <!-- Icônes pour ajouter des médias -->
-                <div class="flex space-x-4">
-                    <img src="https://via.placeholder.com/20" alt="Image Icon" class="w-5 h-5 cursor-pointer">
-                    <img src="https://via.placeholder.com/20" alt="GIF Icon" class="w-5 h-5 cursor-pointer">
-                    <img src="https://via.placeholder.com/20" alt="Poll Icon" class="w-5 h-5 cursor-pointer">
-                    <img src="https://via.placeholder.com/20" alt="Emoji Icon" class="w-5 h-5 cursor-pointer">
-                    <img src="https://via.placeholder.com/20" alt="Location Icon" class="w-5 h-5 cursor-pointer">
-                </div>
+        <!-- Actions : icônes et bouton -->
+        <div class="flex justify-between items-center mt-3">
+          <!-- Icônes pour ajouter des médias -->
+          <div class="flex space-x-4">
+            <img src="https://via.placeholder.com/20" alt="Image Icon" class="w-5 h-5 cursor-pointer" />
+            <img src="https://via.placeholder.com/20" alt="GIF Icon" class="w-5 h-5 cursor-pointer" />
+            <img src="https://via.placeholder.com/20" alt="Poll Icon" class="w-5 h-5 cursor-pointer" />
+            <img src="https://via.placeholder.com/20" alt="Emoji Icon" class="w-5 h-5 cursor-pointer" />
+            <img src="https://via.placeholder.com/20" alt="Location Icon" class="w-5 h-5 cursor-pointer" />
+          </div>
 
-                <!-- Compteur de caractères et bouton Tweeter -->
-                <div class="flex items-center space-x-3">
-                    <span class="text-sm text-gray-500">0/280</span>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-600">
-                        Tweeter
+          <!-- Compteur de caractères et bouton Tweeter -->
+          <div class="flex items-center space-x-3">
+            <span class="text-sm text-gray-500">0/280</span>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-600">
+              Tweeter
                     </button>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
