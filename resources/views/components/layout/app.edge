@@ -75,7 +75,7 @@
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
     <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 relative">
-      <nav >
+      <nav>
         <div class="fixed space-y-6">
 
           <section class="space-y-4 mt-6">
@@ -105,8 +105,13 @@
             <div>
               <a href="#">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
-                  <img src="/public/uploads/notification.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                  <div class="relative">
+                    <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
+                      1
+                    </p>
+                    <img src="/public/uploads/notification.svg" alt="" />
+                  </div>
+                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block ">
                     notification
                   </P>
                 </div>
@@ -144,7 +149,9 @@
             </div>
             <div>
               <a href="/users">
-                <div class="flex items-center transition duration-400 ease hover:bg-[#202327]  rounded-full px-6 py-4">
+                <div
+                  class="flex items-center transition duration-400 ease hover:bg-[#202327]  rounded-full px-6 py-4"
+                >
                   <img src="/public/uploads/profil.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     profil
@@ -271,105 +278,118 @@
           </div>
         </section>
 
-        <section class="bg-[#202327] rounded-lg w-full md:px-2 md:py-4 lg:p-4 space-y-4">
-          <div class="pb-6">
-            <h2 class="font-bold text-xl">
-              Who to follow
-            </h2>
-            <div>
-              <i></i>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="/public/uploads/image-2(1).png" alt="" />
-                <div class="">
-                  <div class="flex items-center gap-2">
-                    <p class="capitalize ">
-                      the new york times
-                    </p>
-                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
-                  </div>
-                  <p class="text-[#6E767D]">
-                    @nytimes
-                  </p>
-                </div>
+        <div class="space-y-2">
+          <section class="bg-[#202327] rounded-lg w-full md:px-2 md:py-4 lg:p-4 space-y-4">
+            <div class="pb-6">
+              <h2 class="font-bold text-xl">
+                Who to follow
+              </h2>
+              <div>
+                <i></i>
               </div>
-              @component('components/followBtn', {  })
-
-              @end
             </div>
-          </div>
-
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="/public/uploads/image-1(1).png" alt="" />
-                <div class="">
-                  <div class="flex items-center gap-2">
-                    <p class="capitalize ">
-                      CNN
+  
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <img src="/public/uploads/image-2(1).png" alt="" />
+                  <div class="">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        the new york times
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                    </div>
+                    <p class="text-[#6E767D]">
+                      @nytimes
                     </p>
-                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
                   </div>
-                  <p class="text-[#6E767D]">
-                    @CNN
-                  </p>
                 </div>
+                @component('components/followBtn', {  })
+  
+                @end
               </div>
-              @component('components/followBtn', {  })
-
-              @end
             </div>
-          </div>
-
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <img src="/public/uploads/image-3.png" alt="" />
-                <div class="">
-                  <div class="flex items-center gap-2">
-                    <p class="capitalize ">
-                      twitter
+  
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <img src="/public/uploads/image-1(1).png" alt="" />
+                  <div class="">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        CNN
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                    </div>
+                    <p class="text-[#6E767D]">
+                      @CNN
                     </p>
-                    <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
                   </div>
-                  <p class="text-[#6E767D]">
-                    @Twitter
-                  </p>
                 </div>
+                @component('components/followBtn', {  })
+  
+                @end
               </div>
-              @component('components/followBtn', {  })
-
-              @end
             </div>
-          </div>
-          <div class="text-blue-400 my-4">
-            <a href="#" class="font-semibold">Show more</a>
-          </div>
-        </section>
-
-        <section>
-
-        </section>
-        <div class="text-[#6E767D] text-[13px] text-center flex flex-col items-center">
-          <div class="flex items-center gap-2 text-center">
-            <p>Terms of Service</p>
-            <p>Privacy Policy</p>
-            <p> Cookie Policy</p>
-          </div>
-          <div class="flex items-center gap-2 text-center">
-            <p> Imprint</p>
-            <p> Ads info</p>
-            <p> More...</p>
-            <p>&COPY;2025 Twitter, Inc.</p>
+  
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <img src="/public/uploads/image-3.png" alt="" />
+                  <div class="">
+                    <div class="flex items-center gap-2">
+                      <p class="capitalize ">
+                        twitter
+                      </p>
+                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                    </div>
+                    <p class="text-[#6E767D]">
+                      @Twitter
+                    </p>
+                  </div>
+                </div>
+                @component('components/followBtn', {  })
+  
+                @end
+              </div>
+            </div>
+            <div class="text-blue-400 my-4">
+              <a href="#" class="font-semibold">Show more</a>
+            </div>
+          </section>
+  
+          <div class="text-[#6E767D] text-[13px] text-center flex flex-col items-center">
+            <div class="flex items-center gap-2 text-center">
+              <p>
+                Terms of Service
+              </p>
+              <p>
+                Privacy Policy
+              </p>
+              <p>
+                Cookie Policy
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-center">
+              <p>
+                Imprint
+              </p>
+              <p>
+                Ads info
+              </p>
+              <p>
+                More...
+              </p>
+              <p>
+                &COPY;2025 Twitter, Inc.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
     </nav>
-    
+
   </body>
 </html>

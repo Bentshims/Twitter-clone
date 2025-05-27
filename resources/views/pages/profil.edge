@@ -1,7 +1,7 @@
 
 @layout.app({title:"profil"})
   @slot('main')
-    <div  class="flex justify-center  md:border-x border-gray-700  w-full lg:w-[35%]">
+    <div class="flex justify-center  md:border-x border-gray-700  w-full lg:w-[35%]">
       <section class="min-h-screen space-y-8 ">
         <div
           class="relative h-48 bg-[url(/public/uploads/pexels-mikhail-nilov-7988079.jpg)] bg-cover bg-center bg-gray-900 w-full "
@@ -179,7 +179,7 @@
           content.classList.add("hidden");
         });
         document.querySelectorAll(".tab-button").forEach(button => {
-          button.classList.add('transition','duration-500');
+          button.classList.add("transition", "duration-500");
         });
         document.getElementById(tabId).classList.remove("hidden");
         event.currentTarget.classList.add("border-b", "border-gray-700");
