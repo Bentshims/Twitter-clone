@@ -11,7 +11,7 @@
             </p>
             <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
           </nav>
-          <div class="user border-b border-gray-700 flex justify-between px-2 py-4 md:p-4 min-h-36 relative">
+          <div class="user border-b border-gray-700 flex justify-between px-2 py-4 md:p-4 min-h-36 md:min-h-42 lg:min-h-48 relative">
             <div class="flex  md:space-x-4">
               <div>
                 <a href="/users">
@@ -19,14 +19,14 @@
                 </a>
               </div>
               <div class="ml-3 md:ml-0 w-[80%] md:w-auto">
-                <form action="/post" method="post">
+                <form action="/post" method="post" class="lg:flex flex-col justify-between">
                   {{ csrfField() }}
                   <fieldset class="w-full">
                     <textarea
                       name="tweet"
                       minlength="10"
                       maxlength="255"
-                      class="appearance-none overflow-hidden resize-none w-80 bg-black outline-none border-none pt-4"
+                      class="appearance-none overflow-hidden resize-none w-80 lg:w-128 min-h-28 bg-black outline-none border-none pt-4"
                       placeholder="What's happening ?"
                       required
                     ></textarea>

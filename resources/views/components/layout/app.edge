@@ -74,9 +74,9 @@
     @stack('dumper')
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
-    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 relative">
+    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 lg:p-0 relative">
       <nav>
-        <div class="fixed space-y-6">
+        <div class="fixed space-y-6 lg:space-y-6">
 
           <section class="space-y-4 mt-6">
             <div class="pl-6">
@@ -177,7 +177,7 @@
           </div>
         </div>
 
-        <div class="profil hidden lg:flex items-center space-x-4 fixed bottom-10 right-[75%]">
+        <div class="profil hidden lg:flex items-center space-x-4 fixed bottom-10">
           <a href="/users">
             <img src="/public/uploads/Profile-Photo.png" alt="profil" class="w-16 h-auto rounded-full" />
           </a>
@@ -201,7 +201,7 @@
     <main class="flex justify-center md:w-[75%] lg:w-[35%] min-h-screen">
       {{{ await $slots.main() }}}
     </main>
-    <nav class="md:w-1/2 md:px-4 lg:w-[20%] lg:mx-8">
+    <nav class="md:w-1/2 md:px-4 lg:w-[20%]">
       <section class="md:flex flex-col py-4 hidden space-y-8">
         <div class="flex items-center w-full">
           <fieldset class="w-full relative">
