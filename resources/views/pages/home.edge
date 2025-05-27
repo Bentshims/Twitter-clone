@@ -2,23 +2,23 @@
 @layout.app({title:"Home"})
   @slot('main')
 
-    <div>
-      <section class="min-h-screen md:border-x border-gray-700 w-full md:w-1/2 lg:w-[35%] relative">
+    <div class="">
+      <section class="min-h-screen md:border-x border-gray-700  relative">
         <div>
-          <nav class="flex items-center justify-between p-4 border-b  border-gray-700">
+          <nav class="flex items-center justify-between px-2 py-4 md:p-4 border-b  border-gray-700">
             <p class="capitalize font-semibold text-xl">
               home
             </p>
-            <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-auto" />
+            <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6"/>
           </nav>
-          <div class="user border-b border-gray-700 flex justify-between p-4 h-36 relative">
-            <div class="flex space-x-4">
+          <div class="user border-b border-gray-700 flex justify-between px-2 py-4 md:p-4 min-h-36 relative">
+            <div class="flex  md:space-x-4">
               <div>
                 <a href="/users">
-                  <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="w-16 h-16 rounded-full" />
+                  <img src="/public/uploads/Profile-Photo.png" alt="profil image" class="border w-16 h-16 rounded-full" />
                 </a>
               </div>
-              <div>
+              <div class="ml-3 md:ml-0 w-[80%] md:w-auto">
                 <form action="/post" method="post">
                   {{ csrfField() }}
                   <fieldset class="w-full">
@@ -55,7 +55,7 @@
                       </div>
                     </div>
 
-                    <fieldset class="flex justify-end absolute bottom-3 right-6">
+                    <fieldset class="flex justify-end absolute right-2 bottom-3 md:right-6">
                       <button
                         class="w-full bg-blue-500 px-6 py-3 rounded-full transition duration-300 ease hover:bg-blue-600"
                         type="submit"

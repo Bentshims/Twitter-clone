@@ -73,9 +73,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body class="bg-black text-white font-sans flex justify-center">
-    <header>
-      <nav class="hidden md:block md:w-[12%] lg:w-[15%] space-y-10 p-4 relative">
+  <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
+    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 relative">
+      <nav >
         <div class="fixed space-y-6">
 
           <section class="space-y-4 mt-6">
@@ -84,7 +84,7 @@
             </div>
             <div>
               <a href="/">
-                <div class="flex items-center transition duration-400 ease bg-[#202327] rounded-full px-6 py-4">
+                <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <img src="/public/uploads/home.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     home
@@ -191,11 +191,11 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="flex justify-center md:w-[75%] lg:w-[35%] min-h-screen">
       {{{ await $slots.main() }}}
     </main>
-    <nav>
-      <section class="flex flex-col py-4 hidden md:block md:w-[35%] lg:w-[20%] md:mx-4 lg:mx-8 space-y-8">
+    <nav class="md:w-1/2 md:px-4 lg:w-[20%] lg:mx-8">
+      <section class="md:flex flex-col py-4 hidden space-y-8">
         <div class="flex items-center w-full">
           <fieldset class="w-full relative">
             <i class="bi bi-search absolute text-gray-500 left-4 top-2"></i>
@@ -209,7 +209,7 @@
           </fieldset>
         </div>
 
-        <section class="bg-[#202327] rounded-lg w-full p-4 space-y-6">
+        <section class="bg-[#202327] rounded-lg w-full md:px-2 md:py-4 lg:p-4 space-y-6">
           <div class="py-4">
             <h2 class="font-bold text-xl">
               Trends for you
@@ -271,7 +271,7 @@
           </div>
         </section>
 
-        <section class="bg-[#202327] rounded-lg w-full p-4 space-y-4">
+        <section class="bg-[#202327] rounded-lg w-full md:px-2 md:py-4 lg:p-4 space-y-4">
           <div class="pb-6">
             <h2 class="font-bold text-xl">
               Who to follow
