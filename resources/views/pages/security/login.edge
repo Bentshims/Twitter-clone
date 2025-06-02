@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <script src="https:/cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <section>
+        <form action="/loginUser" method="post">
+            {{ csrfField() }}
+            <fieldset>
+                <input type="email" class="" name="email" placeholder="tshims@gmail.com" maxlength="255" required>
+            </fieldset>
+            <fieldset>
+                <input type="password" name="password" id="" placeholder="*****************" minlength="8" required>
+            </fieldset>
+            <fieldset>
+                <button type="submit">
+                    login
+                </button>
+            </fieldset>
+
+        </form>
+        <p>
+            vous n'avez pas de compte ? <span> <a href="/signup">s'inscrire</a></span>
+        </p>
+    </section>
+    
+</body>
+</html>
