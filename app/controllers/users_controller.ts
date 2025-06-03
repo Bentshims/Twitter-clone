@@ -17,7 +17,7 @@ export default class UsersController {
     return view.render('pages/security/signup')
   }
 
-  public async signupUser({view, request, response}:HttpContext){
+  public async signupUser({request, response}:HttpContext){
     const payload = await request.validateUsing(signupValidator)
     if (!payload) {
       return response.send('Nous avons rencontrer une erreur lors de la creation du compte, veillez reesayer plutard')
@@ -28,11 +28,11 @@ export default class UsersController {
         email : payload.email,
         password : payload.password
       })
-    return view.render('pages/home')
+    return response.redirect('/')
     }
   }
 
-  public async loginUser({view, request, response, auth}:HttpContext){
+  public async loginUser({request, response, auth}:HttpContext){
     const payload = await request.validateUsing(loginvalidator)
     if (!payload) {
       return response.send("L'utilisateur n'existe pas veuille entrer les informations valide")
@@ -40,7 +40,8 @@ export default class UsersController {
       const {email, password} = payload
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user)
-      return view.render('pages/home')
+
+      return response.redirect('/')
     }
   }
 }
