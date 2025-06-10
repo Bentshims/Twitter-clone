@@ -1,33 +1,409 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>login</title>
-    <script src="https:/cdn.tailwindcss.com"></script>
+    <title>X-Signup/login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'x-dark': '#000000',
+                        'x-light': '#e7e9ea',
+                        'x-gray': '#71767b',
+                        'x-blue': '#1d9bf0',
+                        'x-dark-gray': '#16181c',
+                        'x-border': '#2f3336',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+        }
+        .modal-overlay {
+            background-color: rgba(55, 70, 116, 0.295);
+        }
+        .modal-container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .modal-content {
+            background-color: #000;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .input-field {
+            background-color: #000;
+            border: 1px solid #2f3336;
+            transition: all 0.2s ease;
+        }
+        .input-field:focus {
+            border-color: #1d9bf0;
+            outline: none;
+        }
+        .next-btn:disabled {
+            background-color: #0c4a6e;
+            cursor: not-allowed;
+        }
+        .close-btn {
+            transition: background-color 0.2s ease;
+        }
+        .close-btn:hover {
+            background-color: #181818;
+        }
+        .signup-option:hover {
+            background-color: #080808;
+        }
+        .auth-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .auth-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
-    <section>
-        <form action="/loginUser" method="post">
-            {{ csrfField() }}
-            <fieldset>
-                <input type="email" class="" name="email" placeholder="tshims@gmail.com" maxlength="255" required>
-            </fieldset>
-            <fieldset>
-                <input type="password" name="password" id="" placeholder="*****************" minlength="8" required>
-            </fieldset>
-            <fieldset>
-                <button type="submit">
-                    login
-                </button>
-            </fieldset>
+<body class="bg-x-dark text-x-light min-h-screen flex flex-col">
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="max-w-md w-full">
+            <div class="mb-10">
+                <i class="fab fa-x-twitter text-5xl mb-8"></i>
+                <h1 class="text-3xl font-bold mb-10">Ça se passe maintenant</h1>
+                <h2 class="text-xl font-bold mb-6">Inscrivez-vous.</h2>
 
-        </form>
-        <p>
-            vous n'avez pas de compte ? <span> <a href="/signup">s'inscrire</a></span>
-        </p>
-    </section>
+                
+                <!--  les Options de connexion avec google ou apple que j'ai pas encore implementer -->
+                <div class="space-y-4 mb-6">
+
+                    <a class="signup-option flex items-center justify-center gap-6 py-3 px-6 rounded-full border border-x-border cursor-pointer transition">
+                        <i class="fab fa-google"></i> 
+                       <span>
+                            S'inscrire avec google
+                       </span>
+                    </a>
+
+                    <a class="signup-option flex items-center justify-center gap-6 py-3 px-6 rounded-full border border-x-border cursor-pointer transition">
+                        <i class="fab fa-apple"></i>
+                        <span>
+                            S'inscrire avec Apple
+                        </span>
+                     </a>
+                    
+                 
+                </div>
+                
+                <div class="relative flex items-center my-6">
+                    <div class="flex-grow border-t border-x-border"></div>
+                    <span class="flex-shrink mx-4 text-x-gray">OU</span>
+                    <div class="flex-grow border-t border-x-border"></div>
+                </div>
+                
+                <button id="createAccountBtn" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-3 px-4 rounded-full transition mb-6">
+                    Créer un compte
+                </button>
+                
+                <div class="text-xs text-x-gray mb-10">
+                    <p>En vous inscrivant, vous acceptez les <a href="#" class="text-x-blue hover:underline">Conditions d'utilisation</a> | 
+                    <a href="#" class="text-x-blue hover:underline">La Politique de confidentialité</a>, notamment l'Utilisation des cookies.</p>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-6">Vous avez déjà un compte ?</h3>
+                    <button id="loginBtn" class="w-full border border-x-border hover:bg-[#080808] text-white font-bold py-3 px-4 rounded-full transition">
+                        Se connecter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
     
+    <footer class="py-6 px-4 text-xs text-x-gray">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-wrap gap-3 justify-center mb-4">
+                <a href="#" class="hover:underline">À propos</a>
+                <a href="#" class="hover:underline">Télécharger l’application X</a>
+                <a href="#" class="hover:underline">Gréo</a>
+                <a href="#" class="hover:underline">Centre d’assistance</a>
+                <a href="#" class="hover:underline">Conditions d’utilisation</a>
+                <a href="#" class="hover:underline">Politique de Confidentialité</a>
+                <a href="#" class="hover:underline">Politique relative aux cookies</a>
+                <a href="#" class="hover:underline">Accessibilité</a>
+                <a href="#" class="hover:underline">Informations sur les publicités</a>
+                <a href="#" class="hover:underline">Blog</a>
+                <a href="#" class="hover:underline">Carrières</a>
+                <a href="#" class="hover:underline">Ressources de la marque</a>
+            </div>
+            
+            <div class="flex flex-wrap gap-3 justify-center mb-4">
+                <a href="#" class="hover:underline">Publicité</a>
+                <a href="#" class="hover:underline">Marketing</a>
+                <a href="#" class="hover:underline">X pour les professionnels</a>
+                <a href="#" class="hover:underline">Développeurs</a>
+                <a href="#" class="hover:underline">Répertoire</a>
+                <a href="#" class="hover:underline">Paramètres</a>
+            </div>
+            
+            <div class="text-center">
+                © 2025 X Corp.
+            </div>
+        </div>
+    </footer>
+
+    <!-- fenetre Modale pour l'inscription -->
+    <div id="signupModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="p-4">
+                    <!-- En-tête -->
+                    <div class="flex items-center mb-4">
+                        <button id="closeSignupModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                        <div class="ml-4">
+                            <i class="fab fa-x-twitter text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mb-8">Créez votre compte</h2>
+
+                    <!-- Formulaire d'inscription -->
+                    <form id="signupForm" class="space-y-6">
+                        <fieldset>
+                            <input type="text" placeholder="Nom et prenom" class="input-field w-full p-4 rounded-lg text-xl" required>
+                        </fieldset>
+                        <fieldset>
+                            <input type="text" placeholder="Numéro de téléphone" class="input-field w-full p-4 rounded-lg text-xl" required>
+                        </fieldset>
+                        <div class="text-xs text-x-gray">
+                            <p>Date de naissance</p>
+                            <p class="mt-1">Cela ne sera pas affiché publiquement. Confirmez votre âge, même si ce compte est pour une entreprise, un animal de compagnie, etc.</p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <select id="month-select" class="input-field flex-grow p-4 rounded-lg" required>
+                                <option disabled selected>Mois</option>
+                                <option value="1">Janvier</option>
+                                <option value="2">Février</option>
+                                <option value="3">Mars</option>
+                                <option value="4">Avril</option>
+                                <option value="5">Mai</option>
+                                <option value="6">Juin</option>
+                                <option value="7">Juillet</option>
+                                <option value="8">Août</option>
+                                <option value="9">Septembre</option>
+                                <option value="10">Octobre</option>
+                                <option value="11">Novembre</option>
+                                <option value="12">Décembre</option>
+                            </select>
+                              
+                            <select id="day-select" class="input-field w-1/4 p-4 rounded-lg" required>
+                                <option disabled selected>Jour</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                                <option>26</option>
+                                <option>27</option>
+                                <option>28</option>
+                                <option>29</option>
+                                <option>30</option>
+                                <option>31</option>
+
+                            </select>
+                            <select id="year-select" class="input-field w-1/4 p-4 rounded-lg" required>
+                                <option disabled selected>Année</option>
+                                <option>2023</option>
+                                <option>2022</option>
+                                <option>2021</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <button class="next-btn w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
+                        Suivant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale de connexion -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="p-4">
+                    <div class="flex items-center mb-4">
+                        <button id="closeLoginModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                        <div class="ml-4">
+                            <i class="fab fa-x-twitter text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mb-8">Connectez-vous à X</h2>
+
+                    <div class="space-y-4 mb-6">
+                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition flex justify-center">
+                            <i class="fab fa-google text-xl"></i>
+                            <span>Se connecter avec Google</span>
+                        </button>
+                        
+                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition flex justify-center">
+                            <i class="fab fa-apple text-xl inline-block"></i>
+                            <span class="inline-block">Se connecter avec Apple</span>
+                        </button>
+                    </div>
+                    
+                    <div class="relative flex items-center my-6">
+                        <div class="flex-grow border-t border-x-border"></div>
+                        <span class="flex-shrink mx-4 text-x-gray">ou</span>
+                        <div class="flex-grow border-t border-x-border"></div>
+                    </div>
+
+                    <form id="loginForm" class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Numéro de téléphone, adresse e-mail ou nom d'utilisateur" class="input-field w-full p-4 rounded-lg text-xl">
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl">
+                        </div>
+                    </form>
+
+                    <button class="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-4 rounded-full transition mt-8">
+                        Connexion
+                    </button>
+
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-x-blue hover:underline">Mot de passe oublié ?</a>
+                    </div>
+                    <div class="mt-6 text-x-gray text-sm">
+                        <p>Vous n'avez pas de compte ? <a href="#" id="switchToSignup" class="text-x-blue hover:underline">Inscrivez-vous</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signupModal = document.getElementById('signupModal');
+        const loginModal = document.getElementById('loginModal');
+        const createAccountBtn = document.getElementById('createAccountBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeSignupModal = document.getElementById('closeSignupModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const switchToSignup = document.getElementById('switchToSignup');
+
+        createAccountBtn.addEventListener('click', () => {
+            signupModal.classList.remove('hidden');
+            signupModal.classList.add('flex');
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+            loginModal.classList.add('flex');
+        });
+
+        closeSignupModal.addEventListener('click', () => {
+            signupModal.classList.remove('flex');
+            signupModal.classList.add('hidden');
+        });
+
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.remove('flex');
+            loginModal.classList.add('hidden');
+        });
+
+        switchToSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('flex');
+            loginModal.classList.add('hidden');
+            signupModal.classList.remove('hidden');
+            signupModal.classList.add('flex');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === signupModal) {
+                signupModal.classList.remove('flex');
+                signupModal.classList.add('hidden');
+            }
+            if (e.target === loginModal) {
+                loginModal.classList.remove('flex');
+                loginModal.classList.add('hidden');
+            }
+        });
+
+
+        const daySelect = document.getElementById("day-select");
+        const monthSelect = document.getElementById("month-select");
+        const yearSelect = document.getElementById("year-select");
+
+        for (let y = new Date().getFullYear(); y >= 1900; y--) {
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = y;
+        yearSelect.appendChild(opt);
+        }
+
+        function getDaysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+        }
+
+        function updateDays() {
+        const month = parseInt(monthSelect.value);
+        const year = parseInt(yearSelect.value);
+
+        if (!month || !year) return;
+
+        const daysInMonth = getDaysInMonth(month, year);
+
+        // Vider les options existantes
+        daySelect.innerHTML = '<option>Jour</option>';
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const opt = document.createElement("option");
+            opt.value = d;
+            opt.textContent = d;
+            daySelect.appendChild(opt);
+        }
+        }
+
+        monthSelect.addEventListener("change", updateDays);
+        yearSelect.addEventListener("change", updateDays);
+
+    </script>
 </body>
 </html>

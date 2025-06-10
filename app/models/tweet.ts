@@ -5,6 +5,15 @@ export default class Tweet extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare userId: number
+
+  @column()
+  declare description: string
+
+  @column()
+  declare media: File
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
