@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Signup/login</title>
+    <title>X - Connexion/Inscription</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,7 +28,7 @@
             overflow-x: hidden;
         }
         .modal-overlay {
-            background-color: rgba(55, 70, 116, 0.295);
+            background-color: rgba(0, 0, 0, 0.65);
         }
         .modal-container {
             max-width: 600px;
@@ -74,16 +74,48 @@
         .auth-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #71767b;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+        .step-dot.active {
+            background-color: #1d9bf0;
+            transform: scale(1.2);
+        }
+        .interest-card {
+            border: 1px solid #2f3336;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .interest-card:hover {
+            background-color: #080808;
+            border-color: #1d9bf0;
+        }
+        .interest-card.selected {
+            background-color: rgba(29, 155, 240, 0.1);
+            border-color: #1d9bf0;
+        }
     </style>
 </head>
 <body class="bg-x-dark text-x-light min-h-screen flex flex-col">
+    <!-- Contenu principal -->
     <main class="flex-grow flex items-center justify-center p-4">
         <div class="max-w-md w-full">
             <div class="mb-10">
                 <i class="fab fa-x-twitter text-5xl mb-8"></i>
                 <h1 class="text-3xl font-bold mb-10">Ça se passe maintenant</h1>
                 <h2 class="text-xl font-bold mb-6">Inscrivez-vous.</h2>
-
                 
                 <!--  les Options de connexion avec google ou apple que j'ai pas encore implementer -->
                 <div class="space-y-4 mb-6">
@@ -105,21 +137,25 @@
                  
                 </div>
                 
+                <!-- Séparateur -->
                 <div class="relative flex items-center my-6">
                     <div class="flex-grow border-t border-x-border"></div>
                     <span class="flex-shrink mx-4 text-x-gray">OU</span>
                     <div class="flex-grow border-t border-x-border"></div>
                 </div>
                 
+                <!-- Bouton Créer un compte -->
                 <button id="createAccountBtn" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-3 px-4 rounded-full transition mb-6">
                     Créer un compte
                 </button>
                 
+                <!-- Mentions légales -->
                 <div class="text-xs text-x-gray mb-10">
                     <p>En vous inscrivant, vous acceptez les <a href="#" class="text-x-blue hover:underline">Conditions d'utilisation</a> | 
                     <a href="#" class="text-x-blue hover:underline">La Politique de confidentialité</a>, notamment l'Utilisation des cookies.</p>
                 </div>
                 
+                <!-- Déjà un compte -->
                 <div class="mt-8">
                     <h3 class="text-xl font-bold mb-6">Vous avez déjà un compte ?</h3>
                     <button id="loginBtn" class="w-full border border-x-border hover:bg-[#080808] text-white font-bold py-3 px-4 rounded-full transition">
@@ -130,6 +166,7 @@
         </div>
     </main>
     
+    <!-- Pied de page -->
     <footer class="py-6 px-4 text-xs text-x-gray">
         <div class="max-w-4xl mx-auto">
             <div class="flex flex-wrap gap-3 justify-center mb-4">
@@ -162,14 +199,17 @@
         </div>
     </footer>
 
-    <!-- fenetre Modale pour l'inscription -->
-    <div id="signupModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
+    <form action="/signupUser" method="POST">
+        {{ csrfField() }}
+
+       <!-- Modale d'inscription - Étape 1 -->
+       <div id="signupModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-container">
             <div class="modal-content">
                 <div class="p-4">
                     <!-- En-tête -->
                     <div class="flex items-center mb-4">
-                        <button id="closeSignupModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
+                        <button type="button" id="closeSignupModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
                             <i class="fas fa-times text-xl"></i>
                         </button>
                         <div class="ml-4">
@@ -177,16 +217,25 @@
                         </div>
                     </div>
 
+                    <!-- Indicateur d'étape -->
+                    <div class="step-indicator">
+                        <div class="step-dot active"></div>
+                        <div class="step-dot"></div>
+                        <div class="step-dot"></div>
+                        <div class="step-dot"></div>
+                    </div>
+
                     <h2 class="text-3xl font-bold mb-8">Créez votre compte</h2>
 
-                    <!-- Formulaire d'inscription -->
-                    <form id="signupForm" class="space-y-6">
-                        <fieldset>
-                            <input type="text" placeholder="Nom et prenom" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </fieldset>
-                        <fieldset>
-                            <input type="text" placeholder="Numéro de téléphone" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </fieldset>
+                    <!-- Formulaire d'inscription - Étape 1 -->
+                    <div id="signupForm" class="space-y-6">
+                      
+                        <div>
+                            <input type="text" placeholder="Nom" class="input-field w-full p-4 rounded-lg text-xl" required>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Numéro de téléphone ou adresse e-mail" class="input-field w-full p-4 rounded-lg text-xl" required>
+                        </div>
                         <div class="text-xs text-x-gray">
                             <p>Date de naissance</p>
                             <p class="mt-1">Cela ne sera pas affiché publiquement. Confirmez votre âge, même si ce compte est pour une entreprise, un animal de compagnie, etc.</p>
@@ -250,9 +299,10 @@
                                 <option>2021</option>
                             </select>
                         </div>
-                    </form>
+                    </div
 
-                    <button class="next-btn w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
+                    <!-- Bouton Suivant -->
+                    <button type="button" id="signupNextBtn1" class="next-btn w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
                         Suivant
                     </button>
                 </div>
@@ -260,11 +310,192 @@
         </div>
     </div>
 
+    <!-- Modale d'inscription - Étape 2 -->
+    <div id="signupStep2Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="p-4">
+                    <!-- En-tête -->
+                    <div class="flex items-center mb-4">
+                        <button type="button" id="closeSignupStep2Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                        <div class="ml-4">
+                            <i class="fab fa-x-twitter text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Indicateur d'étape -->
+                    <div class="step-indicator">
+                        <div class="step-dot active"></div>
+                        <div class="step-dot active"></div>
+                        <div class="step-dot"></div>
+                        <div class="step-dot"></div>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mb-6">Personnalisez votre expérience</h2>
+                    <p class="text-x-gray text-lg mb-8">Suivez les sujets qui vous intéressent pour voir plus de contenus similaires dans votre fil.</p>
+
+                    <!-- Centre d'intérêts -->
+                    <div class="space-y-4 mb-6">
+                        <h3 class="text-xl font-bold mb-4">Centres d'intérêt</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="interest-card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-newspaper text-xl mr-3"></i>
+                                    <div class="font-bold">Actualités</div>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-futbol text-xl mr-3"></i>
+                                    <div class="font-bold">Sports</div>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-film text-xl mr-3"></i>
+                                    <div class="font-bold">Divertissement</div>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-microchip text-xl mr-3"></i>
+                                    <div class="font-bold">Technologie</div>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-music text-xl mr-3"></i>
+                                    <div class="font-bold">Musique</div>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-gamepad text-xl mr-3"></i>
+                                    <div class="font-bold">Jeux vidéo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boutons -->
+                    <button type="button" id="signupNextBtn2" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
+                        Suivant
+                    </button>
+                    <button type="button" id="signupSkipBtn" class="w-full border border-x-border hover:bg-[#080808] text-white font-bold py-4 px-4 rounded-full transition mt-4">
+                        Passer pour l'instant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale d'inscription - Étape 3 -->
+    <div id="signupStep3Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="p-4">
+                    <!-- En-tête -->
+                    <div class="flex items-center mb-4">
+                        <button type="button" id="closeSignupStep3Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                        <div class="ml-4">
+                            <i class="fab fa-x-twitter text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Indicateur d'étape -->
+                    <div class="step-indicator">
+                        <div class="step-dot active"></div>
+                        <div class="step-dot active"></div>
+                        <div class="step-dot active"></div>
+                        <div class="step-dot"></div>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mb-6">Créez votre identifiant</h2>
+                    <p class="text-x-gray text-lg mb-8">Votre identifiant @unique sera votre adresse sur X.</p>
+
+                    <!-- Formulaire d'inscription - Étape 3 -->
+                    <div id="signupStep3Form" class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Identifiant" class="input-field w-full p-4 rounded-lg text-xl" required>
+                            <p class="text-x-gray text-sm mt-2">Vous pouvez utiliser des lettres, chiffres et underscores.</p>
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
+                            <p class="text-x-gray text-sm mt-2">Utilisez au moins 8 caractères. Incluez des lettres, chiffres et symboles.</p>
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Confirmer le mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
+                        </div>
+                    </div>
+
+                    <!-- Boutons -->
+                    <button type="button" id="signupNextBtn3" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
+                        Suivant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale d'inscription - Étape 4 -->
+    <div id="signupStep4Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="p-4">
+                    <!-- En-tête -->
+                    <div class="flex items-center mb-4">
+                        <button type="button" id="closeSignupStep4Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                        <div class="ml-4">
+                            <i class="fab fa-x-twitter text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Indicateur d'étape -->
+                    <div class="step-indicator">
+                        <div class="step-dot active"></div>
+                        <div class="step-dot active"></div>
+                        <div class="step-dot active"></div>
+                        <div class="step-dot active"></div>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mb-6">Complétez votre profil</h2>
+                    <p class="text-x-gray text-lg mb-8">Ajoutez une photo pour aider vos amis à vous reconnaître.</p>
+
+                    <!-- Photo de profil -->
+                    <div class="flex justify-center mb-8">
+                        <div class="w-32 h-32 rounded-full bg-x-dark-gray border-2 border-x-border flex items-center justify-center cursor-pointer">
+                            <i class="fas fa-camera text-3xl text-x-gray"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="mb-6">
+                        <textarea placeholder="Bio (facultatif)" class="input-field w-full p-4 rounded-lg text-xl min-h-[100px]"></textarea>
+                        <p class="text-x-gray text-sm mt-2">Décrivez-vous en quelques mots.</p>
+                    </div>
+
+                    <!-- Bouton Final -->
+                    <button type="submit" id="signupCompleteBtn" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
+                        Terminer l'inscription
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
     <!-- Modale de connexion -->
     <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-container">
             <div class="modal-content">
                 <div class="p-4">
+                    <!-- En-tête -->
                     <div class="flex items-center mb-4">
                         <button id="closeLoginModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
                             <i class="fas fa-times text-xl"></i>
@@ -276,37 +507,44 @@
 
                     <h2 class="text-3xl font-bold mb-8">Connectez-vous à X</h2>
 
+                    <!-- Options de connexion -->
                     <div class="space-y-4 mb-6">
-                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition flex justify-center">
+                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition">
                             <i class="fab fa-google text-xl"></i>
                             <span>Se connecter avec Google</span>
                         </button>
                         
-                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition flex justify-center">
-                            <i class="fab fa-apple text-xl inline-block"></i>
-                            <span class="inline-block">Se connecter avec Apple</span>
+                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition">
+                            <i class="fab fa-apple text-xl"></i>
+                            <span>Se connecter avec Apple</span>
                         </button>
                     </div>
                     
+                    <!-- Séparateur -->
                     <div class="relative flex items-center my-6">
                         <div class="flex-grow border-t border-x-border"></div>
                         <span class="flex-shrink mx-4 text-x-gray">ou</span>
                         <div class="flex-grow border-t border-x-border"></div>
                     </div>
 
-                    <form id="loginForm" class="space-y-6">
+                    <!-- Formulaire de connexion -->
+                    <form id="loginForm" class="space-y-6" method="POST" action="/loginUser">
+                        {{ csrfField() }}
                         <div>
-                            <input type="text" placeholder="Numéro de téléphone, adresse e-mail ou nom d'utilisateur" class="input-field w-full p-4 rounded-lg text-xl">
+                            <input type="text" placeholder="Numéro de téléphone, adresse e-mail ou nom d'utilisateur" class="input-field w-full p-4 rounded-lg text-xl" required>
                         </div>
                         <div>
-                            <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl">
+                            <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
                         </div>
+                           <!-- Bouton de connexion -->
+                        <button type="submit" class="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-4 rounded-full transition mt-8">
+                            Connexion
+                        </button>
                     </form>
 
-                    <button class="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-4 rounded-full transition mt-8">
-                        Connexion
-                    </button>
+                 
 
+                    <!-- Liens supplémentaires -->
                     <div class="mt-6 text-center">
                         <a href="#" class="text-x-blue hover:underline">Mot de passe oublié ?</a>
                     </div>
@@ -319,34 +557,72 @@
     </div>
 
     <script>
+        // Gestion des modales
         const signupModal = document.getElementById('signupModal');
+        const signupStep2Modal = document.getElementById('signupStep2Modal');
+        const signupStep3Modal = document.getElementById('signupStep3Modal');
+        const signupStep4Modal = document.getElementById('signupStep4Modal');
         const loginModal = document.getElementById('loginModal');
+        
         const createAccountBtn = document.getElementById('createAccountBtn');
         const loginBtn = document.getElementById('loginBtn');
+        
+        // Boutons de fermeture
         const closeSignupModal = document.getElementById('closeSignupModal');
+        const closeSignupStep2Modal = document.getElementById('closeSignupStep2Modal');
+        const closeSignupStep3Modal = document.getElementById('closeSignupStep3Modal');
+        const closeSignupStep4Modal = document.getElementById('closeSignupStep4Modal');
         const closeLoginModal = document.getElementById('closeLoginModal');
+        
         const switchToSignup = document.getElementById('switchToSignup');
+        
+        // Boutons de navigation
+        const signupNextBtn1 = document.getElementById('signupNextBtn1');
+        const signupNextBtn2 = document.getElementById('signupNextBtn2');
+        const signupNextBtn3 = document.getElementById('signupNextBtn3');
+        const signupSkipBtn = document.getElementById('signupSkipBtn');
+        const signupCompleteBtn = document.getElementById('signupCompleteBtn');
 
+        // Ouvrir la modale d'inscription
         createAccountBtn.addEventListener('click', () => {
             signupModal.classList.remove('hidden');
             signupModal.classList.add('flex');
         });
 
+        // Ouvrir la modale de connexion
         loginBtn.addEventListener('click', () => {
             loginModal.classList.remove('hidden');
             loginModal.classList.add('flex');
         });
 
+        // Fermer la modale d'inscription
         closeSignupModal.addEventListener('click', () => {
             signupModal.classList.remove('flex');
             signupModal.classList.add('hidden');
         });
 
+        closeSignupStep2Modal.addEventListener('click', () => {
+            signupStep2Modal.classList.remove('flex');
+            signupStep2Modal.classList.add('hidden');
+        });
+
+        closeSignupStep3Modal.addEventListener('click', () => {
+            signupStep3Modal.classList.remove('flex');
+            signupStep3Modal.classList.add('hidden');
+        });
+
+        closeSignupStep4Modal.addEventListener('click', () => {
+            signupStep4Modal.classList.remove('flex');
+            signupStep4Modal.classList.add('hidden');
+        });
+
+        // Fermer la modale de connexion
         closeLoginModal.addEventListener('click', () => {
             loginModal.classList.remove('flex');
             loginModal.classList.add('hidden');
         });
 
+        // Passer de connexion à inscription
         switchToSignup.addEventListener('click', (e) => {
             e.preventDefault();
             loginModal.classList.remove('flex');
@@ -355,16 +631,73 @@
             signupModal.classList.add('flex');
         });
 
+        // Navigation dans les étapes d'inscription
+        signupNextBtn1.addEventListener('click', () => {
+            signupModal.classList.remove('flex');
+            signupModal.classList.add('hidden');
+            signupStep2Modal.classList.remove('hidden');
+            signupStep2Modal.classList.add('flex');
+        });
+
+        signupNextBtn2.addEventListener('click', () => {
+            signupStep2Modal.classList.remove('flex');
+            signupStep2Modal.classList.add('hidden');
+            signupStep3Modal.classList.remove('hidden');
+            signupStep3Modal.classList.add('flex');
+        });
+
+        signupSkipBtn.addEventListener('click', () => {
+            signupStep2Modal.classList.remove('flex');
+            signupStep2Modal.classList.add('hidden');
+            signupStep3Modal.classList.remove('hidden');
+            signupStep3Modal.classList.add('flex');
+        });
+
+        signupNextBtn3.addEventListener('click', () => {
+            signupStep3Modal.classList.remove('flex');
+            signupStep3Modal.classList.add('hidden');
+            signupStep4Modal.classList.remove('hidden');
+            signupStep4Modal.classList.add('flex');
+        });
+
+        signupCompleteBtn.addEventListener('click', () => {
+            alert('Inscription réussie ! Bienvenue sur X.');
+            signupStep4Modal.classList.remove('flex');
+            signupStep4Modal.classList.add('hidden');
+        });
+
+        // Sélection des centres d'intérêt
+        const interestCards = document.querySelectorAll('.interest-card');
+        interestCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('selected');
+            });
+        });
+
+        // Fermer les modales en cliquant en dehors
         window.addEventListener('click', (e) => {
             if (e.target === signupModal) {
                 signupModal.classList.remove('flex');
                 signupModal.classList.add('hidden');
+            }
+            if (e.target === signupStep2Modal) {
+                signupStep2Modal.classList.remove('flex');
+                signupStep2Modal.classList.add('hidden');
+            }
+            if (e.target === signupStep3Modal) {
+                signupStep3Modal.classList.remove('flex');
+                signupStep3Modal.classList.add('hidden');
+            }
+            if (e.target === signupStep4Modal) {
+                signupStep4Modal.classList.remove('flex');
+                signupStep4Modal.classList.add('hidden');
             }
             if (e.target === loginModal) {
                 loginModal.classList.remove('flex');
                 loginModal.classList.add('hidden');
             }
         });
+
 
 
         const daySelect = document.getElementById("day-select");

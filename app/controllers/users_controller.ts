@@ -4,6 +4,7 @@ import User from '#models/user'
 
 export default class UsersController {
   public async index({ view }: HttpContext) {
+    const myprompt = "c'est quoi le comportement par defaut d'un bouton, n'est ce pas rafraichir la page ?"
     return view.render('pages/profil')
   }
 
@@ -42,5 +43,7 @@ export default class UsersController {
 
       return response.redirect('/')
   }
+
+  
 
 }
