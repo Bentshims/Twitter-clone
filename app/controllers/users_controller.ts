@@ -3,9 +3,14 @@ import { signupValidator, loginvalidator } from '#validators/user'
 import User from '#models/user'
 
 export default class UsersController {
-  public async index({ view }: HttpContext) {
-    const myprompt = "c'est quoi le comportement par defaut d'un bouton, n'est ce pas rafraichir la page ?"
-    return view.render('pages/profil')
+  public async home({view, auth} :HttpContext){
+    const user = auth.user!
+    return view.render('pages/home',{user})
+  }
+
+  public async index({ view, auth }: HttpContext) {
+    const user = auth.user!
+    return view.render('pages/profil',{user})
   }
 
   public async login ({view}:HttpContext){
@@ -16,23 +21,44 @@ export default class UsersController {
     return view.render('pages/security/signup')
   }
 
-  public async signupUser({request, response}:HttpContext){
+  public async signupUser({view, request, response, auth}:HttpContext){
     const payload = await request.validateUsing(signupValidator)
+    console.log(payload);
+    
+    const image = request.file('profileLink')
+
+    const imageName = `${Date.now()}.${image?.extname}`
+    await image?.move('./public/images_profil',{name:imageName})
+
     if (!payload) {
       return response.send('Nous avons rencontrer une erreur lors de la creation du compte, veillez reesayer plutard')
     }
       const user = await User.create({
         fullName : payload.fullName,
+        userName  : payload.userName,
+        profilLink : `/images_profil/${imageName}`,
+        bio : payload.bio,
         email : payload.email,
-        password : payload.password
+        password : payload.password,
+        birthDate : payload.birthDate,
+       
+
       })
       console.log(user);
+      await auth.use('web').login(user)
+      const authentifiedUser = auth.user!
+      console.log(authentifiedUser);
       
-    return response.redirect('/')
+
+
+
+      
+    return view.render('pages/home',{users:user})
 
   }
 
   public async loginUser({request, response, auth}:HttpContext){
+
     const payload = await request.validateUsing(loginvalidator)
     if (!payload) {
       return response.send("L'utilisateur n'existe pas veuille entrer les informations valide")

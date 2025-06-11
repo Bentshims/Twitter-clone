@@ -12,7 +12,7 @@ import { middleware } from './kernel.js'
 
 router.group(
     ()=>{
-        router.on('/').render('pages/home')
+        router.get('/',"#controllers/users_controller.home")
         router.resource('/tweet', '#controllers/tweets_controller')
         router.get('/profil', '#controllers/users_controller.index')
     }

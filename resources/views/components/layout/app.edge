@@ -106,9 +106,11 @@
               <a href="#">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <div class="relative">
+                   @if(notification) 
                     <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
                       1
                     </p>
+                   @end
                     <img src="/public/uploads/notification.svg" alt="" />
                   </div>
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block ">
@@ -148,7 +150,7 @@
               </a>
             </div>
             <div>
-              <a href="/users">
+              <a href="/profil">
                 <div
                   class="flex items-center transition duration-400 ease hover:bg-[#202327]  rounded-full px-6 py-4"
                 >
@@ -178,7 +180,7 @@
         </div>
 
         <div class="profil hidden lg:flex items-center space-x-4 fixed bottom-10">
-          <a href="/users">
+          <a href="/profil">
             <img src="/public/uploads/Profile-Photo.png" alt="profil" class="w-16 h-auto rounded-full" />
           </a>
           <div>

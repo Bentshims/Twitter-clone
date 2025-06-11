@@ -7,9 +7,9 @@
           class="relative h-48 bg-[url(/public/uploads/pexels-mikhail-nilov-7988079.jpg)] bg-cover bg-center bg-gray-900 w-full "
         >
           <img
-            src="/public/uploads/Profile-Photo.png"
+            src="{{user.profilLink}}"
             alt="profil image"
-            class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 z-10 left-8 border-4 border-black"
+            class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 z-10 left-8 border-4 border-black object-cover"
           />
         </div>
 
@@ -17,10 +17,10 @@
           <div class="flex gap-4 px-4 ">
             <div class="">
               <h1 class="font-bold capitalize">
-                bradley ortiz
+                {{user.fullName}}
               </h1>
               <p class="text-gray-700">
-                @bradley_
+                {{user.userName}}
               </p>
             </div>
             <div>

@@ -207,7 +207,6 @@
         <div class="modal-container">
             <div class="modal-content">
                 <div class="p-4">
-                    <!-- En-tête -->
                     <div class="flex items-center mb-4">
                         <button type="button" id="closeSignupModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
                             <i class="fas fa-times text-xl"></i>
@@ -217,7 +216,6 @@
                         </div>
                     </div>
 
-                    <!-- Indicateur d'étape -->
                     <div class="step-indicator">
                         <div class="step-dot active"></div>
                         <div class="step-dot"></div>
@@ -227,21 +225,20 @@
 
                     <h2 class="text-3xl font-bold mb-8">Créez votre compte</h2>
 
-                    <!-- Formulaire d'inscription - Étape 1 -->
                     <div id="signupForm" class="space-y-6">
                       
                         <div>
-                            <input type="text" placeholder="Nom" class="input-field w-full p-4 rounded-lg text-xl" required>
+                            <input type="text" name="fullName" placeholder="Nom et prenom" class="input-field w-full p-4 rounded-lg text-xl" required>
                         </div>
                         <div>
-                            <input type="text" placeholder="Numéro de téléphone ou adresse e-mail" class="input-field w-full p-4 rounded-lg text-xl" required>
+                            <input type="text" name="email" placeholder="Numéro de téléphone ou adresse e-mail" class="input-field w-full p-4 rounded-lg text-xl" required>
                         </div>
                         <div class="text-xs text-x-gray">
                             <p>Date de naissance</p>
                             <p class="mt-1">Cela ne sera pas affiché publiquement. Confirmez votre âge, même si ce compte est pour une entreprise, un animal de compagnie, etc.</p>
                         </div>
                         <div class="flex space-x-4">
-                            <select id="month-select" class="input-field flex-grow p-4 rounded-lg" required>
+                            <select name="birthMonth" id="month-select" class="input-field flex-grow p-4 rounded-lg" required>
                                 <option disabled selected>Mois</option>
                                 <option value="1">Janvier</option>
                                 <option value="2">Février</option>
@@ -310,12 +307,12 @@
         </div>
     </div>
 
-    <!-- Modale d'inscription - Étape 2 -->
+     {{--  Modale d'inscription 2  --}}
     <div id="signupStep2Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-container">
             <div class="modal-content">
                 <div class="p-4">
-                    <!-- En-tête -->
+                  
                     <div class="flex items-center mb-4">
                         <button type="button" id="closeSignupStep2Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
                             <i class="fas fa-times text-xl"></i>
@@ -325,7 +322,7 @@
                         </div>
                     </div>
 
-                    <!-- Indicateur d'étape -->
+                 
                     <div class="step-indicator">
                         <div class="step-dot active"></div>
                         <div class="step-dot active"></div>
@@ -467,20 +464,21 @@
                     <h2 class="text-3xl font-bold mb-6">Complétez votre profil</h2>
                     <p class="text-x-gray text-lg mb-8">Ajoutez une photo pour aider vos amis à vous reconnaître.</p>
 
-                    <!-- Photo de profil -->
-                    <div class="flex justify-center mb-8">
-                        <div class="w-32 h-32 rounded-full bg-x-dark-gray border-2 border-x-border flex items-center justify-center cursor-pointer">
-                            <i class="fas fa-camera text-3xl text-x-gray"></i>
-                        </div>
+                   
+                    <div class="flex justify-center mb-8 relative">
+                        <input name="profil" type="file" class="w-32 h-32 rounded-full bg-x-dark-gray border-2 border-x-border flex items-center justify-center cursor-pointer decoration-none">
+                        <i class="fas fa-camera text-3xl text-x-gray absolute bottom-10"></i>
+                       
+
                     </div>
 
-                    <!-- Bio -->
+                
                     <div class="mb-6">
-                        <textarea placeholder="Bio (facultatif)" class="input-field w-full p-4 rounded-lg text-xl min-h-[100px]"></textarea>
+                        <textarea name="bio" placeholder="Bio (facultatif)" class="input-field w-full p-4 rounded-lg text-xl min-h-[100px]"></textarea>
                         <p class="text-x-gray text-sm mt-2">Décrivez-vous en quelques mots.</p>
                     </div>
 
-                    <!-- Bouton Final -->
+                    
                     <button type="submit" id="signupCompleteBtn" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
                         Terminer l'inscription
                     </button>
@@ -490,12 +488,12 @@
     </div>
 </form>
 
-    <!-- Modale de connexion -->
+    <!-- le  Modale de connexion -->
     <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-container">
             <div class="modal-content">
                 <div class="p-4">
-                    <!-- En-tête -->
+                   
                     <div class="flex items-center mb-4">
                         <button id="closeLoginModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
                             <i class="fas fa-times text-xl"></i>
@@ -531,7 +529,7 @@
                     <form id="loginForm" class="space-y-6" method="POST" action="/loginUser">
                         {{ csrfField() }}
                         <div>
-                            <input type="text" placeholder="Numéro de téléphone, adresse e-mail ou nom d'utilisateur" class="input-field w-full p-4 rounded-lg text-xl" required>
+                            <input type="text" placeholder="votre email" class="input-field w-full p-4 rounded-lg text-xl" required>
                         </div>
                         <div>
                             <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
