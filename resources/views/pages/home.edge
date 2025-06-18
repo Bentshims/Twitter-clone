@@ -19,7 +19,7 @@
                 </a>
               </div>
               <div class="ml-3 md:ml-0 w-[80%] md:w-auto">
-                <form action="/tweet/create" method="POST" class="lg:flex flex-col justify-between">
+                <form action="/tweet/create" method="POST" class="lg:flex flex-col justify-between" enctype="multipart/form-data">
                   {{ csrfField() }}
                   <fieldset class="w-full">
                     <textarea
@@ -34,29 +34,32 @@
                   </fieldset>
 
                   <section class="flex justify-between pt-4">
-                    <div class="flex justify-between items-center gap-4">
+                    <div class="flex justify-between items-center">
+                      <label class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
+                        <img src="/public/uploads/image.svg" alt="select image buttom" />
+                        <input type="file" name="media" accept="image/*,video/*" class="hidden" onchange="previewImage(event)" />
+                      </label>
                       <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
-                        <img src="/public/uploads/image.svg" alt="image icon" />
-                      </div>
-                      <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
-                        <img src="/public/uploads/Gif.svg" alt="/public/uploads/Schedule.svg" />
+                        <img src="/public/uploads/Gif.svg" alt="select GIF buttom" />
 
                       </div>
 
                       <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
-                        <img src="/public/uploads/bar.svg" alt="/public/uploads/Schedule.svg" />
+                        <img src="/public/uploads/bar.svg" alt="select image buttom" />
 
                       </div>
 
                       <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
-                        <img src="/public/uploads/smile.svg" alt="smile icon" />
+                        <button type="button" onclick="toggleEmojiPicker()">
+                          <img src="/public/uploads/smile.svg" alt="select emoji buttom" />
+                        </button>
                       </div>
                       <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
                         <img src="/public/uploads/Schedule.svg" alt="/public/uploads/Schedule.svg" />
                       </div>
                     </div>
 
-                    <fieldset class="flex justify-end absolute right-2 bottom-3 md:right-6">
+                    <fieldset class="flex justify-end absolute right-2 bottom-3 md:right-2">
                       <button
                         class="w-full bg-blue-500 px-6 py-3 rounded-full transition duration-300 ease hover:bg-blue-600"
                         type="submit"
@@ -102,8 +105,10 @@
                     <p>
                       {{tweet.content}}
                     </p>
-                    @if(tweet.media) 
-                      <img src="{{tweet.media}}" alt="tweet media" class="border border-gray-600 rounded-xl" />
+                    @if(tweet.media && (tweet.media.endsWith('.mp4') || tweet.media.endsWith('.webm') || tweet.media.endsWith('.mov'))) 
+                      <video src="{{tweet.media}}" muted autoplay class="border border-gray-600 border-2 rounded-xl"></video>
+                    @elseif(tweet.media)
+                      <img src="{{tweet.media}}" alt="tweet media" class="border border-gray-600 border-2 rounded-xl" />
                     @end
                   </div>
                   <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
@@ -408,5 +413,58 @@
         </div>
       </section>
     </div>
+    <style>
+      function handleInput(textarea) {
+        const btn = document.getElementById("tweetBtn");
+        const count = document.getElementById("charCount");
+        const value = textarea.value.trim();
+        count.textContent = `${value.length}/280`;
+        btn.disabled = value.length === 0;
+      }
+
+      function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById("previewImg").src = e.target.result;
+          document.getElementById("imagePreview").classList.remove("hidden");
+        };
+        if (file) reader.readAsDataURL(file);
+      }
+
+      function toggleEmojiPicker() {
+        const picker = document.getElementById("emojiPicker");
+        picker.style.display = picker.style.display === "none" ? "block" : "none";
+      }
+
+      // Gestion des emojis
+      document.addEventListener('DOMContentLoaded', () => {
+        const picker = document.getElementById('emojiPicker');
+        const textarea = document.getElementById('tweetContent');
+        const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]');
+
+      // Insert emoji
+      picker.addEventListener('emoji-click', event => {
+        const emoji = event.detail.unicode;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+
+        textarea.value = value.slice(0, start) + emoji + value.slice(end);
+        textarea.focus();
+        textarea.setSelectionRange(start + emoji.length, start + emoji.length);
+        handleInput(textarea);
+      });
+
+      // Fermer le picker si on clique en dehors
+      document.addEventListener('click', (e) => {
+        if (!picker.contains(e.target) && !emojiBtn.contains(e.target)) {
+          picker.style.display = 'none';
+        }
+      });
+      });
+      
+    </style>
+
   @endslot
 @end
