@@ -36,6 +36,10 @@
     </style>
 
     <script src="https://cdn.tailwindcss.com">
+
+    //  <!-- CDN Emoji Picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
       
     </script>
 
@@ -392,6 +396,60 @@
       </section>
 
     </nav>
+
+    <style>
+
+      function handleInput(textarea) {
+        const btn = document.getElementById("tweetBtn");
+        const count = document.getElementById("charCount");
+        const value = textarea.value.trim();
+        count.textContent = `${value.length}/280`;
+        btn.disabled = value.length === 0;
+      }
+
+      function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById("previewImg").src = e.target.result;
+          document.getElementById("imagePreview").classList.remove("hidden");
+        };
+        if (file) reader.readAsDataURL(file);
+      }
+
+      function toggleEmojiPicker() {
+        const picker = document.getElementById("emojiPicker");
+        picker.style.display = picker.style.display === "none" ? "block" : "none";
+      }
+
+      // Gestion des emojis
+      document.addEventListener('DOMContentLoaded', () => {
+        const picker = document.getElementById('emojiPicker');
+        const textarea = document.getElementById('tweetContent');
+        const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]');
+
+      // Insert emoji
+      picker.addEventListener('emoji-click', event => {
+        const emoji = event.detail.unicode;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+
+        textarea.value = value.slice(0, start) + emoji + value.slice(end);
+        textarea.focus();
+        textarea.setSelectionRange(start + emoji.length, start + emoji.length);
+        handleInput(textarea);
+      });
+
+      // Fermer le picker si on clique en dehors
+      document.addEventListener('click', (e) => {
+        if (!picker.contains(e.target) && !emojiBtn.contains(e.target)) {
+          picker.style.display = 'none';
+        }
+      });
+      });
+      
+    </style>
 
   </body>
 </html>

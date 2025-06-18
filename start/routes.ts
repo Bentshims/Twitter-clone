@@ -13,7 +13,7 @@ import { middleware } from './kernel.js'
 router.group(
     ()=>{
         router.get('/',"#controllers/users_controller.home")
-        router.resource('/tweet/create', '#controllers/tweets_controller.create')
+        router.post('/tweet/create', '#controllers/tweets_controller.create')
         router.get('/profil', '#controllers/users_controller.index')
     }
 ).use(middleware.auth())
