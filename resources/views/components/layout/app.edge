@@ -35,14 +35,7 @@
       }
     </style>
 
-    <script src="https://cdn.tailwindcss.com">
-
-    //  <!-- CDN Emoji Picker -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css">
-  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
-      
-    </script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -76,6 +69,9 @@
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
+    //  <!-- CDN Emoji Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
     <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 lg:p-0 relative">
@@ -394,9 +390,36 @@
           </div>
         </div>
       </section>
-
     </nav>
+    <script type="module">
+      document.addEventListener('DOMContentLoaded', () => {
+        const picker = document.getElementById('emojiPicker')
+        const textarea = document.getElementById('tweetContent')
+        const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]')
 
-    
+        // Toggle affichage du picker
+        window.toggleEmojiPicker = () => {
+          picker.style.display = picker.style.display === 'none' ? 'block' : 'none'
+        }
+
+        // Insérer l’emoji dans le textarea
+        picker.addEventListener('emoji-click', event => {
+          const emoji = event.detail.unicode
+          const start = textarea.selectionStart
+          const end = textarea.selectionEnd
+          const value = textarea.value
+
+          textarea.value = value.slice(0, start) + emoji + value.slice(end)
+          textarea.focus()
+          textarea.setSelectionRange(start + emoji.length, start + emoji.length)
+        })
+
+        // Fermer le picker si on clique à l’extérieur
+        document.addEventListener('click', (e) => {
+          const isClickInside = picker.contains(e.target) || emojiBtn.contains(e.target)
+          if (!isClickInside) picker.style.display = 'none'
+        })
+      })
+    </script>
   </body>
 </html>

@@ -27,6 +27,7 @@
                       name="content"
                       minlength="10"
                       maxlength="255"
+                      oninput="handleInput(this)"
                       class="appearance-none overflow-hidden resize-none w-80 lg:w-128 min-h-28 bg-black outline-none border-none pt-4"
                       placeholder="What's happening ?"
                       required
@@ -74,6 +75,9 @@
             </div>
           </div>
         </div>
+        <!-- Emoji picker (caché par défaut) -->
+        <emoji-picker id="emojiPicker" style="display:none;" class="mt-3 rounded-lg w-full absolute top-84 left-0 z-40"></emoji-picker>
+
         <div class="tweets">
           <div>
             @each(tweet in tweets)
@@ -413,58 +417,5 @@
         </div>
       </section>
     </div>
-    <style>
-      function handleInput(textarea) {
-        const btn = document.getElementById("tweetBtn");
-        const count = document.getElementById("charCount");
-        const value = textarea.value.trim();
-        count.textContent = `${value.length}/280`;
-        btn.disabled = value.length === 0;
-      }
-
-      function previewImage(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById("previewImg").src = e.target.result;
-          document.getElementById("imagePreview").classList.remove("hidden");
-        };
-        if (file) reader.readAsDataURL(file);
-      }
-
-      function toggleEmojiPicker() {
-        const picker = document.getElementById("emojiPicker");
-        picker.style.display = picker.style.display === "none" ? "block" : "none";
-      }
-
-      // Gestion des emojis
-      document.addEventListener('DOMContentLoaded', () => {
-        const picker = document.getElementById('emojiPicker');
-        const textarea = document.getElementById('tweetContent');
-        const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]');
-
-      // Insert emoji
-      picker.addEventListener('emoji-click', event => {
-        const emoji = event.detail.unicode;
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        const value = textarea.value;
-
-        textarea.value = value.slice(0, start) + emoji + value.slice(end);
-        textarea.focus();
-        textarea.setSelectionRange(start + emoji.length, start + emoji.length);
-        handleInput(textarea);
-      });
-
-      // Fermer le picker si on clique en dehors
-      document.addEventListener('click', (e) => {
-        if (!picker.contains(e.target) && !emojiBtn.contains(e.target)) {
-          picker.style.display = 'none';
-        }
-      });
-      });
-      
-    </style>
-
   @endslot
 @end
