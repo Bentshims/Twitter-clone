@@ -19,7 +19,7 @@
                 </a>
               </div>
               <div class="ml-3 md:ml-0 w-[80%] md:w-auto">
-                <form action="/post" method="post" class="lg:flex flex-col justify-between">
+                <form action="/tweet/create" method="POST" class="lg:flex flex-col justify-between">
                   {{ csrfField() }}
                   <fieldset class="w-full">
                     <textarea
@@ -71,6 +71,69 @@
           </div>
         </div>
         <div class="tweets">
+          <div>
+            @each(tweet in tweets)
+              <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+                <a href="#">
+                  <img
+                    src="{{tweet.user.profilLink}}"
+                    alt=""
+                    class="w-48 lg:w-40 h-auto border-gray-700 rounded-full"
+                  />
+                </a>
+                <div class="space-y-2">
+                  <div>
+                    <div class="flex items-center gap-4">
+                      <div class="flex items-center gap-2">
+                        <p class="capitalize ">
+                          {{tweet.user.fullName}}
+                        </p>
+                        <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                      </div>
+                      <div class="flex items-center gap-1">
+                        <p class="text-gray-500">
+                          {{tweet.user.userName}}
+                        </p>
+                        <p class="text-gray-600">
+                          . 2h
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="space-y-4">
+                    <p>
+                      {{tweet.content}}
+                    </p>
+                    @if(tweet.media) 
+                      <img src="{{tweet.media}}" alt="tweet media" class="border border-gray-600 rounded-xl" />
+                    @end
+                  </div>
+                  <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                    <div class="flex items-center gap-4">
+                      <img src="/public/uploads/comment.svg" alt="" />
+                      <p>
+                        19
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <img src="/public/uploads/loop.svg" alt="" />
+                      <p>
+                        48
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <img src="/public/uploads/love.svg" alt="" />
+                      <p>
+                        482
+                      </p>
+                    </div>
+                    <div>
+                      <img src="/public/uploads/doawnload.svg" alt="" />                </div>
+                  </div>
+                </div>
+              </div>
+            @end
+          </div>
           <div class="flex items-start gap-3 p-4 border-b border-gray-700">
             <a href="#">
               <img
