@@ -75,7 +75,7 @@
           <div>
             @each(tweet in tweets)
               <div class="flex items-start gap-3 p-4 border-b border-gray-700">
-                <a href="#">
+                <a href="/tweet/{{tweet.user.userName}}">
                   <div class="bg-[url({{tweet.user.profilLink}})] w-12 h-12 border-gray-700 rounded-full bg-cover bg-center">
                   </div>
                 </a>
@@ -88,12 +88,12 @@
                         </p>
                         <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
                       </div>
-                      <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-8">
                         <p class="text-gray-500">
                           {{tweet.user.userName}}
                         </p>
                         <p class="text-gray-600">
-                          . 2h
+                          {{ fromNow(tweet.createdAt) }}
                         </p>
                       </div>
                     </div>
