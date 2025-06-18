@@ -6,14 +6,13 @@ import Tweet from '#models/tweet'
 export default class UsersController {
   public async home({view, auth} :HttpContext){
     const user = auth.user!
-    const tweets = Tweet.all()
+    const tweets = await Tweet.query().preload('user').orderBy('createdAt','desc')
     return view.render('pages/home',{user,tweets})
   }
 
   public async index({ view, auth }: HttpContext) {
     const user = auth.user!
-    const tweets = Tweet.all()
-    return view.render('pages/profil',{user, tweets})
+    return view.render('pages/profil',{user})
   }
 
   public async login ({view}:HttpContext){
