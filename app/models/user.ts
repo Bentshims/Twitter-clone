@@ -25,7 +25,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare userName: string
 
   @column()
-  declare profilLink: string
+  declare profilLink: string | null
 
   @column()
   declare bio: string

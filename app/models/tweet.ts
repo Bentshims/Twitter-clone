@@ -16,7 +16,7 @@ export default class Tweet extends BaseModel {
   declare content: string
 
   @column()
-  declare media: string
+  declare media: string | null
 
   @belongsTo( () => User)
   declare user: BelongsTo<typeof User>

@@ -57,6 +57,29 @@ export default class UsersController {
     if (!payload) {
       return response.send('Nous avons rencontrer une erreur lors de la creation du compte, veillez reesayer plutard')
     }
+    if (!image) {
+
+      const user = await User.create({
+        fullName : payload.fullName,
+        userName  : payload.userName,
+        profilLink : null,
+        bio : payload.bio,
+        email : payload.email,
+        password : payload.password,
+        birthDate : payload.birthDate,
+       
+
+      })
+      console.log(user);
+      await auth.use('web').login(user)
+      const authentifiedUser = auth.user!
+      console.log(authentifiedUser);
+
+
+
+      return view.render('pages/home',{user})
+      
+    } else {
       const user = await User.create({
         fullName : payload.fullName,
         userName  : payload.userName,
@@ -72,12 +95,13 @@ export default class UsersController {
       await auth.use('web').login(user)
       const authentifiedUser = auth.user!
       console.log(authentifiedUser);
+
+
+
+      return view.render('pages/home',{user})
+    }
+
       
-
-
-
-      
-    return view.render('pages/home',{users:user})
 
   }
 

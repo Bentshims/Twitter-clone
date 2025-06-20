@@ -15,17 +15,31 @@ export default class TweetsController {
     const mediaName = `${Date.now()}.${media?.extname}`
     await media?.move('./public/tweets',{name:mediaName})
 
-    const tweet = await Tweet.create({
-      userId : user.id,
-      content : payload.content,
-      media : `/tweets/${mediaName}`
+    if (media) {
+      const tweet = await Tweet.create({
+        userId : user.id,
+        content : payload.content,
+        media : `/tweets/${mediaName}`
+        
+      })
       
-    })
-    
-    console.log(tweet);
-    
-
-    return response.redirect().back()
+      console.log(tweet);
+      
+  
+      return response.redirect().back()
+    } else {
+      const tweet = await Tweet.create({
+        userId : user.id,
+        content : payload.content,
+        media : null
+        
+      })
+      
+      console.log(tweet);
+      
+  
+      return response.redirect().back()
+    }
   }
 
 
