@@ -3,7 +3,6 @@ import { signupValidator, loginvalidator } from '#validators/user'
 import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
-import Follow from '#models/follow'
 
 export default class UsersController {
   public async home({view, auth} :HttpContext){
@@ -57,7 +56,7 @@ export default class UsersController {
     if (!payload) {
       return response.send('Nous avons rencontrer une erreur lors de la creation du compte, veillez reesayer plutard')
     }
-    if (!image) {
+    if (!image?.extname || !image) {
 
       const user = await User.create({
         fullName : payload.fullName,

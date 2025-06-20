@@ -15,13 +15,14 @@
             <div class="flex  md:space-x-4">
               <div>
                 <a href="/profil">
-                  @if(!user?.profilLink) 
-                    <img src="{{user.profilLink}}" alt="profil image" class="w-16 h-16 rounded-full object-cover object-center"/>
+                  @if(user?.profilLink)
+                    <img src="{{ user.profilLink }}" alt="profil image" class="w-16 h-16 rounded-full object-cover object-center"/>
                   @else 
                     <div class="bg-zinc-700 w-16 h-16 rounded-full flex items-center justify-center font-bold">
-                      {{user.fullName.substring(0, 2).toUpperCase()}}
+                      {{ user.fullName.substring(0, 2).toUpperCase() }}
                     </div> 
-                  @end
+                  @endif
+                
                 </a>
               </div>
               <div class="ml-3 md:ml-0 w-[80%] md:w-auto">
@@ -89,8 +90,14 @@
             @each(tweet in tweets)
               <div class="flex items-start gap-3 p-4 border-b border-gray-700">
                 <a href="/tweet/{{tweet.user.userName}}">
-                  <div class="bg-[url({{tweet.user.profilLink}})] w-12 h-12 border-gray-700 rounded-full bg-cover bg-center">
-                  </div>
+                  @if(!tweet.user?.profilLink)
+                    <div class="bg-zinc-700 w-16 h-16 rounded-full flex items-center justify-center font-bold">
+                      {{tweet.user.fullName.substring(0, 2).toUpperCase()}}
+                    </div> 
+                  @else
+                    <div class="bg-[url({{tweet.user.profilLink}})] w-12 h-12 border-gray-700 rounded-full bg-cover bg-center">
+                    </div>
+                  @endif
                 </a>
                 <div class="space-y-2">
                   <div>
@@ -123,7 +130,7 @@
                       @end
                     @end
                   </div>
-                  <div class="flex justify-between items-center pt-2 mr-14 w-[90%]">
+                  <div class="flex justify-between items-center pt-2 mr-14 w-full">
                     <div class="flex items-center gap-4">
                       <img src="/public/uploads/comment.svg" alt="" />
                       <p>
