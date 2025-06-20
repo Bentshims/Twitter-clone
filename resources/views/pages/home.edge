@@ -115,12 +115,10 @@
                     <p>
                       {{tweet.content}}
                     </p>
-                   @if(!tweet?.media) 
-                     
-                    @else
+                    @if(tweet.media) 
                       @if(tweet.media && (tweet.media.endsWith('.mp4') || tweet.media.endsWith('.webm') || tweet.media.endsWith('.mov'))) 
                         <video src="{{tweet.media}}" muted autoplay class="border border-gray-600 border-2 rounded-xl"></video>
-                      @elseif(tweet.media)
+                      @elseif(tweet.media && (tweet.media.endsWith('.png') || tweet.media.endsWith('.jpeg') || tweet.media.endsWith('.jpg')))
                         <img src="{{tweet.media}}" alt="tweet media" class="border border-gray-600 border-2 rounded-xl" />
                       @end
                     @end
