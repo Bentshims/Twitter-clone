@@ -3,10 +3,12 @@ import { signupValidator, loginvalidator } from '#validators/user'
 import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
+import Follow from '#models/follow'
 
 export default class UsersController {
   public async home({view, auth} :HttpContext){
     const user = auth.user!
+    // les tweets
     const tweets = await Tweet.query().preload('user').orderBy('createdAt','desc')
 
     function fromNow(date: DateTime): string {
@@ -21,12 +23,18 @@ export default class UsersController {
       if (diff.months! < 12) return `${Math.floor(diff.months!)} mois`
       return `${Math.floor(diff.years!)} an`
     }
-    return view.render('pages/home',{user,tweets,  fromNow})
+    return view.render('pages/home',{user, tweets, fromNow})
   }
 
   public async index({ view, auth }: HttpContext) {
     const user = auth.user!
-    return view.render('pages/profil',{user})
+
+      // les follows
+      await user.loadCount('following')
+      const followings = user.$extras.following_count
+      await user.loadCount('follower')
+      const followers = user.$extras.follower_count
+    return view.render('pages/profil',{user, followings, followers})
   }
 
   public async login ({view}:HttpContext){
