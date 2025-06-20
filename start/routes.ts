@@ -20,6 +20,7 @@ router.group(
         router.get('/',"#controllers/users_controller.home")
         router.get('/profil', '#controllers/users_controller.index')
         router.post('/tweet/create', '#controllers/tweets_controller.create')
+        router.post('follow/add','#controllers/follows_controller.create')
         router.get('/tweet/:userName','#controllers/tweets_controller.profil')
     }
 ).use(middleware.auth())

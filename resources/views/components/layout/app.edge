@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -351,7 +351,7 @@
                     </p>
                   </div>
                 </div>
-                @component('components/followBtn', {  })
+                @component('components/followBtn', {})
   
                 @end
               </div>
@@ -418,6 +418,21 @@
         document.addEventListener('click', (e) => {
           const isClickInside = picker.contains(e.target) || emojiBtn.contains(e.target)
           if (!isClickInside) picker.style.display = 'none'
+        })
+
+
+
+
+        const followBtn = document.querySelectorAll('#follow')
+        followBtn.forEach(follow =>{
+          follow.addEventListener('active',()=>{
+            follow.classList.add('bg-white/50')
+            follow.classList.remove('bg-white')
+            follow.classList.remove('hover:bg-white/80')
+            
+            
+
+          })
         })
       })
     </script>

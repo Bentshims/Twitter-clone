@@ -1,8 +1,8 @@
-<form action="#" method="GET">
+<form action="/follow/add" method="POST">
   {{ csrfField() }}
   <fieldset>
     <button
-      {{ $props.merge({ type: 'text', class:'bg-white text-black text-center w-full  px-4 p-2 rounded-full font-semibold' }).toAttrs() }}
+      {{ $props.merge({ type: 'submit', class:'bg-white text-black text-center w-full  px-4 p-2 rounded-full font-semibold hover:bg-white/80', id:'follow' }).toAttrs() }}
     >
       {{ text || 'Follow' }}
       </button>
