@@ -5,12 +5,14 @@
     <div class="">
       <section class="min-h-screen md:border-x border-gray-700  relative">
         <div>
-          <nav class="flex items-center justify-between px-2 py-4 md:p-4 border-b  border-gray-700">
-            <p class="capitalize font-semibold text-xl">
-              home
-            </p>
-            <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
-          </nav>
+         <div class="relative">
+            <nav class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-gray-700  z-50 bg-black/80 backdrop-blur-sm">
+              <p class="capitalize font-semibold text-xl">
+                home
+              </p>
+              <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
+            </nav>
+         </div>
           <div class="user border-b border-gray-700 flex justify-between px-2 py-4 md:p-4 min-h-36 md:min-h-42 lg:min-h-48 relative">
             <div class="flex  md:space-x-4">
               <div>
@@ -18,8 +20,8 @@
                   @if(user?.profilLink)
                     <img src="{{ user.profilLink }}" alt="profil image" class="w-16 h-16 rounded-full object-cover object-center"/>
                   @else 
-                    <div class="bg-zinc-700 w-16 h-16 rounded-full flex items-center justify-center font-bold">
-                      {{ user.fullName.substring(0, 2).toUpperCase() }}
+                    <div class="bg-zinc-800 w-16 h-16 text-xl rounded-full flex items-center justify-center font-bold">
+                      {{ user.fullName.substring(0, 1).toUpperCase() }}
                     </div> 
                   @endif
                 
@@ -89,7 +91,7 @@
           <div>
             @each(tweet in tweets)
               <div class="flex items-start gap-3 p-4 border-b border-gray-700">
-                <a href="/tweet/{{tweet.user.userName}}">
+                <a href="/profil/{{tweet.user.userName}}">
                   @if(!tweet.user?.profilLink)
                     <div class="bg-zinc-700 w-16 h-16 rounded-full flex items-center justify-center font-bold">
                       {{tweet.user.fullName.substring(0, 2).toUpperCase()}}

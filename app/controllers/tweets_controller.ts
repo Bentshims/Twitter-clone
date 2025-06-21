@@ -45,7 +45,13 @@ export default class TweetsController {
 
   public async profil({view,params}:HttpContext){
     const user = await User.findByOrFail('userName', params.userName)
-    return view.render('pages/profil',{user})
+
+      // les follows
+      await user.loadCount('following')
+      const followings = user.$extras.following_count
+      await user.loadCount('follower')
+      const followers = user.$extras.follower_count
+    return view.render('pages/profil-tweet',{user, followers, followings})
   }
 
 

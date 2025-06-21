@@ -9,7 +9,7 @@ export default class FollowsController {
         if(user.id === Number(followId)){
             return response.badRequest('Desolé vous ne pouvez pas vous suivre vous-même')
         }
-        const isFollow =  await user.related('following').query().where('id',followId).first()
+        const isFollow =  await user.related('following').query().where('users.id',followId).first()
         if (isFollow) {
             await user.related('following').detach([followId])
         } else {

@@ -29,17 +29,6 @@
                 {{user.userName}}
               </p>
             </div>
-            <div>
-              <a
-                href="#"
-                class="font-bold inline-block space-x-1 px-4 border border-gray-600 rounded-full transition duration-300 ease hover:bg-gray-900"
-              >
-                <i class="bi bi-patch-check-fill text-blue-400">
-
-                </i>
-                <span>Get verified</span>
-              </a>
-            </div>
           </div>
 
           <div class="space-y-3 px-4">
@@ -56,12 +45,14 @@
             </div>
           </div>
 
-          <a
-            href="#"
-            class=" px-4 py-2 rounded-full capitalize inline-block transition duration-300 hover:bg-gray-900 border border-gray-700 absolute right-2 -top-8 md:top-0"
-          >
-            edit profile
-          </a>
+          
+          <form action="/follow/addOrDelete/{{user.id}}" method="POST">
+            {{ csrfField() }}
+
+            <button type="submit" class=" px-4 py-2 rounded-full capitalize inline-block transition duration-300 hover:bg-gray-900 border border-gray-700 absolute right-2 -top-8 md:top-0">
+              Follow
+            </button>
+          </form>
 
           {{--  boutons d'activation de table   --}}
 
