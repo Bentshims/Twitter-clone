@@ -44,7 +44,7 @@ export default class UsersController {
     return view.render('pages/security/signup')
   }
 
-  public async signupUser({view, request, response, auth}:HttpContext){
+  public async signupUser({request, response, auth}:HttpContext){
     const payload = await request.validateUsing(signupValidator)
     console.log(payload);
     
@@ -76,7 +76,6 @@ export default class UsersController {
 
 
 
-      return view.render('pages/home',{user})
       
     } else {
       const user = await User.create({
@@ -95,13 +94,9 @@ export default class UsersController {
       const authentifiedUser = auth.user!
       console.log(authentifiedUser);
 
-
-
-      return view.render('pages/home',{user})
     }
 
-      
-
+    return response.redirect('/')
   }
 
   public async loginUser({request, response, auth}:HttpContext){

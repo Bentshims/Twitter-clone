@@ -47,6 +47,8 @@ export default class TweetsController {
     const user = await User.findByOrFail('userName', params.userName)
     const authUser = auth.user!
 
+   
+
       // les follows
       await user.loadCount('following')
       await user.loadCount('follower')
@@ -60,7 +62,9 @@ export default class TweetsController {
       .where('users.id', user.id)
       .first()
 
-
+    if (user.id === authUser.id) {
+      return view.render('pages/profil',{user, followers, followings})
+    }
 
     return view.render('pages/profil-tweet',{user, followers, followings, isFollowing:!!isFollow})
   }
