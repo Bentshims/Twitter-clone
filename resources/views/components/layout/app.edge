@@ -106,9 +106,9 @@
               <a href="#">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <div class="relative">
-                   @if(notification) 
+                   @if(notifications) 
                     <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
-                      1
+                      {{notifications}}
                     </p>
                    @end
                     <img src="/public/uploads/notification.svg" alt="" />
