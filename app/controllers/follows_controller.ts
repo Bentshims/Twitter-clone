@@ -15,16 +15,18 @@ export default class FollowsController {
             await user.related('following').detach([followId])
             await Notification.create({
                 userId: followId,
+                content:`${user.userName} ne vous suit plus`,
+                type: `unfollow`
+            })
+
+        } else {
+            await user.related('following').attach([followId])
+            await Notification.create({
+                userId: followId,
                 content: `${user.userName} vous suit `,
                 type:`follow`
             })
-        } else {
-            await Notification.create({
-                userId: followId,
-                content:`${user.userName} ne vous suit plus`,
-                type: `follow`
-            })
-            await user.related('following').attach([followId])
+           
         }
 
         return response.redirect().back()

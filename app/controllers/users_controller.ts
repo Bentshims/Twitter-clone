@@ -22,7 +22,15 @@ export default class UsersController {
       if (diff.months! < 12) return `${Math.floor(diff.months!)} mois`
       return `${Math.floor(diff.years!)} an`
     }
-    return view.render('pages/home',{user, tweets, fromNow})
+    //les notifications
+    const newSNotification = await user.related('notification')
+    .query()
+    .where('is_read', false)
+    .count('* as total')
+
+    const notifications = newSNotification[0].$extras.total
+
+    return view.render('pages/home',{user, tweets, fromNow, notifications})
   }
 
   public async index({ view, auth }: HttpContext) {

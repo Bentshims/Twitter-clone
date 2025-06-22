@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Tweet from '#models/tweet'
 import User from '#models/user'
+import Notification from '#models/notification'
 
 
 export default class TweetsController {
@@ -64,9 +65,17 @@ export default class TweetsController {
 
     if (user.id === authUser.id) {
       return view.render('pages/profil',{user, followers, followings})
+    }else{
+
+      await Notification.create({
+        userId: user.id,
+        content: `${authUser.userName} a consulté votre profile`,
+        type: `profil visit`
+      })
+      return view.render('pages/profil-tweet',{user, followers, followings, isFollowing:!!isFollow})
     }
 
-    return view.render('pages/profil-tweet',{user, followers, followings, isFollowing:!!isFollow})
+
   }
 
 
