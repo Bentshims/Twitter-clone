@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       .onDelete('CASCADE')
       table.string('content')
       table.string('type')
-      table.boolean('is_read')
+      table.boolean('is_read').defaultTo(false)
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
