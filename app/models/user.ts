@@ -5,6 +5,7 @@ import { BaseModel, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Tweet from './tweet.js'
 import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
+import Notification from './notification.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -50,7 +51,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   })
   declare following: ManyToMany<typeof User>
 
-
   // les followers ou les gens qui me suivent 
   @manyToMany(() => User, {
     pivotTable: 'follows',
@@ -58,6 +58,10 @@ export default class User extends compose(BaseModel, AuthFinder) {
     pivotRelatedForeignKey: 'follower_id', // eux (ceux qui me suivent)
   })
   declare follower: ManyToMany<typeof User>
+
+
+  @hasMany(()=> Notification)
+  declare notification: HasMany <typeof Notification>
   
 
   @column.dateTime({ autoCreate: true })

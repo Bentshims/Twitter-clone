@@ -50,7 +50,7 @@
             {{ csrfField() }}
 
             <button type="submit" class=" px-4 py-2 rounded-full capitalize inline-block transition duration-300 hover:bg-gray-900 border border-gray-700 absolute right-2 -top-8 md:top-0">
-              Follow
+              {{isFollowing ? 'unfollow':'follow'}}
             </button>
           </form>
 

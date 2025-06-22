@@ -23,7 +23,7 @@ export default class TweetsController {
         
       })
       
-      console.log(tweet);
+      console.log(tweet)
       
   
       return response.redirect().back()
@@ -43,15 +43,26 @@ export default class TweetsController {
   }
 
 
-  public async profil({view,params}:HttpContext){
+  public async profil({view,params, auth}:HttpContext){
     const user = await User.findByOrFail('userName', params.userName)
+    const authUser = auth.user!
 
       // les follows
       await user.loadCount('following')
-      const followings = user.$extras.following_count
       await user.loadCount('follower')
+
+      const followings = user.$extras.following_count
       const followers = user.$extras.follower_count
-    return view.render('pages/profil-tweet',{user, followers, followings})
+
+    
+    const isFollow = await authUser.related('following')
+      .query()
+      .where('users.id', user.id)
+      .first()
+
+
+
+    return view.render('pages/profil-tweet',{user, followers, followings, isFollowing:!!isFollow})
   }
 
 
