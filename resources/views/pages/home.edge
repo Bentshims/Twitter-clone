@@ -93,11 +93,11 @@
               <div class="flex items-start gap-3 p-4 border-b border-gray-700">
                 <a href="/profil/{{tweet.user.userName}}">
                   @if(!tweet.user?.profilLink)
-                    <div class="bg-zinc-700 w-16 h-16 rounded-full flex items-center justify-center font-bold">
-                      {{tweet.user.fullName.substring(0, 2).toUpperCase()}}
+                    <div class="bg-zinc-800 w-14 h-14 rounded-full flex items-center justify-center font-bold">
+                      {{tweet.user.fullName.substring(0, 1).toUpperCase()}}
                     </div> 
                   @else
-                    <div class="bg-[url({{tweet.user.profilLink}})] w-12 h-12 border-gray-700 rounded-full bg-cover bg-center">
+                    <div class="bg-[url({{tweet.user.profilLink}})] w-14 h-14 border-gray-700 rounded-full bg-cover bg-center">
                     </div>
                   @endif
                 </a>

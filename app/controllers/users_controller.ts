@@ -29,7 +29,8 @@ export default class UsersController {
     .count('* as total')
 
     const notifications = newSNotification[0].$extras.total
-
+    console.log('nombres des notification :',notifications);
+    
     return view.render('pages/home',{user, tweets, fromNow, notifications})
   }
 

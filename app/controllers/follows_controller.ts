@@ -26,6 +26,7 @@ export default class FollowsController {
                 content: `${user.userName} vous suit `,
                 type:`follow`
             })
+            
            
         }
 
