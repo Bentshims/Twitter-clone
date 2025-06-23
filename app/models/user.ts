@@ -61,7 +61,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
 
   @hasMany(()=> Notification)
-  declare notification: HasMany <typeof Notification>
+  declare notifications: HasMany <typeof Notification>
   
 
   @column.dateTime({ autoCreate: true })

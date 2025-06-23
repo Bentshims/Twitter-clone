@@ -23,7 +23,7 @@ export default class UsersController {
       return `${Math.floor(diff.years!)} an`
     }
     //les notifications
-    const newSNotification = await user.related('notification')
+    const newSNotification = await user.related('notifications')
     .query()
     .where('is_read', false)
     .count('* as total')
