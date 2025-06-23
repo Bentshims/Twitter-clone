@@ -42,7 +42,17 @@ export default class UsersController {
       const followings = user.$extras.following_count
       await user.loadCount('follower')
       const followers = user.$extras.follower_count
-    return view.render('pages/profil',{user, followings, followers})
+
+    //les notifications
+    const newSNotification = await user.related('notifications')
+    .query()
+    .where('is_read', false)
+    .count('* as total')
+
+    const notifications = newSNotification[0].$extras.total
+    console.log('nombres des notification :',notifications);
+    
+    return view.render('pages/profil',{user, followings, followers, notifications})
   }
 
   public async login ({view}:HttpContext){

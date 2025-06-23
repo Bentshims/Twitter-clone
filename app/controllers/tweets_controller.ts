@@ -63,8 +63,18 @@ export default class TweetsController {
       .where('users.id', user.id)
       .first()
 
+    //les notifications
+    const newSNotification = await authUser.related('notifications')
+    .query()
+    .where('is_read', false)
+    .count('* as total')
+
+    const notifications = newSNotification[0].$extras.total
+    console.log('nombres des notification :',notifications);
+      
+
     if (user.id === authUser.id) {
-      return view.render('pages/profil',{user, followers, followings})
+      return view.render('pages/profil',{user, followers, followings, notifications})
     }else{
 
       await Notification.create({
@@ -72,7 +82,7 @@ export default class TweetsController {
         content: `${authUser.userName} a consulté votre profile`,
         type: `profil visit`
       })
-      return view.render('pages/profil-tweet',{user, followers, followings, isFollowing:!!isFollow})
+      return view.render('pages/profil-tweet',{user, followers, followings, isFollowing:!!isFollow, notifications})
     }
 
 
