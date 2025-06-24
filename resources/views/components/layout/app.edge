@@ -103,13 +103,13 @@
               </a>
             </div>
             <div>
-              <a href="#">
+              <a href="/notifications">
                 <div class="flex items-center transition duration-400 ease hover:bg-[#202327] rounded-full px-6 py-4">
                   <div class="relative">
                    @if(notifications > 0) 
-                    <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
-                      {{notifications}}
-                    </p>
+                      <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
+                        {{notifications}}
+                      </p>
                    @end
                     <img src="/public/uploads/notification.svg" alt="" />
                   </div>
@@ -181,19 +181,27 @@
 
         <div class="profil hidden lg:flex items-center space-x-4 fixed bottom-10">
           <a href="/profil">
-            <img src="/public/uploads/Profile-Photo.png" alt="profil" class="w-16 h-auto rounded-full" />
+          @if(user.profilLink)
+            <div class="bg-[url({{user.profilLink}})] w-16 h-16 rounded-full bg-cover bg-center">
+
+            </div>
+          @else
+            <div class="w-16 h-16 rounded-full flex items-center justify-center">
+                {{user.userName.substring(0, 1).toUpperCase()}}
+            </div>
+          @endif
           </a>
           <div>
             <div class="flex items-center gap-1">
               <p class="font-bold capitalize">
-                bradley  ortiz
+                {{user.fullName}}
               </p>
 
               <img src="/public/uploads/lock.svg" alt="" />
 
             </div>
             <p class="text-gray-600">
-              @bradley_
+              {{user.userName}}
             </p>
           </div>
           <img src="/public/uploads/etc.svg" alt="" />

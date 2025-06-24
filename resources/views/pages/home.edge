@@ -1,9 +1,9 @@
 
-@layout.app({title:"Home",notifications})
+@layout.app({title:"Home",notifications, user})
   @slot('main')
 
     <div class="">
-      <section class="min-h-screen md:border-x border-gray-700  relative">
+      <section class="min-h-screen md:border-x border-zinc-700  relative">
         <div>
          <div class="relative">
             <nav class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-gray-700  z-50 bg-black/80 backdrop-blur-sm">
@@ -13,7 +13,7 @@
               <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
             </nav>
          </div>
-          <div class="user border-b border-gray-700 flex justify-between px-2 py-4 md:p-4 min-h-36 md:min-h-42 lg:min-h-48 relative">
+          <div class="user border-b border-zinc-700 flex justify-between px-2 py-4 md:p-4 min-h-36 md:min-h-42 lg:min-h-48 relative">
             <div class="flex  md:space-x-4">
               <div>
                 <a href="/profil">

@@ -1,5 +1,4 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import Follow from '#models/follow'
 import Notification from '#models/notification'
 
 export default class FollowsController {

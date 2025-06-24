@@ -1,5 +1,29 @@
-@layout.app({title: "notifications", notifications }) 
+@layout.app({title: "notifications", notifications, user }) 
     @slot('main')
-        
-    @end
+        <section class="border-x border-zinc-700 w-full">
+            <div class="relative">
+                <nav class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-gray-700  z-50 bg-black/80 backdrop-blur-sm">
+                  <p class="capitalize font-semibold text-xl">
+                    home
+                  </p>
+                  <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
+                </nav>
+            </div>
+            @each(notification in notifications)
+                <div class="card border-b border-zinc-700 p-2 min-h-10 space-y-4">
+                    <p>
+                        {{notification.content}}
+                    </p>
+                    @if(notification.isRead === true) 
+                        <p class="border rounded-full bg-blue-400 w-20 h-20">
+                            
+                        </p>
+                    @end
+                    <p class="border border-zinc-700 px-2 py-1 rounded-lg hover:bg-zinc-900 w-40 text-zinc-500">
+                        {{notification.type}}
+                    </p>
+                </div>
+            @end
+        </section>
+    @endslot
 @end
