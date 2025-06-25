@@ -1,6 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { DateTime } from 'luxon'
-// import Notification from '#models/notification'
+import Notification from '#models/notification'
 
 export default class NotificationsController {
     public async index({view, auth}:HttpContext){
@@ -27,6 +27,11 @@ export default class NotificationsController {
         return view.render('pages/notifications',{notifications, user, fromNow})
     }
 
+    public async destroy({response, params}:HttpContext){
+        const notification = await Notification.findOrFail(params.id)
+        await notification.delete()
+        return response.redirect().back()
+    }
 
 
 }

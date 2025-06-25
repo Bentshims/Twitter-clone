@@ -23,6 +23,7 @@ router.group(
         router.get('/notifications', '#controllers/notifications_controller.index')
         router.post('/follow/addOrDelete/:id','#controllers/follows_controller.followOrUnfollow')
         router.get('/profil/:userName','#controllers/tweets_controller.profil')
+        router.post('/notification/:id/delete','#controllers/notifications_controller.destroy')
     }
 ).use(middleware.auth())
 

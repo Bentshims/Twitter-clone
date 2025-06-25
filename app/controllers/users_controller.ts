@@ -14,13 +14,28 @@ export default class UsersController {
       const now = DateTime.now()
       const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes', 'seconds']).toObject()
 
-      if (diff.minutes! < 1) return 'à l’instant'
-      if (diff.minutes! < 60) return `${Math.floor(diff.minutes!)} min`
-      if (diff.hours! < 24) return `${Math.floor(diff.hours!)} h`
-      if (diff.days! < 7) return `${Math.floor(diff.days!)} j`
-      if (diff.days! < 30) return `${Math.floor(diff.days! / 7)} sem`
-      if (diff.months! < 12) return `${Math.floor(diff.months!)} mois`
-      return `${Math.floor(diff.years!)} an`
+      if(diff.minutes! < 1){
+        return 'à l’instant'
+
+      }else if(diff.minutes! < 60){
+        return `${Math.floor(diff.minutes!)} min`
+
+      }else if(diff.hours! < 24 ){
+        return `${Math.floor(diff.hours!)} h`
+
+      }else if(diff.days! < 7) {
+        return `${Math.floor(diff.days!)} j`
+
+      }else if(diff.days! < 30) {
+        return `${Math.floor(diff.days! / 7)} sem`
+
+      }else if (diff.months! < 12) {
+        return `${Math.floor(diff.months!)} mois`
+
+      }else{
+        return `${Math.floor(diff.years!)} an`
+      }
+
     }
     //les notifications
     const newSNotification = await user.related('notifications')

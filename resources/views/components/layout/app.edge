@@ -405,14 +405,15 @@
         const picker = document.getElementById('emojiPicker')
         const textarea = document.getElementById('tweetContent')
         const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]')
-
+        
         // Toggle affichage du picker
         window.toggleEmojiPicker = () => {
           picker.style.display = picker.style.display === 'none' ? 'block' : 'none'
         }
 
-        // Insérer l’emoji dans le textarea
-        picker.addEventListener('emoji-click', event => {
+      if (picker) {
+          // Insérer l’emoji dans le textarea
+          picker.addEventListener('emoji-click', event => {
           const emoji = event.detail.unicode
           const start = textarea.selectionStart
           const end = textarea.selectionEnd
@@ -422,16 +423,42 @@
           textarea.focus()
           textarea.setSelectionRange(start + emoji.length, start + emoji.length)
         })
+      }
 
-        // Fermer le picker si on clique à l’extérieur
+        // Fermer l'emoji picker si on clique à l’extérieur
         document.addEventListener('click', (e) => {
           const isClickInside = picker.contains(e.target) || emojiBtn.contains(e.target)
           if (!isClickInside) picker.style.display = 'none'
         })
 
+        let currentlyOpenTrash = null
 
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation() 
 
+            const parent = btn.closest('.relative')
+            const trash = parent.querySelector('.trash')
 
+            // Si un autre menu est ouvert on le ferme
+            if (currentlyOpenTrash && currentlyOpenTrash !== trash) {
+              currentlyOpenTrash.classList.add('hidden')
+            }
+
+            trash.classList.toggle('hidden')
+
+            currentlyOpenTrash = trash.classList.contains('hidden') ? null : trash
+          })
+        })
+
+        // Si on clique ailleurs on ferme le bouton pour supprime avec la notification
+        document.addEventListener('click', () => {
+          if (currentlyOpenTrash) {
+            currentlyOpenTrash.classList.add('hidden')
+            currentlyOpenTrash = null
+          }
+        })
+        })
         const followBtn = document.querySelectorAll('#follow')
         followBtn.forEach(follow =>{
           follow.addEventListener('active',()=>{
@@ -443,7 +470,6 @@
 
           })
         })
-      })
     </script>
   </body>
 </html>
