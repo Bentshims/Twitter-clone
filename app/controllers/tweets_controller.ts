@@ -29,7 +29,7 @@ export default class TweetsController {
   
       return response.redirect().back()
     } else {
-      const tweet = await Tweet.create({
+      await Tweet.create({
         userId : user.id,
         content : payload.content,
         media : null

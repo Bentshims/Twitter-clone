@@ -12,9 +12,16 @@
                 @each(notification in notifications)
                     <div class="border-b border-zinc-700 p-2 pb-4 space-y-4 relative min-h-20">
                         <div class="w-full flex justify-between items-center">
-                            <p class="text-zinc-500 text-right text-sm">
-                                {{notification.createdAt.hour}} h
-                            </p>
+                           <div class="flex items-center gap-4">
+                                <p class="text-zinc-500 text-right text-sm">
+                                    {{ fromNow(notification.createdAt) }}
+                                </p>
+                                @if(notification.isRead === false) 
+                                    <p class="rounded-full bg-blue-400 w-2 h-2">
+                                        
+                                    </p>
+                                @end
+                           </div>
                             <div class="text-zinc-600 cursor-pointer">
                                 <i class="bi bi-three-dots">
     
@@ -24,11 +31,7 @@
                         <p class="text-zinc-200">
                             {{notification.content}}
                         </p>
-                        @if(notification.isRead === true) 
-                            <p class="border rounded-full bg-blue-400 w-20 h-20">
-                                
-                            </p>
-                        @end
+                      
                         
                     </div>
                 @end
