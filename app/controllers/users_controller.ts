@@ -29,7 +29,7 @@ export default class UsersController {
     .count('* as total')
 
     const notifications = newSNotification[0].$extras.total
-    console.log('nombres des notification :',notifications);
+    // console.log('nombres des notification :',notifications);
     
     return view.render('pages/home',{user, tweets, fromNow, notifications})
   }
@@ -50,7 +50,7 @@ export default class UsersController {
     .count('* as total')
 
     const notifications = newSNotification[0].$extras.total
-    console.log('nombres des notification :',notifications);
+    // console.log('nombres des notification :',notifications);
     
     return view.render('pages/profil',{user, followings, followers, notifications})
   }
@@ -65,7 +65,7 @@ export default class UsersController {
 
   public async signupUser({request, response, auth}:HttpContext){
     const payload = await request.validateUsing(signupValidator)
-    console.log(payload);
+    // console.log(payload);
     
     const image = request.file('profileLink')
 

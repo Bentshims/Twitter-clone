@@ -36,7 +36,7 @@ export default class TweetsController {
         
       })
       
-      console.log(tweet);
+      // console.log(tweet);
       
   
       return response.redirect().back()
@@ -70,7 +70,7 @@ export default class TweetsController {
     .count('* as total')
 
     const notifications = newSNotification[0].$extras.total
-    console.log('nombres des notification :',notifications);
+    // console.log('nombres des notification :',notifications);
       
 
     if (user.id === authUser.id) {
