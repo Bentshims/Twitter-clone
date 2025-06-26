@@ -9,7 +9,15 @@
                   <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
                 </nav>
                 @if(notifications > 0)
-                    @each(notification in notifications)
+                    <div class="w-full flex justify-center items-center mt-40">
+                        <p>
+                            Aucune notification pour l’instant .  <span class="pl-2"> 🔔 </span>
+                        </p>
+                  </div>
+
+                @else
+               
+                  @each(notification in notifications)
                         <div class="border-b border-zinc-700 p-2 pb-4 space-y-4 relative min-h-20">
                             <div class="w-full flex justify-between items-center">
                             <div class="flex items-center gap-4">
@@ -44,12 +52,6 @@
                             
                         </div>
                     @end
-                @else
-                  <div class="w-full flex justify-center items-center mt-40">
-                    <p>
-                        Aucune notification pour l’instant .  <span class="pl-2"> 🔔 </span>
-                    </p>
-                  </div>
                 @endif
            
             </div>

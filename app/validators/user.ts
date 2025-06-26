@@ -9,7 +9,7 @@ export const signupValidator = vine.compile(
       birthDate: vine.date().before('2010-12-31'),
       bio: vine.string().maxLength(250).optional(),
     })
-  )
+)
 
 export const loginvalidator = vine.compile(
     vine.object({

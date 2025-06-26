@@ -24,6 +24,14 @@
       position: relative;
     }
   </style>
+
+  {{--  le jquery pour le bon fonctionnement de parsley  --}}
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
+  {{--  les cdn parsleyjs  --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/parsleyjs/src/parsley.css" />
+  <script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
 </head>
 <body class="bg-black text-white flex items-center justify-center min-h-screen p-4">
   <div class="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md min-h-[620px] relative">
@@ -60,15 +68,15 @@
       aria-labelledby="tab-signup"
       class="tab-panel visible"
     >
-      <form action="/signupUser" method="POST" enctype="multipart/form-data" class="space-y-4">
+      <form data-parsley-validate id="signupForm" action="/signupUser" method="POST" enctype="multipart/form-data" class="space-y-4">
         {{ csrfField() }}
 
-        <input type="text" name="fullName" placeholder="Nom et Prénom" required autocomplete="given-name" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-        <input type="text" name="userName" placeholder="Nom utilisateur" required autocomplete="family-name" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-        <input type="email" name="email" placeholder="Adresse email" required autocomplete="email" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-        <input type="password" name="password" placeholder="Mot de passe (min 8 caractères)" required minlength="8" autocomplete="new-password" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-        <input type="date" name="birthDate" required max="2010-12-31" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-        <textarea name="bio" rows="3" maxlength="250" placeholder="Bio (max 250 caractères)" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+        <input data-parsley-required-message="Ce champs est obligatoire" data-parsley-trigger="keyup change" data-parsley-minLength="3" data-parsley-minLength-message="Ce champs doit avoir au moins 3 caracteres" type="text" name="fullName" placeholder="Nom et Prénom" required autocomplete="given-name" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input data-parsley-required-message="Ce champs est obligatoire" data-parsley-trigger="keyup change" data-parsley-pattern="^@.*_$" data-parsley-pattern-message="Le nom utilisateur doit commencer par @ et finir par _"  type="text" name="userName" placeholder="Nom utilisateur" required autocomplete="family-name" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input data-parsley-required-message="Ce champs est obligatoire" data-parsley-trigger="keyup change" data-parsley-type-message="Veuiller entrer un email valide" data-parsley-type="email" type="email" name="email" placeholder="Adresse email" required autocomplete="email" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input data-parsley-required-message="Ce champs est obligatoire" data-parsley-trigger="keyup change" data-parsley-minLength="8" data-parsley-minLength-message="Le mot de passe doit avoir au moins 8 caracteres" type="password" name="password" placeholder="********" required minlength="8" autocomplete="new-password" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input data-parsley-required-message="Ce champs est obligatoire" data-parsley-trigger="keyup change" type="date" name="birthDate" required max="2010-12-31" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <textarea data-parsley-trigger="keyup change" data-parsley-minLength-message="le bio doit avoir au moins 10 caracteres" data-parsley-minLength="10" data-parsley-maxLength="255" data-parsley-maxLength-message="vous avez depasser la limite de 255 caracteres" name="bio" rows="3" maxlength="255" placeholder="Bio" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
         <input type="file" name="profileLink" accept="image/*" class="text-gray-300" />
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-md font-semibold transition-colors">S’inscrire</button>
       </form>
@@ -82,17 +90,18 @@
       class="tab-panel hidden"
       aria-hidden="true"
     >
-      <form action="/loginUser" method="POST" class="space-y-4">
+      <form data-parsley-validate action="/loginUser" method="POST" class="space-y-4">
         {{ csrfField() }}
 
-        <input type="email" name="email" placeholder="Adresse email" required autocomplete="email" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-        <input type="password" name="password" placeholder="Mot de passe" required autocomplete="current-password" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input data-parsley-required-message="Ce champs est obligatiore" data-parsley-type-message="Veuillez entrer un email valide" data-parsley-type="email" type="email" name="email" placeholder="Adresse email" required autocomplete="email" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input data-parsley-required-message="Ce champs est obligatiore" data-parsley-minLength-message="Le mot de passe doit avoir au moins 8 caracteres" type="password" name="password" placeholder="Mot de passe" required autocomplete="current-password" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-md font-semibold transition-colors">Se connecter</button>
       </form>
     </section>
   </div>
 
   <script>
+     
     const tabs = document.querySelectorAll('[role="tab"]');
     const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -125,6 +134,8 @@
         panel.removeAttribute('aria-hidden');
         panel.focus();
       });
+
+      // $('#signupForm').parsley();
     });
   </script>
 </body>

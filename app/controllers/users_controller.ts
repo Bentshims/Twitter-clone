@@ -78,6 +78,7 @@ export default class UsersController {
   public async signupUser({request, response, auth}:HttpContext){
     // console.log(request);
     const image = request.file('profileLink')
+    // const payload = await request.validateUsing(signupValidator)
     const payload = request.only(['fullName', 'userName','email', 'password', 'birthDate', 'bio'])
     console.log(payload);
     
