@@ -1,9 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column} from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import User from './user.js'
-import type { BelongsTo} from '@adonisjs/lucid/types/relations'
-
-
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
 export default class Tweet extends BaseModel {
   @column({ isPrimary: true })
@@ -18,7 +16,7 @@ export default class Tweet extends BaseModel {
   @column()
   declare media: string | null
 
-  @belongsTo( () => User)
+  @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })

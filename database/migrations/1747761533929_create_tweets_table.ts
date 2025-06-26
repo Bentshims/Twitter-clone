@@ -6,12 +6,13 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id')
-      .notNullable()
-      .references('id')
-      .inTable('users')
-      .onDelete('CASCADE')
-      .unsigned()
+      table
+        .integer('user_id')
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .unsigned()
       table.text('content')
       table.string('media').nullable()
       table.timestamp('created_at')

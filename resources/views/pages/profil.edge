@@ -3,16 +3,16 @@
   @slot('main')
     <div class="flex justify-center  md:border-x border-gray-700  w-full">
       <section class="min-h-screen space-y-8 ">
-        <div
-          class="relative h-48 bg-zinc-900 bg-cover bg-center bg-gray-900 w-full "
-        >
+        <div class="relative h-48 bg-zinc-900 bg-cover bg-center bg-gray-900 w-full ">
           @if(!user.profilLink)
-            <div class="bg-zinc-800 w-32 h-32 text-5xl rounded-full flex items-center justify-center font-bold absolute top-32 z-10 left-8 border-4 border-black">
+            <div
+              class="bg-zinc-800 w-32 h-32 text-5xl rounded-full flex items-center justify-center font-bold absolute top-32 z-10 left-8 border-4 border-black"
+            >
               {{ user.fullName.substring(0, 1).toUpperCase() }}
-            </div> 
+            </div>
           @else
             <img
-              src="{{user.profilLink}}"
+              src="{{ user.profilLink }}"
               alt="profil image"
               class="w-32 h-32 rounded-full bg-indigo-600 absolute top-32 z-10 left-8 border-4 border-black object-cover"
             />
@@ -23,10 +23,10 @@
           <div class="flex gap-4 px-4 ">
             <div class="">
               <h1 class="font-bold capitalize">
-                {{user.fullName}}
+                {{ user.fullName }}
               </h1>
               <p class="text-gray-700">
-                {{user.userName}}
+                {{ user.userName }}
               </p>
             </div>
             <div>
@@ -48,10 +48,10 @@
             </p>
             <div class="flex items-center gap-4">
               <p>
-                {{followings}} <span class="text-gray-700">Following</span>
+                {{ followings }} <span class="text-gray-700">Following</span>
               </p>
               <p>
-                {{followers}} <span class="text-gray-700">Followers</span>
+                {{ followers }} <span class="text-gray-700">Followers</span>
               </p>
             </div>
           </div>

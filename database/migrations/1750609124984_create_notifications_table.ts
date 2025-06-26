@@ -6,11 +6,7 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id')
-      .references('id')
-      .inTable('users')
-      .unsigned()
-      .onDelete('CASCADE')
+      table.integer('user_id').references('id').inTable('users').unsigned().onDelete('CASCADE')
       table.string('content')
       table.string('type')
       table.boolean('is_read').defaultTo(false)

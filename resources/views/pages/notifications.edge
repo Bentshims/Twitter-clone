@@ -1,61 +1,67 @@
-@layout.app({title: "notifications", notifications, user }) 
-    @slot('main')
-        <section class="w-full">
-            <div class="relative min-h-screen border-x border-zinc-700">
-                <nav class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-blue-400/50  z-50 bg-black/70 backdrop-blur-sm">
-                  <p class="capitalize font-semibold text-xl">
-                    home
-                  </p>
-                  <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
-                </nav>
-                @if(notifications > 0)
-                    <div class="w-full flex justify-center items-center mt-40">
-                        <p>
-                            Aucune notification pour l’instant .  <span class="pl-2"> 🔔 </span>
-                        </p>
-                  </div>
+@layout.app({title: "notifications", notifications, user })
+  @slot('main')
+    <section class="w-full">
+      <div class="relative min-h-screen border-x border-zinc-700">
+        <nav
+          class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-blue-400/50  z-50 bg-black/70 backdrop-blur-sm"
+        >
+          <p class="capitalize font-semibold text-xl">
+            home
+          </p>
+          <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
+        </nav>
+        @if(notifications > 0)
+          <div class="w-full flex justify-center items-center mt-40">
+            <p>
+              Aucune notification pour l’instant .  <span class="pl-2">🔔 </span>
+            </p>
+          </div>
 
-                @else
+        @else
                
-                  @each(notification in notifications)
-                        <div class="border-b border-zinc-700 p-2 pb-4 space-y-4 relative min-h-20">
-                            <div class="w-full flex justify-between items-center">
-                            <div class="flex items-center gap-4">
-                                    <p class="text-zinc-500 text-right text-sm">
-                                        {{ fromNow(notification.createdAt) }}
-                                    </p>
-                                    @if(notification.isRead === false) 
-                                        <p class="rounded-full bg-blue-400 w-2 h-2">
-                                            
-                                        </p>
-                                    @end
-                            </div>
-                            <div class="relative inline-block">
-                                    <button class="delete-btn text-zinc-600 rounded-full w-6 h-6 transition duration-300 hover:bg-zinc-700/80 hover:text-zinc-400">
-                                        <i class="bi bi-three-dots">
-            
-                                        </i>
-                                    </button>
-                                    <form action="/notification/{{notification.id}}/delete" method="POST">
-                                        {{ csrfField() }}
-                                        <button type="submit" class="trash hidden absolute right-2 top-6 bg-zinc-700/80 text-white p-1 rounded-sm text-sm">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                    
-                            </div>
-                            </div>
-                            <p class="text-zinc-200">
-                                {{notification.content}}
-                            </p>
-                        
-                            
-                        </div>
-                    @end
-                @endif
-           
+          @each(notification in notifications)
+            <div class="border-b border-zinc-700 p-2 pb-4 space-y-4 relative min-h-20">
+              <div class="w-full flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                  <p class="text-zinc-500 text-right text-sm">
+                    {{ fromNow(notification.createdAt) }}
+                  </p>
+                  @if(notification.isRead === false)
+                    <p class="rounded-full bg-blue-400 w-2 h-2">
+
+                    </p>
+                  @end
+                </div>
+                <div class="relative inline-block">
+                  <button
+                    class="delete-btn text-zinc-600 rounded-full w-6 h-6 transition duration-300 hover:bg-zinc-700/80 hover:text-zinc-400"
+                  >
+                    <i class="bi bi-three-dots">
+
+                    </i>
+                  </button>
+                  <form action="/notification/{{ notification.id }}/delete" method="POST">
+                    {{ csrfField() }}
+                                        <button
+                      type="submit"
+                      class="trash hidden absolute right-2 top-6 bg-zinc-700/80 text-white p-1 rounded-sm text-sm"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </form>
+
+                </div>
+              </div>
+              <p class="text-zinc-200">
+                {{ notification.content }}
+              </p>
+
             </div>
-         
-        </section>
-    @endslot
+          @end
+        @endif
+           
+      </div>
+
+    </section>
+  @endslot
 @end

@@ -3,45 +3,43 @@ import { DateTime } from 'luxon'
 import Notification from '#models/notification'
 
 export default class NotificationsController {
-    public async index({view, auth}:HttpContext){
-        const user = auth.user!
-        const notifications = await user.related('notifications').query().orderBy('createdAt','desc')
-        function fromNow(date: DateTime): string {
-            const now = DateTime.now()
-            const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes']).toObject()
-          
-            if (diff.years! >= 1) {
-              return `${Math.floor(diff.years!)} an${Math.floor(diff.years!) > 1 ? 's' : ''}`
-            }
-            if (diff.months! >= 1) {
-              return `${Math.floor(diff.months!)} mois`
-            }
-            if (diff.days! >= 1) {
-              return `${Math.floor(diff.days!)} j`
-            }
-            if (diff.hours! >= 1) {
-              return `${Math.floor(diff.hours!)} h`
-            }
-            if (diff.minutes! >= 1) {
-              return `${Math.floor(diff.minutes!)} min`
-            }
-          
-            return 'à l’instant'
-        }
+  public async index({ view, auth }: HttpContext) {
+    const user = auth.user!
+    const notifications = await user.related('notifications').query().orderBy('createdAt', 'desc')
+    function fromNow(date: DateTime): string {
+      const now = DateTime.now()
+      const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes']).toObject()
 
-        for (const notification of notifications) {
-            notification.isRead = true
-            await notification.save()
-        }
+      if (diff.years! >= 1) {
+        return `${Math.floor(diff.years!)} an${Math.floor(diff.years!) > 1 ? 's' : ''}`
+      }
+      if (diff.months! >= 1) {
+        return `${Math.floor(diff.months!)} mois`
+      }
+      if (diff.days! >= 1) {
+        return `${Math.floor(diff.days!)} j`
+      }
+      if (diff.hours! >= 1) {
+        return `${Math.floor(diff.hours!)} h`
+      }
+      if (diff.minutes! >= 1) {
+        return `${Math.floor(diff.minutes!)} min`
+      }
 
-        return view.render('pages/notifications',{notifications, user, fromNow})
+      return 'à l’instant'
     }
 
-    public async destroy({response, params}:HttpContext){
-        const notification = await Notification.findOrFail(params.id)
-        await notification.delete()
-        return response.redirect().back()
+    for (const notification of notifications) {
+      notification.isRead = true
+      await notification.save()
     }
 
+    return view.render('pages/notifications', { notifications, user, fromNow })
+  }
 
+  public async destroy({ response, params }: HttpContext) {
+    const notification = await Notification.findOrFail(params.id)
+    await notification.delete()
+    return response.redirect().back()
+  }
 }
