@@ -5,7 +5,7 @@
     <div class="w-full">
       <section class="">
         <div class="min-h-screen md:border-x border-zinc-700  relative">
-          <nav class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-blue-400/50  z-50 bg-black/70 backdrop-blur-sm">
+          <nav class="sticky top-0 flex items-center justify-between px-2 py-4 md:p-4 border-b border-r  border-b-blue-400/50  border-r-zinc-700 z-50 bg-black/70 backdrop-blur-sm">
             <p class="capitalize font-semibold text-xl">
               home
             </p>
@@ -84,7 +84,7 @@
           </div>
 
 
-          <div class="tweets">
+          <div class="tweets relative">
             <div>
               @each(tweet in tweets)
                 <div class="flex items-start gap-3 p-4 border-b border-gray-700">
@@ -432,8 +432,97 @@
             </div>
           </div>
           
+          
         </div>
       </section>
+      {{--  debut de l'overlay  --}}
+
+      <div
+      id="tweetModal"
+      class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
+    >
+      <div class="bg-black w-[95%] md:w-[600px] rounded-xl overflow-y-auto max-h-[90vh]">
+        
+        <div class="flex justify-end p-4">
+          <button onclick="closeModal()" class="text-white text-2xl font-bold hover:text-red-500">&times;</button>
+        </div>
+
+        <div class="user border-b border-zinc-700 flex justify-between px-2 py-4 md:p-4 min-h-36 md:min-h-42 lg:min-h-48 relative">
+          <div class="flex  md:space-x-4">
+            <div>
+              <a href="/profil">
+                @if(user?.profilLink)
+                  <img src="{{ user.profilLink }}" alt="profil image" class="w-16 h-16 rounded-full object-cover object-center"/>
+                @else 
+                  <div class="bg-zinc-800 w-16 h-16 text-xl rounded-full flex items-center justify-center font-bold">
+                    {{ user.fullName.substring(0, 1).toUpperCase() }}
+                  </div> 
+                @endif
+              
+              </a>
+            </div>
+            <div class="ml-3 md:ml-0 w-[80%] md:w-auto">
+              <form action="/tweet/create" method="POST" class="lg:flex flex-col justify-between" enctype="multipart/form-data">
+                {{ csrfField() }}
+                <fieldset class="w-full">
+                  <textarea
+                    id="tweetContent"
+                    name="content"
+                    minlength="10"
+                    maxlength="255"
+                    oninput="handleInput(this)"
+                    class="appearance-none overflow-hidden resize-none w-80 lg:w-128 min-h-28 bg-black outline-none border-none pt-4"
+                    placeholder="What's happening ?"
+                    required
+                  ></textarea>
+                </fieldset>
+
+                <section class="flex justify-between pt-4">
+                  <div class="flex justify-between items-center">
+                    <label class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
+                      <img src="/public/uploads/image.svg" alt="select image buttom" />
+                      <input type="file" name="media" accept="image/*,video/*" class="hidden" onchange="previewImage(event)" />
+                    </label>
+                    <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
+                      <img src="/public/uploads/Gif.svg" alt="select GIF buttom" />
+
+                    </div>
+
+                    <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
+                      <img src="/public/uploads/bar.svg" alt="select image buttom" />
+
+                    </div>
+
+                    <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
+                      <button type="button" onclick="toggleEmojiPicker()">
+                        <img src="/public/uploads/smile.svg" alt="select emoji buttom" />
+                      </button>
+                    </div>
+                    <div class="cursor-pointer transition duration-500 ease hover:bg-[#202327] rounded-full w-12 h-12 flex items-center justify-center">
+                      <img src="/public/uploads/Schedule.svg" alt="/public/uploads/Schedule.svg" />
+                    </div>
+                  </div>
+
+                  <fieldset class="flex justify-end absolute right-2 bottom-3 md:right-2">
+                    <button
+                      class="w-full bg-blue-500 px-6 py-3 rounded-full transition duration-300 ease hover:bg-blue-600"
+                      type="submit"
+                    >
+                      tweet
+                    </button>
+                  </fieldset>
+                </section>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+
+  {{--  fin de l'overlay  --}}
     </div>
   @endslot
 @end

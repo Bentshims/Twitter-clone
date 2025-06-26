@@ -75,8 +75,10 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
-    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 lg:p-0 relative">
+    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 lg:p-0">
+
       <nav>
+        
         <div class="fixed space-y-6 lg:space-y-6">
 
           <section class="space-y-4 mt-6">
@@ -175,8 +177,9 @@
           </section>
 
           <div class="">
-            @component('components/tweetBtn', {type:'submit'})
-            @endcomponent
+            <button type="button"  onclick="openModal()" class="bg-blue-500 text-center w-full px-4 py-4 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600">
+                Tweet
+            </button>
           </div>
         </div>
 
@@ -187,8 +190,8 @@
 
             </div>
           @else
-            <div class="w-16 h-16 rounded-full flex items-center justify-center">
-                {{user.userName.substring(0, 1).toUpperCase()}}
+            <div class="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center">
+                {{user.fullName.substring(0, 1).toUpperCase()}}
             </div>
           @endif
           </a>
@@ -459,6 +462,24 @@
           }
         })
         })
+
+  
+        function openModal() {
+          document.getElementById('tweetModal').classList.remove('hidden')
+        }
+
+        function closeModal() {
+          document.getElementById('tweetModal').classList.add('hidden')
+        }
+
+        window.addEventListener('click', function (e) {
+          const modal = document.getElementById('tweetModal')
+          if (e.target === modal) {
+            closeModal()
+          }
+        })
+
+
         const followBtn = document.querySelectorAll('#follow')
         followBtn.forEach(follow =>{
           follow.addEventListener('active',()=>{
