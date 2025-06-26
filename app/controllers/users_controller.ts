@@ -3,6 +3,7 @@ import { signupValidator, loginvalidator } from '#validators/user'
 import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
+import { log } from 'console'
 
 export default class UsersController {
   public async home({view, auth} :HttpContext){
@@ -75,11 +76,13 @@ export default class UsersController {
   }
 
   public async signupUser({request, response, auth}:HttpContext){
-    console.log(request);
-
-    const payload = await request.validateUsing(signupValidator)
-    
+    // console.log(request);
     const image = request.file('profileLink')
+    const payload = request.only(['fullName', 'userName','email', 'password', 'birthDate', 'bio'])
+    console.log(payload);
+    
+    
+    // const image = request.file('profileLink')
 
     const imageName = `${Date.now()}.${image?.extname}`
     await image?.move('./public/images_profil',{name:imageName})
