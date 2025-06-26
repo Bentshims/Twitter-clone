@@ -12,31 +12,27 @@ export default class UsersController {
 
     function fromNow(date: DateTime): string {
       const now = DateTime.now()
-      const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes', 'seconds']).toObject()
-
-      if(diff.minutes! < 1){
-        return 'à l’instant'
-
-      }else if(diff.minutes! < 60){
-        return `${Math.floor(diff.minutes!)} min`
-
-      }else if(diff.hours! < 24 ){
-        return `${Math.floor(diff.hours!)} h`
-
-      }else if(diff.days! < 7) {
-        return `${Math.floor(diff.days!)} j`
-
-      }else if(diff.days! < 30) {
-        return `${Math.floor(diff.days! / 7)} sem`
-
-      }else if (diff.months! < 12) {
-        return `${Math.floor(diff.months!)} mois`
-
-      }else{
-        return `${Math.floor(diff.years!)} an`
+      const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes']).toObject()
+    
+      if (diff.years! >= 1) {
+        return `${Math.floor(diff.years!)} an${Math.floor(diff.years!) > 1 ? 's' : ''}`
       }
-
+      if (diff.months! >= 1) {
+        return `${Math.floor(diff.months!)} mois`
+      }
+      if (diff.days! >= 1) {
+        return `${Math.floor(diff.days!)} j`
+      }
+      if (diff.hours! >= 1) {
+        return `${Math.floor(diff.hours!)} h`
+      }
+      if (diff.minutes! >= 1) {
+        return `${Math.floor(diff.minutes!)} min`
+      }
+    
+      return 'à l’instant'
     }
+    
     //les notifications
     const newSNotification = await user.related('notifications')
     .query()
