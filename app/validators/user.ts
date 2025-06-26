@@ -6,7 +6,7 @@ export const signupValidator = vine.compile(
       userName: vine.string().trim().alphaNumeric().minLength(3).maxLength(30),
       email: vine.string().trim().email(),
       password: vine.string().minLength(8),
-      birthDate: vine.date().before('2007-12-31'),
+      birthDate: vine.date().before('2010-12-31'),
       bio: vine.string().maxLength(250).optional(),
     })
   )

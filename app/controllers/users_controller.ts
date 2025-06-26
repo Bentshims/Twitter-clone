@@ -75,8 +75,9 @@ export default class UsersController {
   }
 
   public async signupUser({request, response, auth}:HttpContext){
+    console.log(request);
+
     const payload = await request.validateUsing(signupValidator)
-    // console.log(payload);
     
     const image = request.file('profileLink')
 
