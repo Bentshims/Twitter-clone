@@ -57,8 +57,6 @@
       
     </script>
 
-    <script defer src="https://unpkg.com/password-toggle@latest/dist/password-toggle.min.js"></script>
-
   </head>
   <body class="bg-black text-white flex items-center justify-center min-h-screen p-4">
     <div class="relative p-8 rounded-lg shadow-lg w-full max-w-md min-h-[620px] relative">
@@ -149,19 +147,44 @@
             autocomplete="email"
             class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
-          <input
-            data-parsley-required-message="Ce champs est obligatoire"
-            data-parsley-trigger="keyup change"
-            data-parsley-minLength="8"
-            data-parsley-minLength-message="Le mot de passe doit avoir au moins 8 caracteres"
-            type="password"
-            name="password"
-            placeholder="********"
-            required
-            minlength="8"
-            autocomplete="new-password"
-            class="password w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
+          <div class="relative">
+            <input
+              data-parsley-required-message="Ce champs est obligatoire"
+              data-parsley-trigger="keyup change"
+              data-parsley-minLength="8"
+              data-parsley-minLength-message="Le mot de passe doit avoir au moins 8 caracteres"
+              type="password"
+              name="password"
+              placeholder="********"
+              required
+              minlength="8"
+              autocomplete="new-password"
+              class="password w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+            <button type="button" class="togglePassword absolute right-4 top-2">
+              <svg
+                id="eyeIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </button>
+          </div>
           <input
             data-parsley-required-message="Ce champs est obligatoire"
             data-parsley-trigger="keyup change"
@@ -214,18 +237,44 @@
             autocomplete="email"
             class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
-          <input
-            data-parsley-required-message="Ce champs est obligatiore"
-            data-parsley-trigger="keyup change"
-            data-parsley-minLength-message="Le mot de passe doit avoir au moins 8 caracteres"
-            data-parsley-type="password"
-            type="password"
-            name="password"
-            placeholder="Mot de passe"
-            required
-            autocomplete="current-password"
-            class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
+          <div class="relative">
+            <input
+              data-parsley-required-message="Ce champs est obligatoire"
+              data-parsley-trigger="keyup change"
+              data-parsley-minLength="8"
+              data-parsley-minLength-message="Le mot de passe doit avoir au moins 8 caracteres"
+              type="password"
+              name="password"
+              placeholder="********"
+              required
+              minlength="8"
+              autocomplete="new-password"
+              class="password w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+            <button type="button" class="togglePassword absolute right-4 top-2">
+              <svg
+                id="eyeIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </button>
+          </div>
           <button
             type="submit"
             class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-md font-semibold transition-colors"
@@ -233,14 +282,12 @@
         </form>
       </section>
     </div>
-
-    <script defer>
+    <script>
       document.addEventListener("DOMContentLoaded", () => {
         const tabs = document.querySelectorAll('[role="tab"]');
         const tabPanels = document.querySelectorAll(".tab-panel");
         tabs.forEach(tab => {
           tab.addEventListener("click", () => {
-            // Désactivation onglets
             tabs.forEach(t => {
               t.setAttribute("aria-selected", "false");
               t.classList.remove("text-blue-400", "border-blue-400");
@@ -263,7 +310,6 @@
           });
         });
         window.addEventListener("DOMContentLoaded", () => {
-          // rendre disponible quand le DOM est charger
           FilePond.registerPlugin(FilePondPluginImagePreview); // activation du plugin en quelque sorte
           const image = document.querySelector("#profileLink"); // recupereration du champs input file
           FilePond.create(image, {
@@ -271,16 +317,18 @@
             storeAsFile: true
           }); // utlisation de FilePond sur le champ et lui rapeler de guarder le fichier jusqu’a ce que le formulaire soit soumit
         });
-        new PasswordToggle({
-          selector: ".password",
-          eyeClass: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                              </svg>`,
-          eyeSlashClass: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
-                                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
-                                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
-                                    </svg> `
+        document.querySelectorAll(".togglePassword").forEach(btn => {
+          const input = btn.previousElementSibling; // L’input juste avant le bouton
+          const icon = btn.querySelector("svg"); // L'icône SVG à changer
+          btn.addEventListener("click", () => {
+            const visible = input.type === "text";
+            input.type = visible ? "password" : "text";
+            icon.innerHTML = visible ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />` : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.96 9.96 0 012.602-4.263M6.513 6.511A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.969 9.969 0 01-4.478 5.249M3 3l18 18" />`;
+          });
         });
       });
     </script>
