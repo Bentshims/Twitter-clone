@@ -318,8 +318,8 @@
           }); // utlisation de FilePond sur le champ et lui rapeler de guarder le fichier jusqu’a ce que le formulaire soit soumit
         });
         document.querySelectorAll(".togglePassword").forEach(btn => {
-          const input = btn.previousElementSibling; // L’input juste avant le bouton
-          const icon = btn.querySelector("svg"); // L'icône SVG à changer
+          const input = btn.previousElementSibling; 
+          const icon = btn.querySelector("svg"); 
           btn.addEventListener("click", () => {
             const visible = input.type === "text";
             input.type = visible ? "password" : "text";

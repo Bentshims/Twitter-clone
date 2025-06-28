@@ -10,7 +10,7 @@
           </p>
           <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
         </nav>
-        @if(notifications > 0)
+        @if(notifications.length === 0)
           <div class="w-full flex justify-center items-center mt-40">
             <p>
               Aucune notification pour l’instant .  <span class="pl-2">🔔 </span>
@@ -42,7 +42,7 @@
                   </button>
                   <form action="/notification/{{ notification.id }}/delete" method="POST">
                     {{ csrfField() }}
-                                        <button
+                    <button
                       type="submit"
                       class="trash hidden absolute right-2 top-6 bg-zinc-700/80 text-white p-1 rounded-sm text-sm"
                     >
