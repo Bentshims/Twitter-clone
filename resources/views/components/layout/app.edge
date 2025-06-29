@@ -192,11 +192,11 @@
             </div>
           </section>
 
-          <div class="mr-4 w-full">
+          <div class="lg:mr-4 w-full">
             <button
               type="button"
               onclick="openModal()"
-              class="bg-blue-500 text-center w-full px-4 py-4 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600"
+              class="bg-blue-500 text-center w-full px-6 py-4 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600"
             >
               Tweet
             </button>
@@ -244,13 +244,13 @@
               type="search"
               name="search"
               id=""
-              class="bg-[#202327] rounded-full py-2 pl-12 w-full"
+              class="border border-zinc-700 bg-black appareance-none rounded-full py-2 pl-12 w-full"
               placeholder="Search Twitter"
             />
           </fieldset>
         </div>
 
-        <section class="bg-[#202327] rounded-lg w-full md:px-2 md:py-4 lg:p-4 space-y-6">
+        <section class="border border-zinc-700 rounded-xl w-full md:px-2 md:py-4 lg:p-4 space-y-6">
           <div class="py-4">
             <h2 class="font-bold text-xl">
               Trends for you
@@ -313,7 +313,7 @@
         </section>
 
         <div class="space-y-2">
-          <section class="bg-[#202327] rounded-lg w-full md:px-2 md:py-4 lg:p-4 space-y-4">
+          <section class="border border-zinc-700 rounded-xl w-full md:px-2 md:py-4 lg:p-4 space-y-4">
             <div class="pb-6">
               <h2 class="font-bold text-xl">
                 Who to follow
@@ -428,7 +428,7 @@
         const picker = document.getElementById("emojiPicker");
         const textarea = document.getElementById("tweetContent");
         const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]');
-        // Toggle affichage du picker
+        
         window.toggleEmojiPicker = () => {
           picker.style.display = picker.style.display === "none" ? "block" : "none";
         };
@@ -455,7 +455,7 @@
             e.stopPropagation();
             const parent = btn.closest(".relative");
             const trash = parent.querySelector(".trash");
-            // Si un autre menu est ouvert on le ferme
+
             if (currentlyOpenTrash && currentlyOpenTrash !== trash) {
               currentlyOpenTrash.classList.add("hidden");
             }
@@ -479,7 +479,20 @@
               content.classList.remove('hidden')
 
             }, 3000)
+        })
+        document.querySelectorAll('.likes-content').forEach(content =>{
+          content.addEventListener('mouseover',()=>{
+            const icon = content.querySelector('.like-icon').classList.add('bg-[#f91880]/20')
+            const number = content.nextElementSibling.classList.add('text-[#f91880]')
           })
+
+          content.addEventListener('mouseout',()=>{
+            const icon = content.querySelector('.like-icon').classList.remove('bg-[#f91880]/20')
+            const number = content.nextElementSibling.classList.remove('text-[#f91880]')
+          })
+
+        })
+
       });
       
       const followBtn = document.querySelectorAll("#follow");

@@ -171,8 +171,17 @@
                         </p>
                       </div>
                       <div class="flex items-center gap-4">
-                        <img src="/public/uploads/love.svg" alt="" />
-                        <p>
+                        {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
+                        <div class="likes-content">
+                         @if(!likes)
+                          <div class="like-icon rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="bi bi-heart"></i>
+                          </div>
+                         @else
+                          <i class="bi bi-heart-fill text-[#f91880]"></i>
+                         @endif
+                        </div>
+                        <p class="like-number">
                           482
                         </p>
                       </div>
