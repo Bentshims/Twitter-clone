@@ -172,16 +172,20 @@
                       </div>
                       <div class="flex items-center gap-4">
                         {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
-                        <div class="likes-content">
-                         @if(!likes)
-                          <div class="like-icon rounded-full w-8 h-8 flex items-center justify-center">
-                            <i class="bi bi-heart"></i>
-                          </div>
-                         @else
-                          <i class="bi bi-heart-fill text-[#f91880]"></i>
-                         @endif
+                        <div class="likes-content transition duration-200 ease">
+                          <form action="/like/{{tweet.id}}" method="post">
+                            <button type="submit">
+                              @if(!likes)
+                                <div class="like-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
+                                  <i class="bi bi-heart"></i>
+                                </div>
+                              @else
+                                <i class="bi bi-heart-fill text-[#f91880]"></i>
+                              @endif
+                            </button>
+                          </form>
                         </div>
-                        <p class="like-number">
+                        <p class="like-number transition duration-200 ease">
                           482
                         </p>
                       </div>

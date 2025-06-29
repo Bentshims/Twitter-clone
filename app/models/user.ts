@@ -6,6 +6,7 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Tweet from './tweet.js'
 import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Notification from './notification.js'
+import Like from './like.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -43,21 +44,32 @@ export default class User extends compose(BaseModel, AuthFinder) {
   // les followings ou les gens que je suis
   @manyToMany(() => User, {
     pivotTable: 'follows',
-    pivotForeignKey: 'follower_id', // moi (celui qui suit)
-    pivotRelatedForeignKey: 'following_id', // eux (ceux que je suis)
+    pivotForeignKey: 'follower_id',
+    pivotRelatedForeignKey: 'following_id', 
   })
   declare following: ManyToMany<typeof User>
 
   // les followers ou les gens qui me suivent
   @manyToMany(() => User, {
     pivotTable: 'follows',
-    pivotForeignKey: 'following_id', // moi (celui qui est suivi)
-    pivotRelatedForeignKey: 'follower_id', // eux (ceux qui me suivent)
+    pivotForeignKey: 'following_id',
+    pivotRelatedForeignKey: 'follower_id',
   })
   declare follower: ManyToMany<typeof User>
 
   @hasMany(() => Notification)
   declare notifications: HasMany<typeof Notification>
+
+  @hasMany( ()=> Like)
+  declare like: HasMany<typeof Like>
+
+  @manyToMany(()=> Tweet,{
+    pivotTable: 'likes',
+    pivotForeignKey: 'user_id',
+    pivotRelatedForeignKey: 'tweet_id'
+
+  })
+  declare tweet: ManyToMany<typeof Tweet>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

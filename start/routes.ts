@@ -24,5 +24,6 @@ router
     router.post('/follow/addOrDelete/:id', '#controllers/follows_controller.followOrUnfollow')
     router.get('/profil/:userName', '#controllers/tweets_controller.profil')
     router.post('/notification/:id/delete', '#controllers/notifications_controller.destroy')
+    router.post('/likes/:id','#controllers/likes_controller.create')
   })
   .use(middleware.auth())

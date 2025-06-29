@@ -1,9 +1,9 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { signupValidator, loginvalidator } from '#validators/user'
+import { loginvalidator } from '#validators/user'
 import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
-import { log } from 'console'
+// import { log } from 'console'
 
 export default class UsersController {
   public async home({ view, auth }: HttpContext) {
