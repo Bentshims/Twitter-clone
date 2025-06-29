@@ -63,10 +63,10 @@
             edit profile
           </a>
 
-          <div x-data="{ tab: 'posts' }" class="mt-20">
+          <div x-data="{ tab: 'tweets' }" class="mt-20">
             <!--les Onglets -->
             <ul class="flex justify-between items-center border-b border-zinc-700">
-              <template x-for="item in ['posts', 'replies', 'highlights', 'articles', 'media', 'likes']" :key="item">
+              <template x-for="item in ['tweets', 'replies', 'highlights', 'articles', 'media', 'likes']" :key="item">
                 <li>
                   <button
                     @click="tab = item"
@@ -83,7 +83,7 @@
             </ul>
           
             <div class="mt-6 space-y-4 px-2">
-              <div x-show="tab === 'posts'">
+              <div x-show="tab === 'tweets'">
                 <h1 class="text-2xl font-bold">Who to follow</h1>
                 <section>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi...</p>
