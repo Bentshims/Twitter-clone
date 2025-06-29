@@ -63,134 +63,76 @@
             edit profile
           </a>
 
-          {{--  boutons d'activation de table   --}}
-
-          <section class="activity pt-12 w-full">
-            <div class="flex items-center justify-between px-2 lg:px-4">
-              <button onclick="openTable('tab1',event)" class="tab-button active border-b border-gray-700">
-                <span class="capitalize">posts</span>
-              </button>
-
-              <button onclick="openTable('tab2',event)" class="tab-button">
-                <span class="capitalize">replies</span>
-              </button>
-
-              <button onclick="openTable('tab3')" class="tab-button">
-                <span class="capitalize">highlights</span>
-              </button>
-
-              <button onclick="openTable('tab4')" class="tab-button">
-                <span class="capitalize">articles</span>
-              </button>
-
-              <button onclick="openTable('tab5')" class="tab-button">
-                <span class="capitalize">media</span>
-              </button>
-
-              <button onclick="openTable('tab6')" class="tab-button">
-                <span class="capitalize">likes</span>
-              </button>
+          <div x-data="{ tab: 'posts' }" class="mt-20">
+            <!--les Onglets -->
+            <ul class="flex justify-between items-center border-b border-zinc-700">
+              <template x-for="item in ['posts', 'replies', 'highlights', 'articles', 'media', 'likes']" :key="item">
+                <li>
+                  <button
+                    @click="tab = item"
+                    :class="{
+                      'border-b-4 border-blue-600 font-semibold': tab === item,
+                      'text-gray-600 hover:text-blue-500': tab !== item
+                    }"
+                    class="capitalize px-2"
+                  >
+                    <span x-text="item"></span>
+                  </button>
+                </li>
+              </template>
+            </ul>
+          
+            <div class="mt-6 space-y-4 px-2">
+              <div x-show="tab === 'posts'">
+                <h1 class="text-2xl font-bold">Who to follow</h1>
+                <section>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi...</p>
+                </section>
+              </div>
+          
+              <div x-show="tab === 'replies'">
+                <h1 class="text-2xl font-bold">Who to replies</h1>
+                <section>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam...</p>
+                </section>
+              </div>
+          
+              <div x-show="tab === 'highlights'">
+                <h1 class="text-2xl font-bold">Highlights</h1>
+                <section>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...</p>
+                </section>
+              </div>
+          
+              <div x-show="tab === 'articles'">
+                <h1 class="text-2xl font-bold">Articles</h1>
+                <section>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore...</p>
+                </section>
+              </div>
+          
+              <div x-show="tab === 'media'">
+                <h1 class="text-2xl font-bold">Media</h1>
+                <section>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis...</p>
+                </section>
+              </div>
+          
+              <div x-show="tab === 'likes'">
+                <h1 class="text-2xl font-bold">Likes</h1>
+                <section>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum...</p>
+                </section>
+              </div>
             </div>
-          </section>
-          <div class="border border-gray-800">
           </div>
-
-          {{--  contenu des table   --}}
-          <section>
-
-            {{--  posts   --}}
-            <div id="tab1" class="mx-4 tab-content space-y-8">
-
-              <h1 class="text-2xl font-bold">
-                Who to follow
-              </h1>
-              <section class="content">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi, atque deserunt illo, voluptate amet aperiam rerum voluptas ad et quam debitis consequuntur alias ullam. Obcaecati nisi consequatur sequi ut?
-                </p>
-              </section>
-            </div>
-
-            {{--  replies  --}}
-            <div id="tab2" class="mx-4 tab-content space-y-8 hidden">
-
-              <h1 class="text-2xl font-bold">
-                Who to replies
-              </h1>
-              <section class="content">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam pariatur architecto perferendis, eveniet ipsam repellendus molestiae est nihil animi maxime ullam, provident accusantium, tempora laborum dolorum id soluta cum.
-                </p>
-              </section>
-            </div>
-
-            {{--  highlights   --}}
-            <div id="tab3" class="mx-4 tab-content space-y-8 hidden">
-              <h1 class="text-2xl font-bold">
-                Highlights
-              </h1>
-              <section class="content">
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores nihil, libero magni commodi amet necessitatibus numquam, fugit minima ipsum facere tenetur distinctio cumque earum suscipit, magnam et provident alias voluptatem?
-                </p>
-              </section>
-
-            </div>
-
-            {{--  articles  --}}
-            <div id="tab4" class="mx-4 tab-content space-y-8  hidden">
-              <h1 class="text-2xl font-bold">
-                Articles
-              </h1>
-              <section class="content">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore possimus, maiores voluptas, sint facere molestias harum porro tenetur explicabo soluta doloremque illum omnis laboriosam facilis ab repellendus, reiciendis nam?
-                </p>
-              </section>
-            </div>
-
-            {{--  media   --}}
-            <div id="tab5" class="mx-4 tab-content space-y-8  hidden">
-              <h1 class="text-2xl font-bold">
-                Media
-              </h1>
-              <section class="content">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis reiciendis, at possimus similique laboriosam voluptatibus eum asperiores architecto repellat sapiente exercitationem recusandae tempora earum illum dolore obcaecati unde. Odit.
-                </p>
-              </section>
-            </div>
-
-            {{--  likes  --}}
-            <div id="tab6" class="mx-4 tab-content space-y-8  hidden">
-              <h1 class="text-2xl font-bold">
-                Likes
-              </h1>
-              <section class="content">
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum inventore minima id magnam animi ratione qui dolorum placeat ex voluptas autem tenetur eos eum corporis pariatur doloribus odio nihil.
-                </p>
-              </section>
-            </div>
-
-          </section>
-
+          
         </div>
 
       </section>
     </div>
     <script>
-      function openTable(tabId) {
-        document.querySelectorAll(".tab-content").forEach(content => {
-          content.classList.add("hidden");
-        });
-        document.querySelectorAll(".tab-button").forEach(button => {
-          button.classList.add("transition", "duration-500");
-        });
-        document.getElementById(tabId).classList.remove("hidden");
-        event.currentTarget.classList.add("border-b", "border-gray-700");
-        // event.currentTarget.classList.remove("border-b", "border-gray-700");
-      }
+      
     </script>
 
   @endslot

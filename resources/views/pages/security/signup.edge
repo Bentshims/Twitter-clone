@@ -318,16 +318,16 @@
           }); // utlisation de FilePond sur le champ et lui rapeler de guarder le fichier jusqu’a ce que le formulaire soit soumit
         });
         document.querySelectorAll(".togglePassword").forEach(btn => {
-          const input = btn.previousElementSibling; 
-          const icon = btn.querySelector("svg"); 
+          const input = btn.previousElementSibling;
+          const icon = btn.querySelector("svg");
           btn.addEventListener("click", () => {
             const visible = input.type === "text";
             input.type = visible ? "password" : "text";
             icon.innerHTML = visible ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />` : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.96 9.96 0 012.602-4.263M6.513 6.511A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.969 9.969 0 01-4.478 5.249M3 3l18 18" />`;
+                                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />` : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.96 9.96 0 012.602-4.263M6.513 6.511A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.969 9.969 0 01-4.478 5.249M3 3l18 18" />`;
           });
         });
       });

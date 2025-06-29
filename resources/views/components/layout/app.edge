@@ -72,20 +72,22 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
 
-    <!-- CDN Emoji Picker -->
+    {{--  CDN Emoji Picker   --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
+
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
       
-    </script>
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
-    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 lg:p-0">
+    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 p-4 lg:p-0 md:border">
 
-      <nav>
+      <nav class="border border-red-500 relative">
 
-        <div class="fixed space-y-6 lg:space-y-6">
+        <div class="sticky top-0 left-0 right-0 space-y-6 lg:space-y-2 border">
 
-          <section class="space-y-4 mt-6">
+          <section class="space-y-2 mt-6">
             <div class="pl-6">
               <img src="/public/uploads/twitter-logo.svg" alt="logo" />
             </div>
@@ -180,7 +182,7 @@
             </div>
           </section>
 
-          <div class="">
+          <div class="mr-4 border">
             <button
               type="button"
               onclick="openModal()"
@@ -458,21 +460,6 @@
             currentlyOpenTrash = null;
           }
         });
-      });
-      
-      function openModal() {
-        document.getElementById("tweetModal").classList.remove("hidden");
-      }
-      
-      function closeModal() {
-        document.getElementById("tweetModal").classList.add("hidden");
-      }
-      
-      window.addEventListener("click", function(e) {
-        const modal = document.getElementById("tweetModal");
-        if (e.target === modal) {
-          closeModal();
-        }
       });
       
       const followBtn = document.querySelectorAll("#follow");
