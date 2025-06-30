@@ -21,7 +21,7 @@ export default class Tweet extends BaseModel {
   declare user: BelongsTo<typeof User>
 
   @hasMany(()=> Like)
-  declare like: HasMany<typeof Like>
+  declare likes: HasMany<typeof Like>
 
   @manyToMany(()=> User,{
     pivotTable: 'likes',

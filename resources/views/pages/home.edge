@@ -173,20 +173,20 @@
                       <div class="flex items-center gap-4">
                         {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
                         <div class="likes-content transition duration-200 ease">
-                          <form action="/like/{{tweet.id}}" method="post">
+                          <form action="/like/{{tweet.id}}" method="POST">
                             <button type="submit">
-                              @if(!likes)
+                              @if(tweet.isLike)
+                                <i class="bi bi-heart-fill text-[#f91880]"></i>
+                              @else
                                 <div class="like-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
                                   <i class="bi bi-heart"></i>
                                 </div>
-                              @else
-                                <i class="bi bi-heart-fill text-[#f91880]"></i>
                               @endif
                             </button>
                           </form>
                         </div>
                         <p class="like-number transition duration-200 ease">
-                          482
+                          {{tweet.$extras.likes_count}}
                         </p>
                       </div>
                       <div>

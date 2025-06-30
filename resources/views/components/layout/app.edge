@@ -91,19 +91,19 @@
     </style>
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
-    <header class="hidden md:block md:w-[15%] lg:w-[15%] space-y-10 lg:p-0 relative">
+    <header class="hidden md:block md:w-[15%] lg:w-[12%] space-y-10 lg:p-0 relative">
 
       <nav class="fixed">
 
         <div class="space-y-6 lg:space-y-2">
 
           <section class="space-y-2 mt-6">
-            <div class="flex justify-center mb-12">
+            <div class="flex justify-center lg:px-6 lg:justify-start mb-12">
               <img src="/public/uploads/twitter-logo.svg" alt="logo" />
             </div>
             <div>
               <a href="/">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <img src="/public/uploads/home.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     home
@@ -113,7 +113,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <img src="/public/uploads/diez.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     explore
@@ -123,7 +123,7 @@
             </div>
             <div>
               <a href="/notifications">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <div class="relative">
                     @if(notifications > 0)
                       <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
@@ -140,7 +140,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <img src="/public/uploads/message.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     messages
@@ -150,7 +150,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <img src="/public/uploads/badge.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     bookmarks
@@ -160,7 +160,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <img src="/public/uploads/list.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     lists
@@ -171,7 +171,7 @@
             <div>
               <a href="/profil">
                 <div
-                  class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327]  rounded-full lg:px-6 py-4"
+                  class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327]  rounded-full lg:px-6 py-4"
                 >
                   <img src="/public/uploads/profil.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
@@ -182,7 +182,7 @@
             </div>
             <div>
               <a href="#">
-                <div class="flex items-center justify-center transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
+                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
                   <img src="/public/uploads/etc-circle.svg" alt="" />
                   <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
                     more
@@ -232,7 +232,7 @@
         </div>
       </nav>
     </header>
-    <main class="flex justify-center md:w-[75%] lg:w-[35%] min-h-screen">
+    <main class="flex justify-center md:w-[75%] lg:w-[30%] min-h-screen">
       {{{ await $slots.main() }}}
     </main>
     <nav class="md:w-1/2 md:px-4 lg:w-[20%] relative">

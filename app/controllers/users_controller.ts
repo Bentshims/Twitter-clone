@@ -3,13 +3,14 @@ import { loginvalidator } from '#validators/user'
 import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
+import Like from '#models/like'
 // import { log } from 'console'
 
 export default class UsersController {
   public async home({ view, auth }: HttpContext) {
     const user = auth.user!
     // les tweets
-    const tweets = await Tweet.query().preload('user').orderBy('createdAt', 'desc')
+    const tweets = await Tweet.query().preload('user').withCount('likes').orderBy('createdAt', 'desc')
 
     function fromNow(date: DateTime): string {
       const now = DateTime.now()
@@ -43,6 +44,16 @@ export default class UsersController {
 
     const notifications = newSNotification[0].$extras.total
     // console.log('nombres des notification :',notifications);
+
+    for (const tweet of tweets) {
+      const like = await Like.query().where('user_id',user.id).andWhere('tweet_id',tweet.id).first()
+      // Ajoute une propriété temporaire
+      // @ts-ignore : on dit à TypeScript "laisse nous tranquille"
+      // isLiked n'existe pas dans le modèle Tweet, mais on le met quand même
+      // ⬇️⬇️⬇️
+      // @ts-ignore
+      tweet.isLike = !!like
+    }
 
     return view.render('pages/home', { user, tweets, fromNow, notifications })
   }
