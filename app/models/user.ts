@@ -7,6 +7,7 @@ import Tweet from './tweet.js'
 import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Notification from './notification.js'
 import Like from './like.js'
+import Retweet from './retweet.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -70,6 +71,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   })
   declare tweet: ManyToMany<typeof Tweet>
+
+  @hasMany(() => Retweet)
+  declare retweets: HasMany<typeof Retweet>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

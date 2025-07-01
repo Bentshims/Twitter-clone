@@ -9,7 +9,7 @@ export default class UsersController {
   public async home({ view, auth }: HttpContext) {
     const user = auth.user!
     // les tweets
-    const tweets = await Tweet.query().preload('user').withCount('likes').orderBy('createdAt', 'desc')
+    const tweets = await Tweet.query().preload('user').withCount('retweets').withCount('likes').orderBy('createdAt', 'desc')
 
     function fromNow(date: DateTime): string {
       const now = DateTime.now()

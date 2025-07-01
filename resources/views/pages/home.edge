@@ -160,9 +160,10 @@
                     <div class="flex justify-between items-center pt-6 mr-14 w-full">
                       <div class="flex items-center gap-4">
                         <div class="comment-content transition duration-200 ease">
-                          <form action="/retweet/{{tweet.id}}" method="POST">
+                          <form action="/comment/{{tweet.id}}" method="POST">
+                            {{ csrfField() }}
                             <button type="submit">
-                               @if(tweet.isLike)
+                               @if(tweet.isretweet)
                                 <i class="far fa-comment text-[#f91880]"></i>
                               @else
                                 <div class="comment-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
@@ -173,15 +174,16 @@
                           </form>
                         </div>
                         <p class="like-number transition duration-200 ease">
-                          {{tweet.$extras.likes_count}}
+                          {{tweet.$extras.retweets_count}}
                         </p>
                       </div>
                     
                       <div class="flex items-center gap-4">
                         <div class="retweet-content transition duration-200 ease">
                           <form action="/retweet/{{tweet.id}}" method="POST">
+                            {{ csrfField() }}
                             <button type="submit">
-                               @if(tweet.isLike)
+                               @if(tweet.isretweet)
                                 <i class="fas fa-retweet text-[#f91880]"></i>
                               @else
                                 <div class="retweet-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
@@ -192,13 +194,14 @@
                           </form>
                         </div>
                         <p class="like-number transition duration-200 ease">
-                          {{tweet.$extras.likes_count}}
+                          {{tweet.$extras.retweets_count}}
                         </p>
                       </div>
 
                       <div class="flex items-center gap-4">
                         <div class="likes-content transition duration-200 ease">
                           <form action="/like/{{tweet.id}}" method="POST">
+                            {{ csrfField() }}
                             <button type="submit">
                               @if(tweet.isLike)
                                 <i class="bi bi-heart-fill text-[#f91880]"></i>

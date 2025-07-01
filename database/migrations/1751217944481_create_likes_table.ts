@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       .unsigned()
       table.integer('tweet_id')
       .references('id')
-      .inTable('users')
+      .inTable('tweets')
       .onDelete('CASCADE')
       .unsigned()
       table.timestamp('created_at')
