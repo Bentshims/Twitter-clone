@@ -1,7 +1,7 @@
 
 @layout.app({title:"profil", notifications, user})
   @slot('main')
-    <div class="flex justify-center  md:border-x border-gray-700  w-full">
+    <div class="flex justify-center  md:border-x border-gray-700  w-full min-h-screen relative">
       <section class="min-h-screen space-y-8 ">
         <div class="relative h-48 bg-zinc-900 bg-cover bg-center bg-gray-900 w-full ">
           @if(!user.profilLink)
@@ -86,7 +86,89 @@
               <div x-show="tab === 'tweets'">
                 <h1 class="text-2xl font-bold">Who to follow</h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi...</p>
+                  @each(tweet in tweets)
+                    <div class="flex items-start gap-3 p-4 border-b border-gray-700">
+                      <a href="/profil/{{ tweet.user.userName }}">
+                        @if(!tweet.user?.profilLink)
+                          <div class="bg-zinc-800 w-12 h-12 rounded-full flex items-center justify-center font-bold">
+                            {{ tweet.user.fullName.substring(0, 1).toUpperCase() }}
+                          </div>
+                        @else
+                          <div
+                            class="bg-[url({{ tweet.user.profilLink }})] w-12 h-12 border-gray-700 rounded-full bg-cover bg-center"
+                          >
+                          </div>
+                        @endif
+                      </a>
+                      <div class="space-y-2 w-full">
+                        <div class="flex justify-between items-center">
+                          <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2">
+                              <p class="capitalize ">
+                                {{ tweet.user.fullName }}
+                              </p>
+                              <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                            </div>
+                            <p class="text-gray-500">
+                              {{ tweet.user.userName }}
+                            </p>
+                          </div>
+                          <p class="text-gray-600">
+                            {{ fromNow(tweet.createdAt) }}
+                          </p>
+                        </div>
+                        <div class="space-y-4">
+                          <p>
+                            {{ tweet.content }}
+                          </p>
+                          @if(tweet.media)
+                            @if(tweet.media && (tweet.media.endsWith('.mp4') || tweet.media.endsWith('.webm') || tweet.media.endsWith('.mov')))
+                              <video src="{{ tweet.media }}" muted autoplay class="border border-gray-600 border-2 rounded-xl">
+                              </video>
+                            @elseif(tweet.media && (tweet.media.endsWith('.png') || tweet.media.endsWith('.jpeg') || tweet.media.endsWith('.jpg')))
+                              <img src="{{ tweet.media }}" alt="tweet media" class="border border-gray-600 border-2 rounded-xl" />
+                            @end
+                          @end
+                        </div>
+                        <div class="flex justify-between items-center pt-6 mr-14 w-full">
+                          <div class="flex items-center gap-4">
+                            <img src="/public/uploads/comment.svg" alt="" />
+                            <p>
+                              19
+                            </p>
+                          </div>
+                          <div class="flex items-center gap-4">
+                            <img src="/public/uploads/loop.svg" alt="" />
+                            <p>
+                              48
+                            </p>
+                          </div>
+                          <div class="flex items-center gap-4">
+                            {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
+                            <div class="likes-content transition duration-200 ease">
+                              <form action="/like/{{tweet.id}}" method="POST">
+                                <button type="submit">
+                                  @if(tweet.isLike)
+                                    <i class="bi bi-heart-fill text-[#f91880]"></i>
+                                  @else
+                                    <div class="like-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
+                                      <i class="bi bi-heart"></i>
+                                    </div>
+                                  @endif
+                                </button>
+                              </form>
+                            </div>
+                            <p class="like-number transition duration-200 ease">
+                              {{tweet.$extras.likes_count}}
+                            </p>
+                          </div>
+                          <div>
+                            <img src="/public/uploads/doawnload.svg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @end
                 </section>
               </div>
           

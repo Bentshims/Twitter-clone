@@ -4,7 +4,6 @@ import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
 import Like from '#models/like'
-// import { log } from 'console'
 
 export default class UsersController {
   public async home({ view, auth }: HttpContext) {
@@ -76,8 +75,31 @@ export default class UsersController {
 
     const notifications = newSNotification[0].$extras.total
     // console.log('nombres des notification :',notifications);
+    function fromNow(date: DateTime): string {
+      const now = DateTime.now()
+      const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes']).toObject()
 
-    return view.render('pages/profil', { user, followings, followers, notifications })
+      if (diff.years! >= 1) {
+        return `${Math.floor(diff.years!)} an${Math.floor(diff.years!) > 1 ? 's' : ''}`
+      }
+      if (diff.months! >= 1) {
+        return `${Math.floor(diff.months!)} mois`
+      }
+      if (diff.days! >= 1) {
+        return `${Math.floor(diff.days!)} j`
+      }
+      if (diff.hours! >= 1) {
+        return `${Math.floor(diff.hours!)} h`
+      }
+      if (diff.minutes! >= 1) {
+        return `${Math.floor(diff.minutes!)} min`
+      }
+
+      return 'à l’instant'
+    }
+    const tweets = await Tweet.query().preload('user').where('user_id',user.id).orderBy('createdAt','desc')
+
+    return view.render('pages/profil', { user, tweets, followings, followers, notifications, fromNow })
   }
 
   public async login({ view }: HttpContext) {
