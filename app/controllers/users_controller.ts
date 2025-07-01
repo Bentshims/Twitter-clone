@@ -74,7 +74,6 @@ export default class UsersController {
       .count('* as total')
 
     const notifications = newSNotification[0].$extras.total
-    // console.log('nombres des notification :',notifications);
     function fromNow(date: DateTime): string {
       const now = DateTime.now()
       const diff = now.diff(date, ['years', 'months', 'days', 'hours', 'minutes']).toObject()

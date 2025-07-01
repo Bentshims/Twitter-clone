@@ -158,13 +158,6 @@
                       @end
                     </div>
                     <div class="flex justify-between items-center pt-6 mr-14 w-full">
-                      {{--  <div class="flex items-center gap-4">
-                        <img src="/public/uploads/comment.svg" alt="" />
-                        <p>
-                          19
-                        </p>
-                      </div>  --}}
-
                       <div class="flex items-center gap-4">
                         <div class="comment-content transition duration-200 ease">
                           <form action="/retweet/{{tweet.id}}" method="POST">
@@ -173,7 +166,7 @@
                                 <i class="far fa-comment text-[#f91880]"></i>
                               @else
                                 <div class="comment-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
-                                  <i class="far fa-comment text-zinc-400"></i>
+                                  <i class="far fa-comment text-zinc-600 hover:text-zinc-200"></i>
                                 </div>
                               @endif
                             </button>
@@ -192,7 +185,7 @@
                                 <i class="fas fa-retweet text-[#f91880]"></i>
                               @else
                                 <div class="retweet-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
-                                  <i class="fas fa-retweet text-zinc-400"></i>
+                                  <i class="fas fa-retweet text-zinc-600 hover:text-zinc-200"></i>
                                 </div>
                               @endif
                             </button>
@@ -211,7 +204,7 @@
                                 <i class="bi bi-heart-fill text-[#f91880]"></i>
                               @else
                                 <div class="like-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
-                                  <i class="bi bi-heart"></i>
+                                  <i class="bi bi-heart text-zinc-600 hover:text-zinc-200"></i>
                                 </div>
                               @endif
                             </button>
@@ -221,7 +214,7 @@
                           {{tweet.$extras.likes_count}}
                         </p>
                       </div>
-                      <div>
+                      <div class="transition duration-400 ease hover:bg-[#1D9BF0]/30 w-8 h-8 flex items-center justify-center rounded-full">
                         <img src="/public/uploads/doawnload.svg" alt="" />
                       </div>
                     </div>
