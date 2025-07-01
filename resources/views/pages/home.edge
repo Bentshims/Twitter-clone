@@ -158,27 +158,40 @@
                       @end
                     </div>
                     <div class="flex justify-between items-center pt-6 mr-14 w-full">
-                      <div class="flex items-center gap-4">
+                      {{--  <div class="flex items-center gap-4">
                         <img src="/public/uploads/comment.svg" alt="" />
                         <p>
                           19
                         </p>
-                      </div>
-                      {{--  <div class="flex items-center gap-4">
-                        <img src="/public/uploads/loop.svg" alt="" />
-                        <p>
-                          48
-                        </p>
                       </div>  --}}
+
                       <div class="flex items-center gap-4">
-                        {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
+                        <div class="comment-content transition duration-200 ease">
+                          <form action="/retweet/{{tweet.id}}" method="POST">
+                            <button type="submit">
+                               @if(tweet.isLike)
+                                <i class="far fa-comment text-[#f91880]"></i>
+                              @else
+                                <div class="comment-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
+                                  <i class="far fa-comment text-zinc-400"></i>
+                                </div>
+                              @endif
+                            </button>
+                          </form>
+                        </div>
+                        <p class="like-number transition duration-200 ease">
+                          {{tweet.$extras.likes_count}}
+                        </p>
+                      </div>
+                    
+                      <div class="flex items-center gap-4">
                         <div class="retweet-content transition duration-200 ease">
                           <form action="/retweet/{{tweet.id}}" method="POST">
                             <button type="submit">
                                @if(tweet.isLike)
                                 <i class="fas fa-retweet text-[#f91880]"></i>
                               @else
-                                <div class="rettweet-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
+                                <div class="retweet-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
                                   <i class="fas fa-retweet text-zinc-400"></i>
                                 </div>
                               @endif
@@ -189,8 +202,8 @@
                           {{tweet.$extras.likes_count}}
                         </p>
                       </div>
+
                       <div class="flex items-center gap-4">
-                        {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
                         <div class="likes-content transition duration-200 ease">
                           <form action="/like/{{tweet.id}}" method="POST">
                             <button type="submit">

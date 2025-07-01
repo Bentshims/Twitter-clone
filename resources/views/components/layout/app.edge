@@ -488,6 +488,8 @@
 
             }, 3000)
         })
+
+        // les likes
         document.querySelectorAll('.likes-content').forEach(content =>{
           content.addEventListener('mouseover',()=>{
             const icon = content.querySelector('.like-icon').classList.add('bg-[#f91880]/20')
@@ -497,6 +499,35 @@
           content.addEventListener('mouseout',()=>{
             const icon = content.querySelector('.like-icon').classList.remove('bg-[#f91880]/20')
             const number = content.nextElementSibling.classList.remove('text-[#f91880]')
+          })
+
+        })
+
+
+        // les retweets
+        document.querySelectorAll('.retweet-content').forEach(content =>{
+          content.addEventListener('mouseover',()=>{
+            const icon = content.querySelector('.retweet-icon').classList.add('bg-[#00BA7C]/30')
+            const number = content.nextElementSibling.classList.add('text-[#00BA7C]')
+          })
+
+          content.addEventListener('mouseout',()=>{
+            const icon = content.querySelector('.retweet-icon').classList.remove('bg-[#00BA7C]/30')
+            const number = content.nextElementSibling.classList.remove('text-[#00BA7C]')
+          })
+
+        })
+
+         // les commentares
+        document.querySelectorAll('.comment-content').forEach(content =>{
+          content.addEventListener('mouseover',()=>{
+            const icon = content.querySelector('.comment-icon').classList.add('bg-[#1D9BF0]/30')
+            const number = content.nextElementSibling.classList.add('text-[#1D9BF0]')
+          })
+
+          content.addEventListener('mouseout',()=>{
+            const icon = content.querySelector('.comment-icon').classList.remove('bg-[#1D9BF0]/30')
+            const number = content.nextElementSibling.classList.remove('text-[#1D9BF0]')
           })
 
         })
