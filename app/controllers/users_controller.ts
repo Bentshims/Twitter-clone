@@ -10,11 +10,11 @@ export default class UsersController {
   public async home({ view, auth }: HttpContext) {
     const user = auth.user!
     // les tweets
-    const tweets = await Tweet.query().preload('user').withCount('retweets').withCount('likes').orderBy('createdAt', 'desc')
+    const tweets = await Tweet.query().preload('user').withCount('retweets').withCount('likes').withCount('comments').orderBy('createdAt', 'desc')
 
     const retweets = await Retweet.query()
       .preload('tweet', (query) => {
-        query.preload('user').withCount('likes').withCount('retweets')
+        query.preload('user').withCount('likes').withCount('retweets').withCount('comments')
       })
       .preload('user')
       .orderBy('createdAt', 'desc')

@@ -4,6 +4,7 @@ import User from './user.js'
 import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Like from './like.js'
 import Retweet from './retweet.js'
+import Comment from './comment.js'
 
 export default class Tweet extends BaseModel {
   @column({ isPrimary: true })
@@ -40,6 +41,10 @@ export default class Tweet extends BaseModel {
     pivotRelatedForeignKey: 'user_id',
   })
   declare retweetedBy: ManyToMany<typeof User>
+
+  @hasMany(() => Comment)
+  declare comments: HasMany<typeof Comment>
+
   
 
 

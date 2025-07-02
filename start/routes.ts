@@ -26,5 +26,6 @@ router
     router.post('/notification/:id/delete', '#controllers/notifications_controller.destroy')
     router.post('/retweet/:id','#controllers/retweets_controller.index')
     router.post('/like/:id','#controllers/likes_controller.create')
+    router.post('/comment/:id','#controllers/comments_controller.create')
   })
   .use(middleware.auth())

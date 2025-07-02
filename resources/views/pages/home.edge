@@ -1,12 +1,12 @@
 
-@layout.app({title:"Home",notifications, user})
+@layout.app({title:"Home",notifications, user, tweets})
   @slot('main')
     <div id="loader-screen" class="fixed inset-0 bg-black/80 backdrop-blur-sm  flex items-center justify-center z-50 w-full">
       <div class="loader-inner ball-clip-rotate">
         <div class=""></div>
       </div>
     </div>
-
+  
     <div class="w-full hidden" id="myAppContent">
       <section class="">
         <div class="min-h-screen md:border-x border-zinc-700  relative">
@@ -176,28 +176,26 @@
                         @end
                       @end
                     </div>
+
+                    {{--  les actions : comment, retweet, like et l'autre   --}}
                     <div class="flex justify-between items-center pt-6 mr-14 w-full">
-                      <div class="flex items-center gap-4">
+                      <div class="flex items-center gap-2">
                         <div class="comment-content transition duration-200 ease">
-                          <form action="/comment/{{tweet.id}}" method="POST">
-                            {{ csrfField() }}
-                            <button type="submit">
-                               @if(tweet.iscomment)
-                                <i class="far fa-comment text-[#f91880]"></i>
-                              @else
-                                <div class="comment-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
-                                  <i class="far fa-comment text-zinc-600 hover:text-zinc-200"></i>
-                                </div>
-                              @endif
-                            </button>
-                          </form>
+                          <button
+                            type="button"
+                            data-micromodal-trigger="modal-comment-{{ tweet.id }}"
+                            class="comment-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center open-comment-modal"
+                            data-tweet-id="{{ tweet.id }}"
+                          >
+                            <i class="far fa-comment text-zinc-600 hover:text-zinc-200"></i>
+                          </button>
                         </div>
-                        <p class="like-number transition duration-200 ease">
-                          {{tweet.$extras.comment_count}}
+                        <p class="like-number transition duration-200 ease text-zinc-600">
+                          {{tweet.$extras.comments_count}}
                         </p>
                       </div>
                     
-                      <div class="flex items-center gap-4">
+                      <div class="flex items-center gap-2">
                         <div class="retweet-content transition duration-200 ease">
                           <form action="/retweet/{{tweet.id}}" method="POST">
                             {{ csrfField() }}
@@ -212,12 +210,12 @@
                             </button>
                           </form>
                         </div>
-                        <p class="like-number transition duration-200 ease">
+                        <p class="like-number transition duration-200 ease text-zinc-600">
                           {{tweet.$extras.retweets_count}}
                         </p>
                       </div>
 
-                      <div class="flex items-center gap-4">
+                      <div class="flex items-center gap-2">
                         <div class="likes-content transition duration-200 ease">
                           <form action="/like/{{tweet.id}}" method="POST">
                             {{ csrfField() }}
@@ -232,7 +230,7 @@
                             </button>
                           </form>
                         </div>
-                        <p class="like-number transition duration-200 ease">
+                        <p class="like-number transition duration-200 ease text-zinc-600">
                           {{tweet.$extras.likes_count}}
                         </p>
                       </div>
@@ -242,6 +240,28 @@
                     </div>
                   </div>
                 </div>
+
+                {{--  le modale pour les commentaires  --}}
+                <div id="comment-modal" class="fixed inset-0 bg-blue-300/20 flex items-start justify-center z-50 pt-32 hidden">
+                  <div class="bg-black p-6 rounded-xl w-full max-w-lg relative">
+                    <fieldset>
+                      <button id="close-modal" class="text-white text-4xl">&times;</button>
+                    </fieldset>
+                    <form id="comment-form" action="/comment/{{tweet.id}}" method="POST">
+                      {{ csrfField() }}
+                      <textarea
+                        name="content"
+                        rows="4"
+                        class="w-full p-3 mt-4 text-white appaerence-none resize-none bg-black outline-none overflow-hidden border-b-2 border-zinc-700"
+                        placeholder="Votre commentaire..."
+                      ></textarea>
+                      <fieldset class="flex justify-end">
+                        <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full">Commenter</button>
+                       </fieldset>
+                    </form>
+                  </div>
+                </div>
+                
               @end
               <!--L'Emoji picker  qui est cacher-->
               <emoji-picker id="emojiPicker" style="display:none;" class="mt-3 rounded-lg w-full absolute top-0 left-0 z-40">
@@ -257,7 +277,7 @@
               </a>
               <div class="space-y-2">
                 <div>
-                  <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-2">
                     <div class="flex items-center gap-2">
                       <p class="capitalize ">
                         CNN

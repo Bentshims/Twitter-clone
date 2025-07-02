@@ -95,8 +95,6 @@
     </style>
 
     
-
-
   </head>
   <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
     <header class="w-[20%] md:w-[15%] lg:w-[12%] space-y-10 lg:p-0 relative">
@@ -530,6 +528,27 @@
             const number = content.nextElementSibling.classList.remove('text-[#1D9BF0]')
           })
 
+        })
+        const modal = document.getElementById('comment-modal')
+        const closeBtn = document.getElementById('close-modal')
+        const form = document.getElementById('comment-form')
+
+        document.querySelectorAll('.open-comment-modal').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const tweetId = btn.getAttribute('data-tweet-id')
+            form.setAttribute('action', `/comment/${tweetId}`)
+            modal.classList.remove('hidden')
+          })
+        })
+
+        closeBtn.addEventListener('click', () => {
+          modal.classList.add('hidden')
+        })
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.add('hidden')
+          }
         })
 
       });
