@@ -4,12 +4,44 @@ import User from '#models/user'
 import Tweet from '#models/tweet'
 import { DateTime } from 'luxon'
 import Like from '#models/like'
+import Retweet from '#models/retweet'
 
 export default class UsersController {
   public async home({ view, auth }: HttpContext) {
     const user = auth.user!
     // les tweets
     const tweets = await Tweet.query().preload('user').withCount('retweets').withCount('likes').orderBy('createdAt', 'desc')
+
+    const retweets = await Retweet.query()
+      .preload('tweet', (query) => {
+        query.preload('user').withCount('likes').withCount('retweets')
+      })
+      .preload('user')
+      .orderBy('createdAt', 'desc')
+
+    const retweetTweets = retweets.map((retweet) => {
+      const tweet = retweet.tweet
+      // @ts-ignore
+      tweet.isRetweet = true
+      // @ts-ignore
+      tweet.retweetUser = retweet.user
+      // @ts-ignore
+      tweet.retweetedAt = retweet.createdAt
+
+      return tweet
+    })
+
+
+    const tweetAll = [... tweets, ... retweetTweets]  
+
+    tweetAll.sort((a, b) => {
+      // @ts-ignore
+      const dateA = a.retweetedAt ?? a.createdAt
+      // @ts-ignore
+      const dateB = b.retweetedAt ?? b.createdAt
+      return dateB.toMillis() - dateA.toMillis()
+    })
+
 
     function fromNow(date: DateTime): string {
       const now = DateTime.now()
@@ -44,17 +76,14 @@ export default class UsersController {
     const notifications = newSNotification[0].$extras.total
     // console.log('nombres des notification :',notifications);
 
-    for (const tweet of tweets) {
+    for (const tweet of tweetAll) {
       const like = await Like.query().where('user_id',user.id).andWhere('tweet_id',tweet.id).first()
-      // Ajoute une propriété temporaire
-      // @ts-ignore : on dit à TypeScript "laisse nous tranquille"
-      // isLiked n'existe pas dans le modèle Tweet, mais on le met quand même
-      // ⬇️⬇️⬇️
+
       // @ts-ignore
       tweet.isLike = !!like
     }
 
-    return view.render('pages/home', { user, tweets, fromNow, notifications })
+    return view.render('pages/home', { user, tweets:tweetAll, fromNow, notifications })
   }
 
   public async index({ view, auth }: HttpContext) {

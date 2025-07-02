@@ -114,6 +114,25 @@
           <div class="tweets relative">
             <div>
               @each(tweet in tweets)
+                @if(tweet.isRetweet)
+                  <div class="text-sm text-gray-400 flex items-center border-b border-zinc-700 gap-4 px-4 py-2 bg-zinc-950">
+                    <div class="">
+                      <a href="/profil/{{ tweet.user.userName }}">
+                        @if(!tweet.retweetUser.profilLink)
+                          <div class="bg-zinc-800 w-8 h-8 rounded-full flex items-center justify-center font-bold">
+                            {{ tweet.retweetUser.fullName.substring(0, 1).toUpperCase() }}
+                          </div>
+                        @else
+                          <div
+                            class="bg-[url({{ tweet.retweetUser.profilLink }})] w-8 h-8 border-gray-700 rounded-full bg-cover bg-center"
+                          >
+                          </div>
+                        @endif
+                      </a>
+                    </div>
+                    <p class="">{{ tweet.retweetUser.userName }} a retweeté</p>
+                  </div>
+                @end
                 <div class="flex items-start gap-3 p-4 border-b border-gray-700">
                   <a href="/profil/{{ tweet.user.userName }}">
                     @if(!tweet.user?.profilLink)
@@ -163,7 +182,7 @@
                           <form action="/comment/{{tweet.id}}" method="POST">
                             {{ csrfField() }}
                             <button type="submit">
-                               @if(tweet.isretweet)
+                               @if(tweet.iscomment)
                                 <i class="far fa-comment text-[#f91880]"></i>
                               @else
                                 <div class="comment-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
@@ -174,7 +193,7 @@
                           </form>
                         </div>
                         <p class="like-number transition duration-200 ease">
-                          {{tweet.$extras.retweets_count}}
+                          {{tweet.$extras.comment_count}}
                         </p>
                       </div>
                     
