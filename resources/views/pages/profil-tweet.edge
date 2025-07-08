@@ -76,68 +76,92 @@
                 </li>
               </template>
             </ul>
-          
+
             <div class="mt-6 space-y-4 px-2">
               <div x-show="tab === 'tweets'">
-                <h1 class="text-2xl font-bold">Who to follow</h1>
+                <h1 class="text-2xl font-bold">
+                  Who to follow
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nisi...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'replies'">
-                <h1 class="text-2xl font-bold">Who to replies</h1>
+                <h1 class="text-2xl font-bold">
+                  Who to replies
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'highlights'">
-                <h1 class="text-2xl font-bold">Highlights</h1>
+                <h1 class="text-2xl font-bold">
+                  Highlights
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...</p>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'articles'">
-                <h1 class="text-2xl font-bold">Articles</h1>
+                <h1 class="text-2xl font-bold">
+                  Articles
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'media'">
-                <h1 class="text-2xl font-bold">Media</h1>
+                <h1 class="text-2xl font-bold">
+                  Media
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'likes'">
-                <h1 class="text-2xl font-bold">Likes</h1>
+                <h1 class="text-2xl font-bold">
+                  Likes
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum...</p>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum...
+                  </p>
                 </section>
               </div>
             </div>
           </div>
 
-      </section>
-    </div>
-    <script>
-      function openTable(tabId) {
-        document.querySelectorAll(".tab-content").forEach(content => {
-          content.classList.add("hidden");
-        });
-        document.querySelectorAll(".tab-button").forEach(button => {
-          button.classList.add("transition", "duration-500");
-        });
-        document.getElementById(tabId).classList.remove("hidden");
-        event.currentTarget.classList.add("border-b", "border-gray-700");
-        // event.currentTarget.classList.remove("border-b", "border-gray-700");
-      }
-    </script>
+        </section>
+      </div>
+      <script>
+        function openTable(tabId) {
+          document.querySelectorAll(".tab-content").forEach(content => {
+            content.classList.add("hidden");
+          });
+          document.querySelectorAll(".tab-button").forEach(button => {
+            button.classList.add("transition", "duration-500");
+          });
+          document.getElementById(tabId).classList.remove("hidden");
+          event.currentTarget.classList.add("border-b", "border-gray-700");
+          // event.currentTarget.classList.remove("border-b", "border-gray-700");
+        }
+      </script>
 
-  @endslot
-  
-@end
+    @endslot
+    
+  @end

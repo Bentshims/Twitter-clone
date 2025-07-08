@@ -23,7 +23,6 @@ export default class Retweet extends BaseModel {
   @belongsTo(() => Tweet)
   declare tweet: BelongsTo<typeof Tweet>
 
-
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

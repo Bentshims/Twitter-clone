@@ -18,8 +18,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css"
     />
     {{--  CDN font awesome  --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     {{--  <style>
       :root {
@@ -38,10 +40,8 @@
       }
      
     </style>  --}}
-  
 
     <script src="https://cdn.tailwindcss.com">
-    
       
     </script>
     <script>
@@ -80,366 +80,385 @@
 
     {{--  CDN Emoji Picker   --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js">
+      
+    </script>
 
     {{--  CDN d'alpinejs  --}}
-    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/alpinejs" defer>
+      
+    </script>
 
     {{--  CDN de loaders-css  --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loaders.css@0.1.2/loaders.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loaders.css@0.1.2/loaders.min.css" />
 
     <style>
-      .loader-inner div{
+      .loader-inner div {
         background-color: #1DA1F2;
       }
     </style>
 
-    
   </head>
-  <body class="bg-black text-white font-sans flex lg:justify-center md:min-h-screen">
-    <header class="w-[20%] md:w-[15%] lg:w-[12%] space-y-10 lg:p-0 relative">
+  <body class="bg-black text-white font-sans min-h-screen">
 
-      <nav class="fixed">
-
-        <div class="space-y-6 lg:space-y-2">
-
-          <section class="space-y-2 mt-6">
-            <div class="flex justify-center lg:px-6 lg:justify-start mb-12">
-              <img src="/public/uploads/twitter-logo.svg" alt="logo" />
-            </div>
-            <div>
-              <a href="/">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <img src="/public/uploads/home.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    home
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <img src="/public/uploads/diez.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    explore
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="/notifications">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <div class="relative">
-                    @if(notifications > 0)
-                      <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
-                        {{ notifications }}
-                      </p>
-                    @end
-                    <img src="/public/uploads/notification.svg" alt="" />
+    <div class="mx-auto max-w-7xl flex flex-row min-h-screen">
+      <header
+        class="hidden md:block fixed md:static top-0 left-0 w-[15%] md:w-[15%] lg:w-[12%] h-screen space-y-10 lg:p-0 border-r border-zinc-700 md:border-r-0 z-50"
+      >
+        <nav class="md:fixed">
+          <div class="space-y-6 lg:space-y-2">
+            <section class="space-y-2 mt-6">
+              <div class="flex justify-center lg:px-6 lg:justify-start mb-12">
+                <img src="/public/uploads/twitter-logo.svg" alt="logo" />
+              </div>
+              <div>
+                <a href="/">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/home.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      home
+                    </P>
                   </div>
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block ">
-                    notification
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <img src="/public/uploads/message.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    messages
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <img src="/public/uploads/badge.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    bookmarks
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <img src="/public/uploads/list.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    lists
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="/profil">
-                <div
-                  class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327]  rounded-full lg:px-6 py-4"
-                >
-                  <img src="/public/uploads/profil.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    profil
-                  </P>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <div class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4">
-                  <img src="/public/uploads/etc-circle.svg" alt="" />
-                  <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
-                    more
-                  </P>
-                </div>
-              </a>
-            </div>
-          </section>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/diez.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      explore
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="/notifications">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <div class="relative">
+                      @if(notifications > 0)
+                        <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
+                          {{ notifications }}
+                        </p>
+                      @end
+                      <img src="/public/uploads/notification.svg" alt="" />
+                    </div>
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block ">
+                      notification
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/message.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      messages
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/badge.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      bookmarks
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/list.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      lists
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="/profil">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327]  rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/profil.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      profil
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/etc-circle.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      more
+                    </P>
+                  </div>
+                </a>
+              </div>
+            </section>
 
-          <div class="hidden md:block lg:mr-4 w-full">
-            <button
-              type="button"
-              onclick="openModal()"
-              class="bg-blue-500 text-center w-full px-6 py-4 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600"
-            >
-              Tweet
+            <div class="hidden md:block lg:mr-4 w-full">
+              <button
+                type="button"
+                onclick="openModal()"
+                class="bg-blue-500 text-center w-full px-6 py-4 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600"
+              >
+                Tweet
             </button>
-          </div>
-        </div>
-
-        <div class="profil hidden lg:flex items-center space-x-4 fixed bottom-10">
-          <a href="/profil">
-            @if(user.profilLink)
-              <div class="bg-[url({{ user.profilLink }})] w-16 h-16 rounded-full bg-cover bg-center">
-
-              </div>
-            @else
-              <div class="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center">
-                {{ user.fullName.substring(0, 1).toUpperCase() }}
-              </div>
-            @endif
-          </a>
-          <div>
-            <div class="flex items-center gap-1">
-              <p class="font-bold capitalize">
-                {{ user.fullName }}
-              </p>
-
-              <img src="/public/uploads/lock.svg" alt="" />
 
             </div>
-            <p class="text-gray-600">
-              {{ user.userName }}
-            </p>
           </div>
-          <img src="/public/uploads/etc.svg" alt="" />
-        </div>
-      </nav>
-    </header>
-    <main class="flex justify-center md:w-[75%] lg:w-[30%] min-h-screen">
-      {{{ await $slots.main() }}}
-    </main>
-    <nav class="md:w-1/2 md:px-4 lg:w-[20%] relative">
-      <section class="hidden md:flex flex-col py-4 space-y-8 fixed mr-2">
-        <div class="flex items-center w-full">
-          <fieldset class="w-full relative">
-            <i class="bi bi-search absolute text-gray-500 left-4 top-2"></i>
-            <input
-              type="search"
-              name="search"
-              id=""
-              class="border border-zinc-700 bg-black appareance-none rounded-full py-2 pl-12 w-full"
-              placeholder="Search Twitter"
-            />
-          </fieldset>
-        </div>
 
-        <section class="border border-zinc-700 rounded-xl w-full md:px-2 md:py-4 lg:p-4 space-y-6">
-          <div class="py-4">
-            <h2 class="font-bold text-xl">
-              Trends for you
-            </h2>
+          <div class="profil hidden lg:flex items-center space-x-4 md:fixed bottom-10">
+            <a href="/profil">
+              @if(user.profilLink)
+                <div class="bg-[url({{ user.profilLink }})] w-16 h-16 rounded-full bg-cover bg-center">
+
+                </div>
+              @else
+                <div class="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center">
+                  {{ user.fullName.substring(0, 1).toUpperCase() }}
+                </div>
+              @endif
+            </a>
             <div>
-
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between">
-                <p class="text-[#6E767D]">
-                  Trending in Turkey
+              <div class="flex items-center gap-1">
+                <p class="font-bold capitalize">
+                  {{ user.fullName }}
                 </p>
-                <img src="/public/uploads/etc.svg" alt="" />
+
+                <img src="/public/uploads/lock.svg" alt="" />
+
               </div>
-              <h3 class="text-md font-bold">
-                #SQUID
-              </h3>
-              <p class="text-[#6E767D]">
-                2,066 Tweets
+              <p class="text-gray-600">
+                {{ user.userName }}
               </p>
             </div>
-
-            <div class="space-y-1">
-              <div class="flex items-center justify-between">
-                <p class="text-[#6E767D]">
-                  Trending in Turkey
-                </p>
-                <img src="/public/uploads/etc.svg" alt="" />
-              </div>
-              <h3 class="text-md font-bold">
-                #SQUID
-              </h3>
-              <p class="text-[#6E767D]">
-                2,066 Tweets
-              </p>
-            </div>
-
-            <div class="space-y-1">
-              <div class="flex items-center justify-between">
-                <p class="text-[#6E767D]">
-                  Trending in Turkey
-                </p>
-                <img src="/public/uploads/etc.svg" alt="" />
-              </div>
-              <h3 class="text-md font-bold">
-                #SQUID
-              </h3>
-              <p class="text-[#6E767D]">
-                2,066 Tweets
-              </p>
-            </div>
-
+            <img src="/public/uploads/etc.svg" alt="" />
           </div>
-          <div class="text-blue-400 mb-4">
-            <a href="#" class="font-semibold">Show more</a>
+        </nav>
+      </header>
+      <main class="lg:ml-[15%] md:ml-0 w-full md:w-[75%] lg:w-[40%] min-h-screen">
+        {{{ await $slots.main() }}}
+      </main>
+      <nav class="hidden md:block md:w-[25%] lg:w-[28%] relative">
+        <section class="hidden md:flex flex-col py-4 space-y-8 fixed mr-2">
+          <div class="flex items-center w-full">
+            <fieldset class="w-full relative">
+              <i class="bi bi-search absolute text-gray-500 left-4 top-2"></i>
+              <input
+                type="search"
+                name="search"
+                id=""
+                class="border border-zinc-700 bg-black appareance-none rounded-full py-2 pl-12 w-full"
+                placeholder="Search Twitter"
+              />
+            </fieldset>
           </div>
-        </section>
 
-        <div class="space-y-2">
-          <section class="border border-zinc-700 rounded-xl w-full md:px-2 md:py-4 lg:p-4 space-y-4">
-            <div class="pb-6">
+          <section class="border border-zinc-700 rounded-xl w-full md:px-2 md:py-4 lg:p-4 space-y-6">
+            <div class="py-4">
               <h2 class="font-bold text-xl">
-                Who to follow
+                Trends for you
               </h2>
               <div>
-                <i></i>
+
               </div>
             </div>
 
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <img src="/public/uploads/image-2(1).png" alt="" />
-                  <div class="">
-                    <div class="flex items-center gap-2">
-                      <p class="capitalize ">
-                        the new york times
-                      </p>
-                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
-                    </div>
-                    <p class="text-[#6E767D]">
-                      @nytimes
-                    </p>
-                  </div>
+            <div class="space-y-4">
+              <div class="space-y-1">
+                <div class="flex items-center justify-between">
+                  <p class="text-[#6E767D]">
+                    Trending in Turkey
+                  </p>
+                  <img src="/public/uploads/etc.svg" alt="" />
                 </div>
-                @component('components/followBtn', {  })
-
-                @end
+                <h3 class="text-md font-bold">
+                  #SQUID
+                </h3>
+                <p class="text-[#6E767D]">
+                  2,066 Tweets
+                </p>
               </div>
-            </div>
 
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <img src="/public/uploads/image-1(1).png" alt="" />
-                  <div class="">
-                    <div class="flex items-center gap-2">
-                      <p class="capitalize ">
-                        CNN
-                      </p>
-                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
-                    </div>
-                    <p class="text-[#6E767D]">
-                      @CNN
-                    </p>
-                  </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between">
+                  <p class="text-[#6E767D]">
+                    Trending in Turkey
+                  </p>
+                  <img src="/public/uploads/etc.svg" alt="" />
                 </div>
-                @component('components/followBtn', {  })
-
-                @end
+                <h3 class="text-md font-bold">
+                  #SQUID
+                </h3>
+                <p class="text-[#6E767D]">
+                  2,066 Tweets
+                </p>
               </div>
-            </div>
 
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <img src="/public/uploads/image-3.png" alt="" />
-                  <div class="">
-                    <div class="flex items-center gap-2">
-                      <p class="capitalize ">
-                        twitter
-                      </p>
-                      <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
-                    </div>
-                    <p class="text-[#6E767D]">
-                      @Twitter
-                    </p>
-                  </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between">
+                  <p class="text-[#6E767D]">
+                    Trending in Turkey
+                  </p>
+                  <img src="/public/uploads/etc.svg" alt="" />
                 </div>
-                @component('components/followBtn', {})
-
-                @end
+                <h3 class="text-md font-bold">
+                  #SQUID
+                </h3>
+                <p class="text-[#6E767D]">
+                  2,066 Tweets
+                </p>
               </div>
+
             </div>
-            <div class="text-blue-400 my-4">
+            <div class="text-blue-400 mb-4">
               <a href="#" class="font-semibold">Show more</a>
             </div>
           </section>
 
-          <div class="text-[#6E767D] text-[13px] text-center flex flex-col items-center">
-            <div class="flex items-center gap-2 text-center">
-              <p>
-                Terms of Service
-              </p>
-              <p>
-                Privacy Policy
-              </p>
-              <p>
-                Cookie Policy
-              </p>
-            </div>
-            <div class="flex items-center gap-2 text-center">
-              <p>
-                Imprint
-              </p>
-              <p>
-                Ads info
-              </p>
-              <p>
-                More...
-              </p>
-              <p>
-                &COPY;2025 Twitter, Inc.
-              </p>
+          <div class="space-y-2">
+            <section class="border border-zinc-700 rounded-xl w-full md:px-2 md:py-4 lg:p-4 space-y-4">
+              <div class="pb-6">
+                <h2 class="font-bold text-xl">
+                  Who to follow
+                </h2>
+                <div>
+                  <i></i>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img src="/public/uploads/image-2(1).png" alt="" />
+                    <div class="">
+                      <div class="flex items-center gap-2">
+                        <p class="capitalize ">
+                          the new york times
+                        </p>
+                        <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                      </div>
+                      <p class="text-[#6E767D]">
+                        @nytimes
+                      </p>
+                    </div>
+                  </div>
+                  @component('components/followBtn', {  })
+
+                  @end
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img src="/public/uploads/image-1(1).png" alt="" />
+                    <div class="">
+                      <div class="flex items-center gap-2">
+                        <p class="capitalize ">
+                          CNN
+                        </p>
+                        <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                      </div>
+                      <p class="text-[#6E767D]">
+                        @CNN
+                      </p>
+                    </div>
+                  </div>
+                  @component('components/followBtn', {  })
+
+                  @end
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img src="/public/uploads/image-3.png" alt="" />
+                    <div class="">
+                      <div class="flex items-center gap-2">
+                        <p class="capitalize ">
+                          twitter
+                        </p>
+                        <img src="/public/uploads/check.svg" alt="" class=" w-4 h-auto" />
+                      </div>
+                      <p class="text-[#6E767D]">
+                        @Twitter
+                      </p>
+                    </div>
+                  </div>
+                  @component('components/followBtn', {})
+
+                  @end
+                </div>
+              </div>
+              <div class="text-blue-400 my-4">
+                <a href="#" class="font-semibold">Show more</a>
+              </div>
+            </section>
+
+            <div class="text-[#6E767D] text-[13px] text-center flex flex-col items-center">
+              <div class="flex items-center gap-2 text-center">
+                <p>
+                  Terms of Service
+                </p>
+                <p>
+                  Privacy Policy
+                </p>
+                <p>
+                  Cookie Policy
+                </p>
+              </div>
+              <div class="flex items-center gap-2 text-center">
+                <p>
+                  Imprint
+                </p>
+                <p>
+                  Ads info
+                </p>
+                <p>
+                  More...
+                </p>
+                <p>
+                  &COPY;2025 Twitter, Inc.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </nav>
+        </section>
+      </nav>
+    </div>
     <script type="module">
       document.addEventListener("DOMContentLoaded", () => {
         const picker = document.getElementById("emojiPicker");
         const textarea = document.getElementById("tweetContent");
         const emojiBtn = document.querySelector('button[onclick="toggleEmojiPicker()"]');
-        
         window.toggleEmojiPicker = () => {
           picker.style.display = picker.style.display === "none" ? "block" : "none";
         };
         if (picker) {
-          // Insérer l’emoji dans le textarea
+          // Insérer l'emoji dans le textarea
           picker.addEventListener("emoji-click", event => {
             const emoji = event.detail.unicode;
             const start = textarea.selectionStart;
@@ -450,7 +469,7 @@
             textarea.setSelectionRange(start + emoji.length, start + emoji.length);
           });
         }
-        // Fermer l'emoji picker si on clique à l’extérieur
+        // Fermer l'emoji picker si on clique à l'extérieur
         document.addEventListener("click", e => {
           const isClickInside = picker.contains(e.target) || emojiBtn.contains(e.target);
           if (!isClickInside) picker.style.display = "none";
@@ -461,7 +480,6 @@
             e.stopPropagation();
             const parent = btn.closest(".relative");
             const trash = parent.querySelector(".trash");
-
             if (currentlyOpenTrash && currentlyOpenTrash !== trash) {
               currentlyOpenTrash.classList.add("hidden");
             }
@@ -476,81 +494,81 @@
             currentlyOpenTrash = null;
           }
         });
-
-        window.addEventListener('load',()=>{
-            setTimeout(()=>{
-              const loader = document.querySelector('#loader-screen')
-              const content = document.querySelector('#myAppContent')
-              loader.classList.add('hidden')
-              content.classList.remove('hidden')
-
-            }, 3000)
-        })
-
+        window.addEventListener("load", () => {
+          setTimeout(() => {
+            const loader = document.querySelector("#loader-screen");
+            const content = document.querySelector("#myAppContent");
+            loader.classList.add("hidden");
+            content.classList.remove("hidden");
+          }, 3e3);
+        });
         // les likes
-        document.querySelectorAll('.likes-content').forEach(content =>{
-          content.addEventListener('mouseover',()=>{
-            const icon = content.querySelector('.like-icon').classList.add('bg-[#f91880]/20')
-            const number = content.nextElementSibling.classList.add('text-[#f91880]')
-          })
-
-          content.addEventListener('mouseout',()=>{
-            const icon = content.querySelector('.like-icon').classList.remove('bg-[#f91880]/20')
-            const number = content.nextElementSibling.classList.remove('text-[#f91880]')
-          })
-
-        })
-
-
+        document.querySelectorAll(".likes-content").forEach(content => {
+          content.addEventListener("mouseover", () => {
+            const icon = content.querySelector(".like-icon").classList.add("bg-[#f91880]/20");
+            const number = content.nextElementSibling.classList.add("text-[#f91880]");
+          });
+          content.addEventListener("mouseout", () => {
+            const icon = content.querySelector(".like-icon").classList.remove("bg-[#f91880]/20");
+            const number = content.nextElementSibling.classList.remove("text-[#f91880]");
+          });
+        });
         // les retweets
-        document.querySelectorAll('.retweet-content').forEach(content =>{
-          content.addEventListener('mouseover',()=>{
-            const icon = content.querySelector('.retweet-icon').classList.add('bg-[#00BA7C]/30')
-            const number = content.nextElementSibling.classList.add('text-[#00BA7C]')
-          })
-
-          content.addEventListener('mouseout',()=>{
-            const icon = content.querySelector('.retweet-icon').classList.remove('bg-[#00BA7C]/30')
-            const number = content.nextElementSibling.classList.remove('text-[#00BA7C]')
-          })
-
-        })
-
-         // les commentares
-        document.querySelectorAll('.comment-content').forEach(content =>{
-          content.addEventListener('mouseover',()=>{
-            const icon = content.querySelector('.comment-icon').classList.add('bg-[#1D9BF0]/30')
-            const number = content.nextElementSibling.classList.add('text-[#1D9BF0]')
-          })
-
-          content.addEventListener('mouseout',()=>{
-            const icon = content.querySelector('.comment-icon').classList.remove('bg-[#1D9BF0]/30')
-            const number = content.nextElementSibling.classList.remove('text-[#1D9BF0]')
-          })
-
-        })
-        const modal = document.getElementById('comment-modal')
-        const closeBtn = document.getElementById('close-modal')
-        const form = document.getElementById('comment-form')
-
-        document.querySelectorAll('.open-comment-modal').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const tweetId = btn.getAttribute('data-tweet-id')
-            form.setAttribute('action', `/comment/${tweetId}`)
-            modal.classList.remove('hidden')
-          })
-        })
-
-        closeBtn.addEventListener('click', () => {
-          modal.classList.add('hidden')
-        })
-
-        modal.addEventListener('click', (e) => {
+        document.querySelectorAll(".retweet-content").forEach(content => {
+          content.addEventListener("mouseover", () => {
+            const icon = content.querySelector(".retweet-icon").classList.add("bg-[#00BA7C]/30");
+            const number = content.nextElementSibling.classList.add("text-[#00BA7C]");
+          });
+          content.addEventListener("mouseout", () => {
+            const icon = content.querySelector(".retweet-icon").classList.remove("bg-[#00BA7C]/30");
+            const number = content.nextElementSibling.classList.remove("text-[#00BA7C]");
+          });
+        });
+        // les commentares
+        document.querySelectorAll(".comment-content").forEach(content => {
+          content.addEventListener("mouseover", () => {
+            const icon = content.querySelector(".comment-icon").classList.add("bg-[#1D9BF0]/30");
+            const number = content.nextElementSibling.classList.add("text-[#1D9BF0]");
+          });
+          content.addEventListener("mouseout", () => {
+            const icon = content.querySelector(".comment-icon").classList.remove("bg-[#1D9BF0]/30");
+            const number = content.nextElementSibling.classList.remove("text-[#1D9BF0]");
+          });
+        });
+        const modal = document.getElementById("comment-modal");
+        const closeBtn = document.getElementById("close-modal");
+        const form = document.getElementById("comment-form");
+        document.querySelectorAll(".open-comment-modal").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const tweetId = btn.getAttribute("data-tweet-id");
+            form.setAttribute("action", `/comment/${tweetId}`);
+            modal.classList.remove("hidden");
+          });
+        });
+        closeBtn.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+        modal.addEventListener("click", e => {
           if (e.target === modal) {
-            modal.classList.add('hidden')
+            modal.classList.add("hidden");
           }
-        })
-
+        });
+        window.openModal = function() {
+          document.getElementById("tweetModal").classList.remove("hidden");
+          document.getElementById("tweetModal").classList.add("flex");
+        };
+        window.closeModal = function() {
+          document.getElementById("tweetModal").classList.add("hidden");
+          document.getElementById("tweetModal").classList.remove("flex");
+        }
+        // Optional: Fermer le modal en cliquant en dehors du contenu
+        ;
+        window.addEventListener("click", function(e) {
+          const modal = document.getElementById("tweetModal");
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
       });
       
       const followBtn = document.querySelectorAll("#follow");
@@ -561,6 +579,27 @@
           follow.classList.remove("bg-white");
           follow.classList.remove("hover:bg-white/80");
         });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const openBtn = document.getElementById("open-drawer");
+        const closeBtn = document.getElementById("close-drawer");
+        const drawer = document.getElementById("mobile-drawer");
+        const overlay = document.getElementById("mobile-drawer-overlay");
+        function openDrawer() {
+          drawer.classList.remove("-translate-x-full");
+          overlay.classList.remove("opacity-0", "pointer-events-none");
+          overlay.classList.add("opacity-100");
+        }
+        function closeDrawer() {
+          drawer.classList.add("-translate-x-full");
+          overlay.classList.add("opacity-0", "pointer-events-none");
+          overlay.classList.remove("opacity-100");
+        }
+        if (openBtn) openBtn.addEventListener("click", openDrawer);
+        if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+        if (overlay) overlay.addEventListener("click", closeDrawer);
       });
     </script>
   </body>

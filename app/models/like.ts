@@ -14,11 +14,11 @@ export default class Like extends BaseModel {
   @column()
   declare tweetId: number
 
-  @belongsTo(()=> User)
-  declare user: BelongsTo <typeof User>
+  @belongsTo(() => User)
+  declare user: BelongsTo<typeof User>
 
-  @belongsTo(()=>Tweet)
-  declare tweet : BelongsTo<typeof Tweet>
+  @belongsTo(() => Tweet)
+  declare tweet: BelongsTo<typeof Tweet>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

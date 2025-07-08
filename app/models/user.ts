@@ -46,7 +46,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @manyToMany(() => User, {
     pivotTable: 'follows',
     pivotForeignKey: 'follower_id',
-    pivotRelatedForeignKey: 'following_id', 
+    pivotRelatedForeignKey: 'following_id',
   })
   declare following: ManyToMany<typeof User>
 
@@ -61,14 +61,13 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasMany(() => Notification)
   declare notifications: HasMany<typeof Notification>
 
-  @hasMany( ()=> Like)
+  @hasMany(() => Like)
   declare like: HasMany<typeof Like>
 
-  @manyToMany(()=> Tweet,{
+  @manyToMany(() => Tweet, {
     pivotTable: 'likes',
     pivotForeignKey: 'user_id',
-    pivotRelatedForeignKey: 'tweet_id'
-
+    pivotRelatedForeignKey: 'tweet_id',
   })
   declare tweet: ManyToMany<typeof Tweet>
 

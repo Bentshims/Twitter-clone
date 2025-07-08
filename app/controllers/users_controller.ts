@@ -10,7 +10,12 @@ export default class UsersController {
   public async home({ view, auth }: HttpContext) {
     const user = auth.user!
     // les tweets
-    const tweets = await Tweet.query().preload('user').withCount('retweets').withCount('likes').withCount('comments').orderBy('createdAt', 'desc')
+    const tweets = await Tweet.query()
+      .preload('user')
+      .withCount('retweets')
+      .withCount('likes')
+      .withCount('comments')
+      .orderBy('createdAt', 'desc')
 
     const retweets = await Retweet.query()
       .preload('tweet', (query) => {
@@ -31,8 +36,7 @@ export default class UsersController {
       return tweet
     })
 
-
-    const tweetAll = [... tweets, ... retweetTweets]  
+    const tweetAll = [...tweets, ...retweetTweets]
 
     tweetAll.sort((a, b) => {
       // @ts-ignore
@@ -41,7 +45,6 @@ export default class UsersController {
       const dateB = b.retweetedAt ?? b.createdAt
       return dateB.toMillis() - dateA.toMillis()
     })
-
 
     function fromNow(date: DateTime): string {
       const now = DateTime.now()
@@ -77,13 +80,16 @@ export default class UsersController {
     // console.log('nombres des notification :',notifications);
 
     for (const tweet of tweetAll) {
-      const like = await Like.query().where('user_id',user.id).andWhere('tweet_id',tweet.id).first()
+      const like = await Like.query()
+        .where('user_id', user.id)
+        .andWhere('tweet_id', tweet.id)
+        .first()
 
       // @ts-ignore
       tweet.isLike = !!like
     }
 
-    return view.render('pages/home', { user, tweets:tweetAll, fromNow, notifications })
+    return view.render('pages/home', { user, tweets: tweetAll, fromNow, notifications })
   }
 
   public async index({ view, auth }: HttpContext) {
@@ -125,9 +131,19 @@ export default class UsersController {
 
       return 'à l’instant'
     }
-    const tweets = await Tweet.query().preload('user').where('user_id',user.id).orderBy('createdAt','desc')
+    const tweets = await Tweet.query()
+      .preload('user')
+      .where('user_id', user.id)
+      .orderBy('createdAt', 'desc')
 
-    return view.render('pages/profil', { user, tweets, followings, followers, notifications, fromNow })
+    return view.render('pages/profil', {
+      user,
+      tweets,
+      followings,
+      followers,
+      notifications,
+      fromNow,
+    })
   }
 
   public async login({ view }: HttpContext) {

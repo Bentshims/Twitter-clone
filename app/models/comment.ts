@@ -11,7 +11,6 @@ export default class Comment extends BaseModel {
   @column()
   declare userId: number
 
-
   @column()
   declare tweetId: number
 
@@ -23,7 +22,6 @@ export default class Comment extends BaseModel {
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
-
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

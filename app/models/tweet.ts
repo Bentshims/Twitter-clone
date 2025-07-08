@@ -22,13 +22,13 @@ export default class Tweet extends BaseModel {
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
 
-  @hasMany(()=> Like)
+  @hasMany(() => Like)
   declare likes: HasMany<typeof Like>
 
-  @manyToMany(()=> User,{
+  @manyToMany(() => User, {
     pivotTable: 'likes',
     pivotForeignKey: 'tweet_id',
-    pivotRelatedForeignKey: 'user_id'
+    pivotRelatedForeignKey: 'user_id',
   })
   declare userlike: ManyToMany<typeof User>
 
@@ -44,9 +44,6 @@ export default class Tweet extends BaseModel {
 
   @hasMany(() => Comment)
   declare comments: HasMany<typeof Comment>
-
-  
-
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

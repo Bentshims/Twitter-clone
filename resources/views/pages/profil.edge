@@ -81,10 +81,12 @@
                 </li>
               </template>
             </ul>
-          
+
             <div class="mt-6 space-y-4 px-2">
               <div x-show="tab === 'tweets'">
-                <h1 class="text-2xl font-bold">Who to follow</h1>
+                <h1 class="text-2xl font-bold">
+                  Who to follow
+                </h1>
                 <section>
                   @each(tweet in tweets)
                     <div class="flex items-start gap-3 p-4 border-b border-gray-700">
@@ -146,12 +148,14 @@
                           <div class="flex items-center gap-4">
                             {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
                             <div class="likes-content transition duration-200 ease">
-                              <form action="/like/{{tweet.id}}" method="POST">
+                              <form action="/like/{{ tweet.id }}" method="POST">
                                 <button type="submit">
                                   @if(tweet.isLike)
                                     <i class="bi bi-heart-fill text-[#f91880]"></i>
                                   @else
-                                    <div class="like-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center">
+                                    <div
+                                      class="like-icon transition duration-500 ease rounded-full w-8 h-8 flex items-center justify-center"
+                                    >
                                       <i class="bi bi-heart"></i>
                                     </div>
                                   @endif
@@ -159,7 +163,7 @@
                               </form>
                             </div>
                             <p class="like-number transition duration-200 ease">
-                              {{tweet.$extras.likes_count}}
+                              {{ tweet.$extras.likes_count }}
                             </p>
                           </div>
                           <div>
@@ -171,44 +175,64 @@
                   @end
                 </section>
               </div>
-          
+
               <div x-show="tab === 'replies'">
-                <h1 class="text-2xl font-bold">Who to replies</h1>
+                <h1 class="text-2xl font-bold">
+                  Who to replies
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quisquam...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'highlights'">
-                <h1 class="text-2xl font-bold">Highlights</h1>
+                <h1 class="text-2xl font-bold">
+                  Highlights
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...</p>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'articles'">
-                <h1 class="text-2xl font-bold">Articles</h1>
+                <h1 class="text-2xl font-bold">
+                  Articles
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum inventore...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'media'">
-                <h1 class="text-2xl font-bold">Media</h1>
+                <h1 class="text-2xl font-bold">
+                  Media
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis...</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis...
+                  </p>
                 </section>
               </div>
-          
+
               <div x-show="tab === 'likes'">
-                <h1 class="text-2xl font-bold">Likes</h1>
+                <h1 class="text-2xl font-bold">
+                  Likes
+                </h1>
                 <section>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum...</p>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, earum...
+                  </p>
                 </section>
               </div>
             </div>
           </div>
-          
+
         </div>
 
       </section>
