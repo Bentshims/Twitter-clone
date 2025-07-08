@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        messages
+    </title>
+
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=instrument-sans:400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css"
+    />
+    {{--  CDN font awesome  --}}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [ "Instrument Sans", "sans-serif" ]
+            },
+            colors: {
+              primary: {
+                DEFAULT: "#5A45FF",
+                lighter: "#a599ff"
+              },
+              sand: {
+                1: "var(--sand-1)",
+                2: "var(--sand-2)",
+                3: "var(--sand-3)",
+                4: "var(--sand-4)",
+                5: "var(--sand-5)",
+                6: "var(--sand-6)",
+                7: "var(--sand-7)",
+                8: "var(--sand-8)",
+                9: "var(--sand-9)",
+                10: "var(--sand-10)",
+                11: "var(--sand-11)",
+                12: "var(--sand-12)"
+              }
+            }
+          }
+        }
+      };
+    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('dumper')
+
+    {{--  CDN Emoji Picker   --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js">
+      
+    </script>
+
+    {{--  CDN d'alpinejs  --}}
+    <script src="https://unpkg.com/alpinejs" defer>
+      
+    </script>
+
+    {{--  CDN de loaders-css  --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loaders.css@0.1.2/loaders.min.css" />
+
+    <style>
+      .loader-inner div {
+        background-color: #1DA1F2;
+      }
+    </style>
+
+  </head>
+  <body class="bg-black text-white font-sans min-h-screen">
+
+    <div class="mx-auto max-w-7xl flex flex-row min-h-screen">
+      <header
+        class="hidden md:block fixed md:static top-0 left-0 w-[12%] lg:w-[12%] h-screen space-y-10 lg:p-0 border-r border-zinc-700 md:border-r-0 z-50"
+      >
+        <nav class="md:fixed lg:pl-24">
+          
+        </nav>
+      </header>
+      <main class="lg:ml-[15%] md:ml-0 w-full md:w-[55%] lg:w-[40%] min-h-screen">
+        <h1>Messages</h1>
+      </main>
+      <nav class="hidden md:ml-4 lg:ml-8 md:block md:w-[35%] lg:w-[28%] relative">
+        <section class="hidden md:flex flex-col py-4 space-y-8 fixed mr-2">
+          
+           
+        </section>
+      </nav>
+    </div>
+    <script type="module">
+    
+    </script>
+  </body>
+</html>

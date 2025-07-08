@@ -21,6 +21,7 @@ router
     router.get('/profil', '#controllers/users_controller.index')
     router.post('/tweet/create', '#controllers/tweets_controller.create')
     router.get('/notifications', '#controllers/notifications_controller.index')
+    router.get('/messages', '#controllers/messages_controller.index')
     router.post('/follow/addOrDelete/:id', '#controllers/follows_controller.followOrUnfollow')
     router.get('/profil/:userName', '#controllers/tweets_controller.profil')
     router.post('/notification/:id/delete', '#controllers/notifications_controller.destroy')
