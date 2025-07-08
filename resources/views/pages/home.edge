@@ -15,7 +15,7 @@
       <section class="">
         <div class="min-h-screen md:border-x border-zinc-700  relative">
           <nav
-            class="sticky -top-2 flex items-center justify-between px-2 py-4 md:p-4 border-b border-r  border-b-blue-400/50  border-r-zinc-700 z-50 bg-black/70 backdrop-blur-sm"
+            class="sticky -top-2 flex items-center justify-between px-2 py-4 md:p-4 border-b  border-b-blue-400/50 z-50 bg-black/70 backdrop-blur-sm"
           >
             <p class="capitalize font-semibold text-xl">
               home
@@ -142,7 +142,7 @@
                       {{ tweet.retweetUser.userName }} a retweeté
                     </p>
                     <p class="text-gray-500">
-                      {{ fromNow(tweet.retweetUser.createdAt) }}
+                      {{ fromNow(tweet.retweetedAt) }}
                     </p>
                   </div>
                 @end
