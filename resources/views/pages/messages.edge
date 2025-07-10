@@ -1,12 +1,13 @@
 @layout.messages({title: "Messages", notifications, user, users})
   @slot('center')
-    <!-- Zone de chat/messages -->
     <div class="flex flex-col h-full w-full">
-      <nav class="sticky top-0 left-0 w-full bg-zinc-950 flex items-center justify-between border-b border-zinc-700 p-4 z-10">
+      <nav
+        class="sticky top-0 left-0 w-full bg-zinc-950 flex items-center justify-between border-b border-zinc-700 p-4 z-10"
+      >
         @if(selectedConversation)
           <div class="flex items-center gap-2">
             @if(selectedConversation.contact?.profilLink)
-              <img src="{{ selectedConversation.contact.profilLink }}" alt="Avatar" class="w-8 h-8 rounded-full">
+              <img src="{{ selectedConversation.contact.profilLink }}" alt="Avatar" class="w-12 h-12 rounded-full" />
             @else
               <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center">
                 <span class="text-xs font-bold text-zinc-400">{{ selectedConversation.contact.fullName.substring(0, 1).toUpperCase() }}</span>
@@ -15,61 +16,86 @@
             <span class="text-base font-bold text-zinc-200">{{ selectedConversation.contact.userName }}</span>
           </div>
         @else
-          <h2 class="text-xl font-bold capitalize">Conversations</h2>
+          <h2 class="text-xl font-bold capitalize">
+            Conversations
+          </h2>
         @endif
-        <p class="text-sm text-zinc-500 hidden md:block">messages chiffrés de bout en bout</p>
+        <p class="text-sm text-zinc-500 hidden md:block">
+          messages chiffrés de bout en bout
+        </p>
         <button class="text-sm text-zinc-500 md:hidden">
           <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
         </button>
       </nav>
       @if(selectedConversation)
-        <!-- Affichage des messages de la conversation -->
-        <div class="flex-1 overflow-y-auto px-4 py-2 space-y-2">
+        <div id="messages-list" class="flex-1 overflow-y-auto px-4 py-2 space-y-2">
           @each(message in selectedConversation.messages)
-            <div class="flex flex-col items-{{ message.senderId === user.id ? 'end' : 'start' }} bg-{{ message.senderId === user.id ? 'blue-500' : 'zinc-800' }}">
-              <div class="max-w-xs px-4 py-2 rounded-lg text-sm"
-                   class:="{{ message.senderId === user.id ? 'bg-blue-500 text-white' : 'bg-zinc-800 text-zinc-200' }}">
+            <div class="flex flex-col items-{{ message.senderId === user.id ? 'end' : 'start' }}">
+              <div
+                class="max-w-xs px-4 py-2 rounded-full text-sm bg-{{ message.senderId === user.id ? 'blue-500' : 'zinc-800' }}  text-{{ message.senderId === user.id ? 'white' : 'zinc-200' }}"
+              >
                 {{ message.content }}
               </div>
               <span class="text-xs text-zinc-500 mt-1">{{ message.createdAt.toRelative() }}</span>
             </div>
           @endeach
         </div>
-        <!-- Champ d'écriture -->
         <form action="/messages" method="POST" class="flex items-center gap-2 p-4 border-t border-zinc-800">
-          <input type="hidden" name="conversation_id" value="{{ selectedConversation.id }}">
-          <input type="text" name="content" placeholder="Écrire un message..." class="flex-1 bg-zinc-900 text-zinc-200 rounded-full px-4 py-2 outline-none" autocomplete="off" required>
-          <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 font-bold">Envoyer</button>
+          {{ csrfField() }}
+          <input type="hidden" name="conversation_id" value="{{ selectedConversation.id }}" />
+          <textarea
+            name="content"
+            id="message-textarea"
+            rows="1"
+            placeholder="Écrire un message..."
+            class="flex-1 bg-zinc-900 text-zinc-200 rounded-xl px-4 py-2 appearance-none overflow-hidden outline-none resize-none min-h-10 max-h-40"
+            autocomplete="off"
+            maxlength="255"
+            required
+          ></textarea>
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold"
+          >            <i class="fa-solid fa-paper-plane"></i></button>
         </form>
       @else
         <div class="flex-1 flex flex-col items-center justify-center">
-          <!-- SVG illustration si aucun message -->
           <svg width="120" height="120" fill="none" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="60" cy="60" r="56" fill="#23272e" stroke="#5A45FF" stroke-width="4"/>
-            <rect x="35" y="55" width="50" height="30" rx="8" fill="#5A45FF"/>
-            <ellipse cx="60" cy="70" rx="18" ry="8" fill="#fff" fill-opacity=".7"/>
-            <circle cx="50" cy="70" r="3" fill="#5A45FF"/>
-            <circle cx="60" cy="70" r="3" fill="#5A45FF"/>
-            <circle cx="70" cy="70" r="3" fill="#5A45FF"/>
+            <circle cx="60" cy="60" r="56" fill="#23272e" stroke="#5A45FF" stroke-width="4" />
+            <rect x="35" y="55" width="50" height="30" rx="8" fill="#5A45FF" />
+            <ellipse cx="60" cy="70" rx="18" ry="8" fill="#fff" fill-opacity=".7" />
+            <circle cx="50" cy="70" r="3" fill="#5A45FF" />
+            <circle cx="60" cy="70" r="3" fill="#5A45FF" />
+            <circle cx="70" cy="70" r="3" fill="#5A45FF" />
           </svg>
-          <p class="mt-6 text-zinc-400 text-lg text-center">Aucun message pour l’instant.<br>Commence une nouvelle conversation !</p>
+          <p class="mt-6 text-zinc-400 text-lg text-center">
+            Aucun message pour l’instant.<br />Commence une nouvelle conversation !
+          </p>
         </div>
       @endif
     </div>
   @endslot
   @slot('right')
-    <!-- Liste des contacts/conversations -->
-    <nav class="sticky top-0 left-0 w-full bg-zinc-950 flex items-center justify-between border-b border-zinc-700 p-4 z-10">
-      <h2 class="text-xl font-bold capitalize">Contacts</h2>
-      <p class="text-sm text-zinc-500">{{ users.length }} contacts</p>
+    <nav
+      class="sticky top-0 left-0 w-full bg-zinc-950 flex items-center justify-between border-b border-zinc-700 p-4 z-10"
+    >
+      <h2 class="text-xl font-bold capitalize">
+        Contacts
+      </h2>
+      <p class="text-sm text-zinc-500">
+        {{ users.length }} contacts
+      </p>
     </nav>
     <ul id="conversations-list" class="divide-y divide-zinc-800">
       @each(user in users)
         <li>
-          <a href="/messages/{{ user.id }}" class="flex items-center justify-between p-4 hover:bg-zinc-900 cursor-pointer">
+          <a
+            href="/messages/{{ user.id }}"
+            class="flex items-center justify-between p-4 hover:bg-zinc-900 cursor-pointer"
+          >
             <div class="flex items-center gap-2">
               @if(user.profilLink)
-                <img src="{{ user.profilLink }}" alt="Avatar" class="w-14 h-14 rounded-full">
+                <img src="{{ user.profilLink }}" alt="Avatar" class="w-14 h-14 rounded-full" />
               @else
                 <div class="w-14 h-14 rounded-full bg-zinc-800 flex items-center justify-center">
                   <span class="text-sm font-bold text-zinc-400">{{ user.fullName.substring(0, 1).toUpperCase() }}</span>
@@ -82,4 +108,11 @@
       @endeach
     </ul>
   @endslot
+  
 @end
+@if(selectedConversation)
+  <script>
+    
+  </script>
+@endif
+

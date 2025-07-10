@@ -14,12 +14,7 @@ export default class extends BaseSchema {
         .inTable('conversations')
         .onDelete('CASCADE')
 
-      table
-        .integer('sender_id')
-        .unsigned()
-        .references('id')
-        .inTable('users')
-        .onDelete('CASCADE')
+      table.integer('sender_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
 
       table.text('content').notNullable()
       table.boolean('is_read').defaultTo(false)

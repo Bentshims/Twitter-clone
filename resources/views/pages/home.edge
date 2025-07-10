@@ -121,9 +121,7 @@
             <div>
               @each(tweet in tweets)
                 @if(tweet.isRetweet)
-                  <div
-                    class="text-sm text-gray-400 flex items-center border-b border-zinc-700 gap-4 p-2 bg-zinc-950"
-                  >
+                  <div class="text-sm text-gray-400 flex items-center border-b border-zinc-700 gap-4 p-2 bg-zinc-950">
                     <div class="">
                       <a href="/profil/{{ tweet.user.userName }}">
                         @if(!tweet.retweetUser.profilLink)
@@ -203,7 +201,8 @@
                             <i class="far fa-comment text-zinc-600 hover:text-zinc-200"></i>
                           </button>
                         </div>
-                        <p class="like-number transition duration-200 ease text-zinc-600">githu
+                        <p class="like-number transition duration-200 ease text-zinc-600">
+                          githu
                           {{ tweet.$extras.comments_count }}
                         </p>
                       </div>
@@ -342,7 +341,7 @@
                     </p>
                   </div>
                   <div>
-                    <img src="/public/uploads/doawnload.svg" alt="" /></div>
+                    <img src="/public/uploads/doawnload.svg" alt="" />                  </div>
                 </div>
               </div>
             </div>

@@ -28,7 +28,6 @@ export default class Message extends BaseModel {
   })
   declare sender: BelongsTo<typeof User>
 
-
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
