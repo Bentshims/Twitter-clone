@@ -28,5 +28,10 @@ router
     router.post('/retweet/:id', '#controllers/retweets_controller.index')
     router.post('/like/:id', '#controllers/likes_controller.create')
     router.post('/comment/:id', '#controllers/comments_controller.create')
+
+    // Messagerie dynamique (AJAX)
+    router.get('/conversations', '#controllers/conversations_controller.index') // liste des conversations
+    router.get('/conversations/:id', '#controllers/conversations_controller.show') // messages d'une conversation
+    router.post('/messages', '#controllers/messages_controller.store') // envoi d'un message
   })
   .use(middleware.auth())

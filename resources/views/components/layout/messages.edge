@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title || "Messages" }}</title>
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [ "Instrument Sans", "sans-serif" ]
+            },
+            colors: {
+              primary: {
+                DEFAULT: "#5A45FF",
+                lighter: "#a599ff"
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picmo@latest/dist/picmo.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/picmo@latest/dist/picmo.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  </head>
+  <body class="bg-black text-white font-sans min-h-screen">
+    <div class="flex flex-row min-h-screen w-full">
+        <header
+        class="hidden md:block fixed md:static top-0 left-0 w-[12%] lg:w-[12%] h-screen space-y-10 lg:p-0 border-r border-zinc-700 md:border-r-0 z-50"
+      >
+        <nav class="md:fixed lg:pl-24">
+          <div class="space-y-6 lg:space-y-2">
+            <section class="space-y-2 mt-6">
+              <div class="flex justify-center lg:px-6 lg:justify-start mb-12">
+                <img src="/public/uploads/twitter-logo.svg" alt="logo" />
+              </div>
+              <div>
+                <a href="/">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/home.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      home
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/diez.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      explore
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="/notifications">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <div class="relative">
+                      @if(notifications > 0)
+                        <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
+                          {{ notifications }}
+                        </p>
+                      @end
+                      <img src="/public/uploads/notification.svg" alt="" />
+                    </div>
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block ">
+                      notification
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="/messages">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/message.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      messages
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/badge.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      bookmarks
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/list.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      lists
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="/profil">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327]  rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/profil.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      profil
+                    </P>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <div
+                    class="flex items-center justify-center lg:justify-start transition duration-400 ease hover:bg-[#202327] rounded-full lg:px-6 py-4"
+                  >
+                    <img src="/public/uploads/etc-circle.svg" alt="" />
+                    <P class="pl-4 font-semibold text-lg capitalize hidden lg:block">
+                      more
+                    </P>
+                  </div>
+                </a>
+              </div>
+            </section>
+
+            <div class="hidden md:block lg:mr-4 w-full">
+              <button
+                type="button"
+                onclick="openModal()"
+                class="bg-blue-500 text-center w-full px-6 py-4 rounded-full font-semibold transition duration-300 ease hover:bg-blue-600"
+              >
+                Tweet
+            </button>
+
+            </div>
+          </div>
+
+          <div class="profil hidden lg:flex items-center space-x-4 md:fixed bottom-10">
+            <a href="/profil">
+              @if(user.profilLink)
+                <div class="bg-[url({{ user.profilLink }})] w-16 h-16 rounded-full bg-cover bg-center">
+
+                </div>
+              @else
+                <div class="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center">
+                  {{ user.fullName.substring(0, 1).toUpperCase() }}
+                </div>
+              @endif
+            </a>
+            <div>
+              <div class="flex items-center gap-1">
+                <p class="font-bold capitalize">
+                  {{ user.fullName }}
+                </p>
+
+                <img src="/public/uploads/lock.svg" alt="" />
+
+              </div>
+              <p class="text-gray-600">
+                {{ user.userName }}
+              </p>
+            </div>
+            <img src="/public/uploads/etc.svg" alt="" />
+          </div>
+        </nav>
+      </header>
+      <main class="flex-1 flex flex-col min-h-screen border-x border-zinc-700 bg-black">
+        {{{ await $slots.center() }}}
+      </main>
+      <aside class="hidden md:block w-1/3 lg:w-1/4 bg-zinc-950 h-screen flex-shrink-0 overflow-y-auto scrollbar-hide">
+        {{{ await $slots.right() }}}
+      </aside>
+    </div>
+    {{{ await $slots.scripts() }}}
+  </body>
+</html> 

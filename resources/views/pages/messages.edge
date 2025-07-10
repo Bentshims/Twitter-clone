@@ -1,108 +1,218 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-        messages
-    </title>
-
-    <link rel="preconnect" href="https://fonts.bunny.net" />
-    <link
-      href="https://fonts.bunny.net/css?family=instrument-sans:400,400i,500,500i,600,600i,700,700i"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css"
-    />
-    {{--  CDN font awesome  --}}
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-
-    <script src="https://cdn.tailwindcss.com">
-      
-    </script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: [ "Instrument Sans", "sans-serif" ]
-            },
-            colors: {
-              primary: {
-                DEFAULT: "#5A45FF",
-                lighter: "#a599ff"
-              },
-              sand: {
-                1: "var(--sand-1)",
-                2: "var(--sand-2)",
-                3: "var(--sand-3)",
-                4: "var(--sand-4)",
-                5: "var(--sand-5)",
-                6: "var(--sand-6)",
-                7: "var(--sand-7)",
-                8: "var(--sand-8)",
-                9: "var(--sand-9)",
-                10: "var(--sand-10)",
-                11: "var(--sand-11)",
-                12: "var(--sand-12)"
-              }
-            }
-          }
-        }
-      };
-    </script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('dumper')
-
-    {{--  CDN Emoji Picker   --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.css" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.0/index.min.js">
-      
-    </script>
-
-    {{--  CDN d'alpinejs  --}}
-    <script src="https://unpkg.com/alpinejs" defer>
-      
-    </script>
-
-    {{--  CDN de loaders-css  --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loaders.css@0.1.2/loaders.min.css" />
-
-    <style>
-      .loader-inner div {
-        background-color: #1DA1F2;
-      }
-    </style>
-
-  </head>
-  <body class="bg-black text-white font-sans min-h-screen">
-
-    <div class="mx-auto max-w-7xl flex flex-row min-h-screen">
-      <header
-        class="hidden md:block fixed md:static top-0 left-0 w-[12%] lg:w-[12%] h-screen space-y-10 lg:p-0 border-r border-zinc-700 md:border-r-0 z-50"
-      >
-        <nav class="md:fixed lg:pl-24">
-          
-        </nav>
-      </header>
-      <main class="lg:ml-[15%] md:ml-0 w-full md:w-[55%] lg:w-[40%] min-h-screen">
-        <h1>Messages</h1>
-      </main>
-      <nav class="hidden md:ml-4 lg:ml-8 md:block md:w-[35%] lg:w-[28%] relative">
-        <section class="hidden md:flex flex-col py-4 space-y-8 fixed mr-2">
-          
-           
-        </section>
-      </nav>
+@layout.messages({title: "Messages", notifications, user, users})
+  @slot('center')
+    <div class="flex flex-col h-full relative">
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-zinc-700 bg-zinc-900 min-h-20" id="chat-header">
+        <span class="font-semibold" id="chat-name">Sélectionnez une conversation</span>
+      </div>
+      <div id="messages-list" class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide flex flex-col items-center">
+        <!-- Les messages seront injectés ici dynamiquement -->
+      </div>
+      <form id="message-form" class="flex items-center gap-2 p-4 border-t border-zinc-700 bg-zinc-900 relative" style="display:none;">
+        <button type="button" id="emoji-btn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-800 mr-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-zinc-400">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.556 0 8.25-3.694 8.25-8.25S16.556 3.75 12 3.75 3.75 7.444 3.75 12s3.694 8.25 8.25 8.25zm-3-4.5a3.75 3.75 0 006 0m-6-5.25h.008v.008H9v-.008zm6 0h.008v.008H15v-.008z" />
+          </svg>
+        </button>
+        <input id="message-input" type="text" class="flex-1 rounded-full px-4 py-2 bg-zinc-800 text-white outline-none" placeholder="Type a message..." autocomplete="off" />
+        <button type="submit" class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center">
+          <i class="fa fa-paper-plane"></i>
+        </button>
+        <div id="picmo-container" style="position:absolute; bottom:60px; left:0; z-index:9999; display:none;"></div>
+      </form>
     </div>
-    <script type="module">
-    
+  @endslot
+  @slot('right')
+    <div class="p-4 border-b border-zinc-700 min-h-20">
+      <h2 class="text-xl font-bold capitalize">Messagerie privée</h2>
+    </div>
+    <ul id="conversations-list">
+      @each(conversation in conversations)
+        @let(contact = conversation.userOneId === user.id ? conversation.userTwo : conversation.userOne)
+        <li class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 cursor-pointer border-b border-zinc-800" data-id="{{ conversation.id }}">
+          <img src="{{ contact.profilLink || '/public/uploads/profil.svg' }}" class="w-12 h-12 rounded-full object-cover" alt="Contact" />
+          <div class="flex-1">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold">{{ contact.fullName }}</span>
+              <span class="text-xs text-zinc-400">
+                @if(conversation.messages.length > 0)
+                  {{ conversation.messages[0].createdAt.toRelative() }}
+                @end
+              </span>
+            </div>
+            <span class="text-sm text-zinc-400">
+              @if(conversation.messages.length > 0)
+                {{ conversation.messages[0].content }}
+              @else
+                Aucun message
+              @end
+            </span>
+          </div>
+        </li>
+      @end
+    </ul>
+  @endslot
+  @slot('scripts')
+    <script>
+      let currentChat = 1;
+      function showChat(id) {
+        document.querySelectorAll('#messages-list > div').forEach(div => div.classList.add('hidden'));
+        document.getElementById('chat-' + id).classList.remove('hidden');
+        let name = '', avatar = '', status = 'en ligne';
+        if (id === 1) { name = 'Alice'; avatar = '/public/uploads/image-1(1).png'; }
+        if (id === 2) { name = 'Bob'; avatar = '/public/uploads/image-2(1).png'; status = 'vu récemment'; }
+        if (id === 3) { name = 'Charlie'; avatar = '/public/uploads/image-3.png'; status = 'hors ligne'; }
+        document.getElementById('chat-name').textContent = name;
+        document.getElementById('chat-avatar').src = avatar;
+        document.getElementById('chat-avatar').alt = name;
+        document.getElementById('chat-name').nextElementSibling.textContent = status;
+      }
+      // Picmo emoji picker logic
+      function waitForPicmo(cb) {
+        if (window.Picmo) {
+          cb();
+        } else {
+          setTimeout(() => waitForPicmo(cb), 50);
+        }
+      }
+      waitForPicmo(() => {
+        let picker;
+        const emojiBtn = document.getElementById('emoji-btn');
+        const messageInput = document.getElementById('message-input');
+        const picmoContainer = document.getElementById('picmo-container');
+        emojiBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (!picker) {
+            picker = Picmo.createPopup({
+              rootElement: picmoContainer,
+              referenceElement: emojiBtn,
+              position: 'top-start',
+              showCloseButton: false,
+              theme: 'dark'
+            }, {
+              onEmojiSelected: selection => {
+                messageInput.value += selection.emoji;
+                picker.hide();
+                picmoContainer.style.display = 'none';
+                messageInput.focus();
+              }
+            });
+          }
+          picker.toggle();
+          picmoContainer.style.display = picker.isVisible ? 'block' : 'none';
+        });
+        // Masquer le picker si on clique ailleurs
+        document.addEventListener('click', function(e) {
+          if (picker && !picmoContainer.contains(e.target) && e.target !== emojiBtn) {
+            picker.hide();
+            picmoContainer.style.display = 'none';
+          }
+        });
+
+        // Dynamisation de la liste des conversations
+        async function fetchConversations() {
+          const res = await fetch('/conversations', { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+          if (!res.ok) return;
+          const conversations = await res.json();
+          const userId = {{ user.id }};
+          const list = document.getElementById('conversations-list');
+          list.innerHTML = '';
+          conversations.forEach(conversation => {
+            const contact = conversation.userOneId === userId ? conversation.userTwo : conversation.userOne;
+            const lastMessage = conversation.messages[0];
+            const li = document.createElement('li');
+            li.className = 'flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 cursor-pointer border-b border-zinc-800';
+            li.dataset.id = conversation.id;
+            li.innerHTML = `
+              <img src="${contact.profilLink || '/public/uploads/profil.svg'}" class="w-12 h-12 rounded-full object-cover" alt="Contact" />
+              <div class="flex-1">
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold">${contact.fullName}</span>
+                  <span class="text-xs text-zinc-400">${lastMessage ? new Date(lastMessage.createdAt).toLocaleTimeString() : ''}</span>
+                </div>
+                <span class="text-sm text-zinc-400">${lastMessage ? lastMessage.content : 'Aucun message'}</span>
+              </div>
+            `;
+            list.appendChild(li);
+          });
+        }
+        // Appel initial et refresh toutes les 10s
+        fetchConversations();
+        setInterval(fetchConversations, 10000);
+
+        // Dynamisation de l'affichage des messages d'une conversation
+        let currentConversationId = null;
+        let messagesRefreshInterval = null;
+
+        function renderMessages(conversation) {
+          const list = document.getElementById('messages-list');
+          list.innerHTML = '';
+          if (!conversation || !conversation.messages) {
+            list.innerHTML = '<div class="text-zinc-400">Aucun message</div>';
+            return;
+          }
+          conversation.messages.forEach(msg => {
+            const div = document.createElement('div');
+            div.className = 'w-full max-w-lg flex ' + (msg.senderId === {{ user.id }} ? 'justify-end' : 'justify-start');
+            div.innerHTML = `
+              <div class="${msg.senderId === {{ user.id }} ? 'bg-primary text-white self-end' : 'bg-zinc-800 self-start'} rounded-2xl px-4 py-2 max-w-xs">
+                ${msg.content}
+              </div>
+            `;
+            list.appendChild(div);
+          });
+          // Scroll en bas
+          list.scrollTop = list.scrollHeight;
+        }
+
+        async function fetchAndRenderMessages(conversationId) {
+          const res = await fetch(`/conversations/${conversationId}`, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+          if (!res.ok) return;
+          const conversation = await res.json();
+          renderMessages(conversation);
+
+          // Met à jour le header du chat
+          const contact = conversation.userOneId === {{ user.id }} ? conversation.userTwo : conversation.userOne;
+          document.getElementById('chat-name').textContent = contact.fullName;
+
+          // Affiche le form d'envoi
+          document.getElementById('message-form').style.display = '';
+          document.getElementById('message-form').dataset.conversationId = conversationId;
+        }
+
+        // Ajoute le listener sur la liste des conversations
+        document.getElementById('conversations-list').addEventListener('click', function(e) {
+          const li = e.target.closest('li[data-id]');
+          if (!li) return;
+          const conversationId = li.dataset.id;
+          currentConversationId = conversationId;
+          fetchAndRenderMessages(conversationId);
+
+          // Rafraîchit les messages toutes les 5s
+          if (messagesRefreshInterval) clearInterval(messagesRefreshInterval);
+          messagesRefreshInterval = setInterval(() => fetchAndRenderMessages(conversationId), 5000);
+        });
+
+        // Envoi d'un message via AJAX
+        document.getElementById('message-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const input = document.getElementById('message-input');
+          const content = input.value.trim();
+          if (!content) return;
+          const conversationId = this.dataset.conversationId;
+          const res = await fetch('/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({ conversation_id: conversationId, content })
+          });
+          if (res.ok) {
+            input.value = '';
+            fetchAndRenderMessages(conversationId);
+          }
+        });
+      });
     </script>
-  </body>
-</html>
+  @endslot
+@end
