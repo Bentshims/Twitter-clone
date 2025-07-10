@@ -22,6 +22,7 @@ router
     router.post('/tweet/create', '#controllers/tweets_controller.create')
     router.get('/notifications', '#controllers/notifications_controller.index')
     router.get('/messages', '#controllers/messages_controller.index')
+    router.get('/messages/:id', '#controllers/messages_controller.show')
     router.post('/follow/addOrDelete/:id', '#controllers/follows_controller.followOrUnfollow')
     router.get('/profil/:userName', '#controllers/tweets_controller.profil')
     router.post('/notification/:id/delete', '#controllers/notifications_controller.destroy')
@@ -33,5 +34,6 @@ router
     router.get('/conversations', '#controllers/conversations_controller.index') // liste des conversations
     router.get('/conversations/:id', '#controllers/conversations_controller.show') // messages d'une conversation
     router.post('/messages', '#controllers/messages_controller.store') // envoi d'un message
+    router.post('/conversations', '#controllers/conversations_controller.create') // création conversation + 1er message
   })
   .use(middleware.auth())
