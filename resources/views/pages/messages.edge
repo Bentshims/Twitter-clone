@@ -7,7 +7,7 @@
             @if(selectedConversation.contact?.profilLink)
               <img src="{{ selectedConversation.contact.profilLink }}" alt="Avatar" class="w-12 h-12 rounded-full">
             @else
-              <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center">
+              <div class="w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center">
                 <span class="text-xs font-bold text-zinc-400">{{ selectedConversation.contact.fullName.substring(0, 1).toUpperCase() }}</span>
               </div>
             @endif
@@ -64,9 +64,9 @@
           <a href="/messages/{{ user.id }}" class="flex items-center justify-between p-4 hover:bg-zinc-900 cursor-pointer">
             <div class="flex items-center gap-2">
               @if(user.profilLink)
-                <img src="{{ user.profilLink }}" alt="Avatar" class="w-14 h-14 rounded-full">
+                <div class="bg-[url('{{ user.profilLink }}')] w-10 h-10 bg-center bg-cover rounded-full"></div>
               @else
-                <div class="w-14 h-14 rounded-full bg-zinc-800 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
                   <span class="text-sm font-bold text-zinc-400">{{ user.fullName.substring(0, 1).toUpperCase() }}</span>
                 </div>
               @endif
