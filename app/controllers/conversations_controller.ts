@@ -3,30 +3,37 @@ import Conversation from '#models/conversation'
 import Message from '#models/message'
 
 export default class ConversationsController {
+  // Liste des conversations de l'utilisateur connecté
   public async index({ auth, request, response, view }: HttpContext) {
     const user = auth.user!
-    const conversations = await Conversation.query()
+    // Récupère toutes les conversations où l'utilisateur est participant
+    const conversations = await Conversation
+      .query()
       .where('user_one_id', user.id)
       .orWhere('user_two_id', user.id)
       .preload('messages', (query) => {
-        query.orderBy('created_at', 'desc').limit(1)
+        query.orderBy('created_at', 'desc').limit(1) // dernier message
       })
       .preload('userOne')
       .preload('userTwo')
       .orderBy('updated_at', 'desc')
 
+    // Si AJAX, retourne JSON
     if (request.ajax()) {
       return response.json(conversations)
     }
 
+    // Sinon, vue Edge
     return view.render('pages/messages', { conversations, user })
   }
 
+  // Affiche les messages d'une conversation
   public async show({ params, auth, request, response }: HttpContext) {
     const user = auth.user!
-    const conversation = await Conversation.query()
+    const conversation = await Conversation
+      .query()
       .where('id', params.id)
-      .where((q) => {
+      .where(q => {
         q.where('user_one_id', user.id).orWhere('user_two_id', user.id)
       })
       .preload('messages', (query) => {
@@ -38,6 +45,7 @@ export default class ConversationsController {
       return response.json(conversation)
     }
 
+    // (optionnel) sinon, redirige ou affiche une vue
     return response.json(conversation)
   }
 
@@ -46,11 +54,12 @@ export default class ConversationsController {
     const recipientId = request.input('recipient_id')
     const content = request.input('content')
 
+    // Vérifier si la conversation existe déjà
     let conversation = await Conversation.query()
-      .where((q) => {
+      .where(q => {
         q.where('user_one_id', user.id).where('user_two_id', recipientId)
       })
-      .orWhere((q) => {
+      .orWhere(q => {
         q.where('user_one_id', recipientId).where('user_two_id', user.id)
       })
       .first()
@@ -62,6 +71,7 @@ export default class ConversationsController {
       })
     }
 
+    // Créer le premier message
     await Message.create({
       conversationId: conversation.id,
       senderId: user.id,
