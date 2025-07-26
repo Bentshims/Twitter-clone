@@ -582,25 +582,37 @@
       });
     </script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const openBtn = document.getElementById("open-drawer");
-        const closeBtn = document.getElementById("close-drawer");
-        const drawer = document.getElementById("mobile-drawer");
-        const overlay = document.getElementById("mobile-drawer-overlay");
-        function openDrawer() {
-          drawer.classList.remove("-translate-x-full");
-          overlay.classList.remove("opacity-0", "pointer-events-none");
-          overlay.classList.add("opacity-100");
-        }
-        function closeDrawer() {
-          drawer.classList.add("-translate-x-full");
-          overlay.classList.add("opacity-0", "pointer-events-none");
-          overlay.classList.remove("opacity-100");
-        }
-        if (openBtn) openBtn.addEventListener("click", openDrawer);
-        if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
-        if (overlay) overlay.addEventListener("click", closeDrawer);
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".open-drawer").forEach((btn) => {
+          const drawerId = btn.getAttribute("data-drawer-target");
+          const drawerPanel = document.querySelector(`.drawer-panel[data-drawer-id="${drawerId}"]`);
+          const drawerOverlay = document.querySelector(`.drawer-overlay[data-drawer-id="${drawerId}"]`);
+          const closeBtn = drawerPanel?.querySelector(".close-drawer");
+    
+          if (!drawerPanel || !drawerOverlay) {
+            console.warn(`Drawer or overlay with data-drawer-id="${drawerId}" not found`);
+            return;
+          }
+    
+          function openDrawer() {
+            drawerPanel.classList.remove("-translate-x-full");
+            drawerOverlay.classList.remove("opacity-0", "pointer-events-none");
+            drawerOverlay.classList.add("opacity-100");
+          }
+    
+          function closeDrawer() {
+            drawerPanel.classList.add("-translate-x-full");
+            drawerOverlay.classList.add("opacity-0", "pointer-events-none");
+            drawerOverlay.classList.remove("opacity-100");
+          }
+    
+          btn.addEventListener("click", openDrawer);
+          closeBtn?.addEventListener("click", closeDrawer);
+          drawerOverlay.addEventListener("click", closeDrawer);
+        });
       });
     </script>
+    
+    
   </body>
 </html>

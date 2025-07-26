@@ -1,8 +1,16 @@
 
 @layout.app({title:"profil", notifications, user})
   @slot('main')
-    <div class="flex justify-center  md:border-x border-gray-700  w-full min-h-screen relative">
-      <section class="min-h-screen space-y-8 ">
+    <div class="flex justify-center  md:border-x border-gray-700  min-h-screen relative">
+      
+      <section class="min-h-screen space-y-8 relative">
+          <!-- NAV BAR -->
+          <nav class="nav-bar sticky -top-2 flex items-center justify-between px-2 py-4 md:p-4 border-b border-b-blue-400/50 z-50 bg-black/70 backdrop-blur-sm">
+            <p class="capitalize font-semibold text-xl">home</p>
+            <button class="open-drawer" data-drawer-target="main-drawer">
+              <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
+            </button>
+          </nav>
         <div class="relative h-48 bg-zinc-900 bg-cover bg-center bg-gray-900 w-full ">
           @if(!user.profilLink)
             <div
@@ -237,9 +245,124 @@
 
       </section>
     </div>
-    <script>
-      
-    </script>
+     <!-- Drawer mobile overlay -->
+     <div
+     class="drawer-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden min-h-screen"
+     data-drawer-id="main-drawer"
+     >
+     </div>
+ 
+     <!-- Drawer panel -->
+     <div
+     class="drawer-panel fixed top-0 left-0 h-screen w-[70%] bg-black z-50 transform -translate-x-full transition-transform duration-300 md:hidden"
+     data-drawer-id="main-drawer"
+     >
+     <button class="close-drawer absolute top-4 right-4 text-2xl">&times;</button>
+ 
+     <!-- Drawer nav: même contenu que le <nav> du header -->
+     <nav class="space-y-6 lg:space-y-2 mt-10 h-full">
+       <section class="space-y-2 mt-6 mx-4">
+         <div class="flex justify-start mb-12 ml-4">
+           <img src="/public/uploads/twitter-logo.svg" alt="logo" />
+         </div>
+ 
+         <div>
+           <a href="/">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/home.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">home</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="#">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/diez.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">explore</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="/notifications">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <div class="relative">
+                 @if(notifications > 0)
+                 <p class="absolute text-center bg-blue-500 rounded-full text-xs w-4 h-4 -top-1 -right-1">
+                   {{ notifications }}
+                 </p>
+                 @end
+                 <img src="/public/uploads/notification.svg" alt="" />
+               </div>
+               <p class="pl-4 font-semibold text-lg capitalize">notification</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="/messages">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/message.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">messages</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="#">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/badge.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">bookmarks</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="#">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/list.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">lists</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="/profil">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/profil.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">profil</p>
+             </div>
+           </a>
+         </div>
+ 
+         <div>
+           <a href="#">
+             <div
+               class="flex items-center justify-start transition duration-400 ease hover:bg-[#202327] rounded-full p-4"
+             >
+               <img src="/public/uploads/etc-circle.svg" alt="" />
+               <p class="pl-4 font-semibold text-lg capitalize">more</p>
+             </div>
+           </a>
+         </div>
+       </section>
+     </nav>
+     </div>
 
   @endslot
   
