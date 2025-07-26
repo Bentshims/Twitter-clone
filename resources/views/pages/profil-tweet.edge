@@ -68,7 +68,7 @@
           <div x-data="{ tab: 'tweets' }" class="mt-20">
             <!--les Onglets -->
             <ul class="flex justify-between items-center border-b border-zinc-700">
-              <template x-for="item in ['tweets', 'replies', 'highlights', 'articles', 'media', 'likes']" :key="item">
+              <template x-for="item in ['tweets', 'replies',, 'articles', 'media', 'likes']" :key="item">
                 <li>
                   <button
                     @click="tab = item"
@@ -107,7 +107,7 @@
                 </section>
               </div>
 
-              <div x-show="tab === 'highlights'">
+              {{-- <div x-show="tab === 'highlights'">
                 <h1 class="text-2xl font-bold">
                   Highlights
                 </h1>
@@ -116,7 +116,7 @@
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...
                   </p>
                 </section>
-              </div>
+              </div> --}}
 
               <div x-show="tab === 'articles'">
                 <h1 class="text-2xl font-bold">
