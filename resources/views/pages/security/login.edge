@@ -1,740 +1,90 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X - Connexion/Inscription</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connexion - X.com</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'x-dark': '#000000',
-                        'x-light': '#e7e9ea',
-                        'x-gray': '#71767b',
-                        'x-blue': '#1d9bf0',
-                        'x-dark-gray': '#16181c',
-                        'x-border': '#2f3336',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            overflow-x: hidden;
-        }
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.65);
-        }
-        .modal-container {
-            max-width: 600px;
-            width: 100%;
-        }
-        .modal-content {
-            background-color: #000;
-            border-radius: 16px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .input-field {
-            background-color: #000;
-            border: 1px solid #2f3336;
-            transition: all 0.2s ease;
-        }
-        .input-field:focus {
-            border-color: #1d9bf0;
-            outline: none;
-        }
-        .next-btn:disabled {
-            background-color: #0c4a6e;
-            cursor: not-allowed;
-        }
-        .close-btn {
-            transition: background-color 0.2s ease;
-        }
-        .close-btn:hover {
-            background-color: #181818;
-        }
-        .signup-option:hover {
-            background-color: #080808;
-        }
-        .auth-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        .auth-btn:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .step-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #71767b;
-            margin: 0 4px;
-            transition: all 0.3s ease;
-        }
-        .step-dot.active {
-            background-color: #1d9bf0;
-            transform: scale(1.2);
-        }
-        .interest-card {
-            border: 1px solid #2f3336;
-            border-radius: 12px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .interest-card:hover {
-            background-color: #080808;
-            border-color: #1d9bf0;
-        }
-        .interest-card.selected {
-            background-color: rgba(29, 155, 240, 0.1);
-            border-color: #1d9bf0;
-        }
-    </style>
-</head>
-<body class="bg-x-dark text-x-light min-h-screen flex flex-col">
-    <!-- Contenu principal -->
-    <main class="flex-grow flex items-center justify-center p-4">
-        <div class="max-w-md w-full">
-            <div class="mb-10">
-                <i class="fab fa-x-twitter text-5xl mb-8"></i>
-                <h1 class="text-3xl font-bold mb-10">Ça se passe maintenant</h1>
-                <h2 class="text-xl font-bold mb-6">Inscrivez-vous.</h2>
-                
-                <!--  les Options de connexion avec google ou apple que j'ai pas encore implementer -->
-                <div class="space-y-4 mb-6">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/parsleyjs/src/parsley.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css" />
+  </head>
 
-                    <a class="signup-option flex items-center justify-center gap-6 py-3 px-6 rounded-full border border-x-border cursor-pointer transition">
-                        <i class="fab fa-google"></i> 
-                       <span>
-                            S'inscrire avec google
-                       </span>
-                    </a>
-
-                    <a class="signup-option flex items-center justify-center gap-6 py-3 px-6 rounded-full border border-x-border cursor-pointer transition">
-                        <i class="fab fa-apple"></i>
-                        <span>
-                            S'inscrire avec Apple
-                        </span>
-                     </a>
-                    
-                 
-                </div>
-                
-                <!-- Séparateur -->
-                <div class="relative flex items-center my-6">
-                    <div class="flex-grow border-t border-x-border"></div>
-                    <span class="flex-shrink mx-4 text-x-gray">OU</span>
-                    <div class="flex-grow border-t border-x-border"></div>
-                </div>
-                
-                <!-- Bouton Créer un compte -->
-                <button id="createAccountBtn" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-3 px-4 rounded-full transition mb-6">
-                    Créer un compte
-                </button>
-                
-                <!-- Mentions légales -->
-                <div class="text-xs text-x-gray mb-10">
-                    <p>En vous inscrivant, vous acceptez les <a href="#" class="text-x-blue hover:underline">Conditions d'utilisation</a> | 
-                    <a href="#" class="text-x-blue hover:underline">La Politique de confidentialité</a>, notamment l'Utilisation des cookies.</p>
-                </div>
-                
-                <!-- Déjà un compte -->
-                <div class="mt-8">
-                    <h3 class="text-xl font-bold mb-6">Vous avez déjà un compte ?</h3>
-                    <button id="loginBtn" class="w-full border border-x-border hover:bg-[#080808] text-white font-bold py-3 px-4 rounded-full transition">
-                        Se connecter
-                    </button>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-    <!-- Pied de page -->
-    <footer class="py-6 px-4 text-xs text-x-gray">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-wrap gap-3 justify-center mb-4">
-                <a href="#" class="hover:underline">À propos</a>
-                <a href="#" class="hover:underline">Télécharger l’application X</a>
-                <a href="#" class="hover:underline">Gréo</a>
-                <a href="#" class="hover:underline">Centre d’assistance</a>
-                <a href="#" class="hover:underline">Conditions d’utilisation</a>
-                <a href="#" class="hover:underline">Politique de Confidentialité</a>
-                <a href="#" class="hover:underline">Politique relative aux cookies</a>
-                <a href="#" class="hover:underline">Accessibilité</a>
-                <a href="#" class="hover:underline">Informations sur les publicités</a>
-                <a href="#" class="hover:underline">Blog</a>
-                <a href="#" class="hover:underline">Carrières</a>
-                <a href="#" class="hover:underline">Ressources de la marque</a>
-            </div>
-            
-            <div class="flex flex-wrap gap-3 justify-center mb-4">
-                <a href="#" class="hover:underline">Publicité</a>
-                <a href="#" class="hover:underline">Marketing</a>
-                <a href="#" class="hover:underline">X pour les professionnels</a>
-                <a href="#" class="hover:underline">Développeurs</a>
-                <a href="#" class="hover:underline">Répertoire</a>
-                <a href="#" class="hover:underline">Paramètres</a>
-            </div>
-            
-            <div class="text-center">
-                © 2025 X Corp.
-            </div>
-        </div>
-    </footer>
-
-    <form action="/signupUser" method="POST">
-        {{ csrfField() }}
-
-       <!-- Modale d'inscription - Étape 1 -->
-       <div id="signupModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
-        <div class="modal-container">
-            <div class="modal-content">
-                <div class="p-4">
-                    <div class="flex items-center mb-4">
-                        <button type="button" id="closeSignupModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                        <div class="ml-4">
-                            <i class="fab fa-x-twitter text-2xl"></i>
-                        </div>
-                    </div>
-
-                    <div class="step-indicator">
-                        <div class="step-dot active"></div>
-                        <div class="step-dot"></div>
-                        <div class="step-dot"></div>
-                        <div class="step-dot"></div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold mb-8">Créez votre compte</h2>
-
-                    <div id="signupForm" class="space-y-6">
-                      
-                        <div>
-                            <input type="text" name="fullName" placeholder="Nom et prenom" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </div>
-                        <div>
-                            <input type="text" name="email" placeholder="Numéro de téléphone ou adresse e-mail" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </div>
-                        <div class="text-xs text-x-gray">
-                            <p>Date de naissance</p>
-                            <p class="mt-1">Cela ne sera pas affiché publiquement. Confirmez votre âge, même si ce compte est pour une entreprise, un animal de compagnie, etc.</p>
-                        </div>
-                        <div class="flex space-x-4">
-                            <select name="birthMonth" id="month-select" class="input-field flex-grow p-4 rounded-lg" required>
-                                <option disabled selected>Mois</option>
-                                <option value="1">Janvier</option>
-                                <option value="2">Février</option>
-                                <option value="3">Mars</option>
-                                <option value="4">Avril</option>
-                                <option value="5">Mai</option>
-                                <option value="6">Juin</option>
-                                <option value="7">Juillet</option>
-                                <option value="8">Août</option>
-                                <option value="9">Septembre</option>
-                                <option value="10">Octobre</option>
-                                <option value="11">Novembre</option>
-                                <option value="12">Décembre</option>
-                            </select>
-                              
-                            <select id="day-select" class="input-field w-1/4 p-4 rounded-lg" required>
-                                <option disabled selected>Jour</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-                                <option>13</option>
-                                <option>14</option>
-                                <option>15</option>
-                                <option>16</option>
-                                <option>17</option>
-                                <option>18</option>
-                                <option>19</option>
-                                <option>20</option>
-                                <option>21</option>
-                                <option>22</option>
-                                <option>23</option>
-                                <option>24</option>
-                                <option>25</option>
-                                <option>26</option>
-                                <option>27</option>
-                                <option>28</option>
-                                <option>29</option>
-                                <option>30</option>
-                                <option>31</option>
-
-                            </select>
-                            <select id="year-select" class="input-field w-1/4 p-4 rounded-lg" required>
-                                <option disabled selected>Année</option>
-                                <option>2023</option>
-                                <option>2022</option>
-                                <option>2021</option>
-                            </select>
-                        </div>
-                    </div
-
-                    <!-- Bouton Suivant -->
-                    <button type="button" id="signupNextBtn1" class="next-btn w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
-                        Suivant
-                    </button>
-                </div>
-            </div>
-        </div>
+  <body class="bg-black text-white md:flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="my-8 space-y-4">
+      <div class="flex justify-center">
+        <svg class="w-12 h-auto text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white">
+          <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+        </svg>
+      </div>
+      <h1 class="text-center text-xl font-semibold">Heureux de vous revoir !</h1>
     </div>
 
-     {{--  Modale d'inscription 2  --}}
-    <div id="signupStep2Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
-        <div class="modal-container">
-            <div class="modal-content">
-                <div class="p-4">
-                  
-                    <div class="flex items-center mb-4">
-                        <button type="button" id="closeSignupStep2Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                        <div class="ml-4">
-                            <i class="fab fa-x-twitter text-2xl"></i>
-                        </div>
-                    </div>
-
-                 
-                    <div class="step-indicator">
-                        <div class="step-dot active"></div>
-                        <div class="step-dot active"></div>
-                        <div class="step-dot"></div>
-                        <div class="step-dot"></div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold mb-6">Personnalisez votre expérience</h2>
-                    <p class="text-x-gray text-lg mb-8">Suivez les sujets qui vous intéressent pour voir plus de contenus similaires dans votre fil.</p>
-
-                    <!-- Centre d'intérêts -->
-                    <div class="space-y-4 mb-6">
-                        <h3 class="text-xl font-bold mb-4">Centres d'intérêt</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="interest-card">
-                                <div class="flex items-center">
-                                    <i class="fas fa-newspaper text-xl mr-3"></i>
-                                    <div class="font-bold">Actualités</div>
-                                </div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="flex items-center">
-                                    <i class="fas fa-futbol text-xl mr-3"></i>
-                                    <div class="font-bold">Sports</div>
-                                </div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="flex items-center">
-                                    <i class="fas fa-film text-xl mr-3"></i>
-                                    <div class="font-bold">Divertissement</div>
-                                </div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="flex items-center">
-                                    <i class="fas fa-microchip text-xl mr-3"></i>
-                                    <div class="font-bold">Technologie</div>
-                                </div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="flex items-center">
-                                    <i class="fas fa-music text-xl mr-3"></i>
-                                    <div class="font-bold">Musique</div>
-                                </div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="flex items-center">
-                                    <i class="fas fa-gamepad text-xl mr-3"></i>
-                                    <div class="font-bold">Jeux vidéo</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Boutons -->
-                    <button type="button" id="signupNextBtn2" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
-                        Suivant
-                    </button>
-                    <button type="button" id="signupSkipBtn" class="w-full border border-x-border hover:bg-[#080808] text-white font-bold py-4 px-4 rounded-full transition mt-4">
-                        Passer pour l'instant
-                    </button>
-                </div>
+    <div class="bg-[#000] border border-[#2f3336] p-8 rounded-3xl shadow-lg w-full max-w-md space-y-6">
+        <form action="/login" method="POST" data-parsley-validate class="space-y-6">
+            {{ csrfField() }}
+          
+            <input type="email" name="email" required placeholder="Adresse email"
+              data-parsley-type-message="Veuillez entrer une adresse email valide."
+              class="w-full px-4 py-3 bg-[#16181c] border border-[#2f3336] rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#1d9bf0]" />
+          
+            <div class="relative w-full">
+              <input type="password" name="password" required minlength="8" placeholder="Mot de passe"
+                data-parsley-minlength-message="Le mot de passe doit contenir au moins 8 caractères."
+                class="password w-full px-4 py-3 bg-[#16181c] border border-[#2f3336] rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#1d9bf0]" />
+              <button type="button" class="togglePassword absolute right-4 top-3">
+                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />
+                </svg>
+              </button>
             </div>
-        </div>
-    </div>
-
-    <!-- Modale d'inscription - Étape 3 -->
-    <div id="signupStep3Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
-        <div class="modal-container">
-            <div class="modal-content">
-                <div class="p-4">
-                    <!-- En-tête -->
-                    <div class="flex items-center mb-4">
-                        <button type="button" id="closeSignupStep3Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                        <div class="ml-4">
-                            <i class="fab fa-x-twitter text-2xl"></i>
-                        </div>
-                    </div>
-
-                    <!-- Indicateur d'étape -->
-                    <div class="step-indicator">
-                        <div class="step-dot active"></div>
-                        <div class="step-dot active"></div>
-                        <div class="step-dot active"></div>
-                        <div class="step-dot"></div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold mb-6">Créez votre identifiant</h2>
-                    <p class="text-x-gray text-lg mb-8">Votre identifiant @unique sera votre adresse sur X.</p>
-
-                    <!-- Formulaire d'inscription - Étape 3 -->
-                    <div id="signupStep3Form" class="space-y-6">
-                        <div>
-                            <input type="text" placeholder="Identifiant" class="input-field w-full p-4 rounded-lg text-xl" required>
-                            <p class="text-x-gray text-sm mt-2">Vous pouvez utiliser des lettres, chiffres et underscores.</p>
-                        </div>
-                        <div>
-                            <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
-                            <p class="text-x-gray text-sm mt-2">Utilisez au moins 8 caractères. Incluez des lettres, chiffres et symboles.</p>
-                        </div>
-                        <div>
-                            <input type="password" placeholder="Confirmer le mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </div>
-                    </div>
-
-                    <!-- Boutons -->
-                    <button type="button" id="signupNextBtn3" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
-                        Suivant
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modale d'inscription - Étape 4 -->
-    <div id="signupStep4Modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
-        <div class="modal-container">
-            <div class="modal-content">
-                <div class="p-4">
-                    <!-- En-tête -->
-                    <div class="flex items-center mb-4">
-                        <button type="button" id="closeSignupStep4Modal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                        <div class="ml-4">
-                            <i class="fab fa-x-twitter text-2xl"></i>
-                        </div>
-                    </div>
-
-                    <!-- Indicateur d'étape -->
-                    <div class="step-indicator">
-                        <div class="step-dot active"></div>
-                        <div class="step-dot active"></div>
-                        <div class="step-dot active"></div>
-                        <div class="step-dot active"></div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold mb-6">Complétez votre profil</h2>
-                    <p class="text-x-gray text-lg mb-8">Ajoutez une photo pour aider vos amis à vous reconnaître.</p>
-
-                   
-                    <div class="flex justify-center mb-8 relative">
-                        <input name="profil" type="file" class="w-32 h-32 rounded-full bg-x-dark-gray border-2 border-x-border flex items-center justify-center cursor-pointer decoration-none">
-                        <i class="fas fa-camera text-3xl text-x-gray absolute bottom-10"></i>
-                       
-
-                    </div>
-
-                
-                    <div class="mb-6">
-                        <textarea name="bio" placeholder="Bio (facultatif)" class="input-field w-full p-4 rounded-lg text-xl min-h-[100px]"></textarea>
-                        <p class="text-x-gray text-sm mt-2">Décrivez-vous en quelques mots.</p>
-                    </div>
-
-                    
-                    <button type="submit" id="signupCompleteBtn" class="w-full bg-x-blue hover:bg-[#1a8cd8] text-white font-bold py-4 px-4 rounded-full transition mt-8">
-                        Terminer l'inscription
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-    <!-- le  Modale de connexion -->
-    <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay">
-        <div class="modal-container">
-            <div class="modal-content">
-                <div class="p-4">
-                   
-                    <div class="flex items-center mb-4">
-                        <button id="closeLoginModal" class="close-btn w-9 h-9 rounded-full flex items-center justify-center">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                        <div class="ml-4">
-                            <i class="fab fa-x-twitter text-2xl"></i>
-                        </div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold mb-8">Connectez-vous à X</h2>
-
-                    <!-- Options de connexion -->
-                    <div class="space-y-4 mb-6">
-                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition">
-                            <i class="fab fa-google text-xl"></i>
-                            <span>Se connecter avec Google</span>
-                        </button>
-                        
-                        <button class="auth-btn w-full p-3 rounded-full border border-x-border cursor-pointer transition">
-                            <i class="fab fa-apple text-xl"></i>
-                            <span>Se connecter avec Apple</span>
-                        </button>
-                    </div>
-                    
-                    <!-- Séparateur -->
-                    <div class="relative flex items-center my-6">
-                        <div class="flex-grow border-t border-x-border"></div>
-                        <span class="flex-shrink mx-4 text-x-gray">ou</span>
-                        <div class="flex-grow border-t border-x-border"></div>
-                    </div>
-
-                    <!-- Formulaire de connexion -->
-                    <form id="loginForm" class="space-y-6" method="POST" action="/loginUser">
-                        {{ csrfField() }}
-                        <div>
-                            <input type="text" placeholder="votre email" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </div>
-                        <div>
-                            <input type="password" placeholder="Mot de passe" class="input-field w-full p-4 rounded-lg text-xl" required>
-                        </div>
-                           <!-- Bouton de connexion -->
-                        <button type="submit" class="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-4 rounded-full transition mt-8">
-                            Connexion
-                        </button>
-                    </form>
-
-                 
-
-                    <!-- Liens supplémentaires -->
-                    <div class="mt-6 text-center">
-                        <a href="#" class="text-x-blue hover:underline">Mot de passe oublié ?</a>
-                    </div>
-                    <div class="mt-6 text-x-gray text-sm">
-                        <p>Vous n'avez pas de compte ? <a href="#" id="switchToSignup" class="text-x-blue hover:underline">Inscrivez-vous</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+          
+            <button type="submit"
+              class="w-full bg-[#1d9bf0] hover:bg-[#1a8cd8] py-3 rounded-full font-bold transition duration-200">
+              Se connecter
+            </button>
+          
+            <p class="text-center text-sm text-gray-400 mt-4">
+              Vous n'avez pas de compte ?
+              <a href="/signup" class="text-[#1d9bf0] hover:underline">Créer un compte</a>
+            </p>
+          </form>
+          
     </div>
 
     <script>
-        // Gestion des modales
-        const signupModal = document.getElementById('signupModal');
-        const signupStep2Modal = document.getElementById('signupStep2Modal');
-        const signupStep3Modal = document.getElementById('signupStep3Modal');
-        const signupStep4Modal = document.getElementById('signupStep4Modal');
-        const loginModal = document.getElementById('loginModal');
-        
-        const createAccountBtn = document.getElementById('createAccountBtn');
-        const loginBtn = document.getElementById('loginBtn');
-        
-        // Boutons de fermeture
-        const closeSignupModal = document.getElementById('closeSignupModal');
-        const closeSignupStep2Modal = document.getElementById('closeSignupStep2Modal');
-        const closeSignupStep3Modal = document.getElementById('closeSignupStep3Modal');
-        const closeSignupStep4Modal = document.getElementById('closeSignupStep4Modal');
-        const closeLoginModal = document.getElementById('closeLoginModal');
-        
-        const switchToSignup = document.getElementById('switchToSignup');
-        
-        // Boutons de navigation
-        const signupNextBtn1 = document.getElementById('signupNextBtn1');
-        const signupNextBtn2 = document.getElementById('signupNextBtn2');
-        const signupNextBtn3 = document.getElementById('signupNextBtn3');
-        const signupSkipBtn = document.getElementById('signupSkipBtn');
-        const signupCompleteBtn = document.getElementById('signupCompleteBtn');
-
-        // Ouvrir la modale d'inscription
-        createAccountBtn.addEventListener('click', () => {
-            signupModal.classList.remove('hidden');
-            signupModal.classList.add('flex');
+      // Toggle mot de passe
+      document.querySelectorAll(".togglePassword").forEach((btn) => {
+        const input = btn.previousElementSibling;
+        const icon = btn.querySelector("svg");
+        btn.addEventListener("click", () => {
+          const isVisible = input.type === "text";
+          input.type = isVisible ? "password" : "text";
+          icon.innerHTML = isVisible
+            ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />`
+            : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7
+                     a9.96 9.96 0 012.602-4.263M6.513 6.511A9.953 9.953 0 0112 5c4.478 0
+                     8.268 2.943 9.542 7a9.969 9.969 0 01-4.478 5.249M3 3l18 18" />`;
         });
+      });
 
-        // Ouvrir la modale de connexion
-        loginBtn.addEventListener('click', () => {
-            loginModal.classList.remove('hidden');
-            loginModal.classList.add('flex');
-        });
-
-        // Fermer la modale d'inscription
-        closeSignupModal.addEventListener('click', () => {
-            signupModal.classList.remove('flex');
-            signupModal.classList.add('hidden');
-        });
-
-        closeSignupStep2Modal.addEventListener('click', () => {
-            signupStep2Modal.classList.remove('flex');
-            signupStep2Modal.classList.add('hidden');
-        });
-
-        closeSignupStep3Modal.addEventListener('click', () => {
-            signupStep3Modal.classList.remove('flex');
-            signupStep3Modal.classList.add('hidden');
-        });
-
-        closeSignupStep4Modal.addEventListener('click', () => {
-            signupStep4Modal.classList.remove('flex');
-            signupStep4Modal.classList.add('hidden');
-        });
-
-        // Fermer la modale de connexion
-        closeLoginModal.addEventListener('click', () => {
-            loginModal.classList.remove('flex');
-            loginModal.classList.add('hidden');
-        });
-
-        // Passer de connexion à inscription
-        switchToSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.classList.remove('flex');
-            loginModal.classList.add('hidden');
-            signupModal.classList.remove('hidden');
-            signupModal.classList.add('flex');
-        });
-
-        // Navigation dans les étapes d'inscription
-        signupNextBtn1.addEventListener('click', () => {
-            signupModal.classList.remove('flex');
-            signupModal.classList.add('hidden');
-            signupStep2Modal.classList.remove('hidden');
-            signupStep2Modal.classList.add('flex');
-        });
-
-        signupNextBtn2.addEventListener('click', () => {
-            signupStep2Modal.classList.remove('flex');
-            signupStep2Modal.classList.add('hidden');
-            signupStep3Modal.classList.remove('hidden');
-            signupStep3Modal.classList.add('flex');
-        });
-
-        signupSkipBtn.addEventListener('click', () => {
-            signupStep2Modal.classList.remove('flex');
-            signupStep2Modal.classList.add('hidden');
-            signupStep3Modal.classList.remove('hidden');
-            signupStep3Modal.classList.add('flex');
-        });
-
-        signupNextBtn3.addEventListener('click', () => {
-            signupStep3Modal.classList.remove('flex');
-            signupStep3Modal.classList.add('hidden');
-            signupStep4Modal.classList.remove('hidden');
-            signupStep4Modal.classList.add('flex');
-        });
-
-        signupCompleteBtn.addEventListener('click', () => {
-            alert('Inscription réussie ! Bienvenue sur X.');
-            signupStep4Modal.classList.remove('flex');
-            signupStep4Modal.classList.add('hidden');
-        });
-
-        // Sélection des centres d'intérêt
-        const interestCards = document.querySelectorAll('.interest-card');
-        interestCards.forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('selected');
-            });
-        });
-
-        // Fermer les modales en cliquant en dehors
-        window.addEventListener('click', (e) => {
-            if (e.target === signupModal) {
-                signupModal.classList.remove('flex');
-                signupModal.classList.add('hidden');
-            }
-            if (e.target === signupStep2Modal) {
-                signupStep2Modal.classList.remove('flex');
-                signupStep2Modal.classList.add('hidden');
-            }
-            if (e.target === signupStep3Modal) {
-                signupStep3Modal.classList.remove('flex');
-                signupStep3Modal.classList.add('hidden');
-            }
-            if (e.target === signupStep4Modal) {
-                signupStep4Modal.classList.remove('flex');
-                signupStep4Modal.classList.add('hidden');
-            }
-            if (e.target === loginModal) {
-                loginModal.classList.remove('flex');
-                loginModal.classList.add('hidden');
-            }
-        });
-
-
-
-        const daySelect = document.getElementById("day-select");
-        const monthSelect = document.getElementById("month-select");
-        const yearSelect = document.getElementById("year-select");
-
-        for (let y = new Date().getFullYear(); y >= 1900; y--) {
-        const opt = document.createElement("option");
-        opt.value = y;
-        opt.textContent = y;
-        yearSelect.appendChild(opt);
-        }
-
-        function getDaysInMonth(month, year) {
-        return new Date(year, month, 0).getDate();
-        }
-
-        function updateDays() {
-        const month = parseInt(monthSelect.value);
-        const year = parseInt(yearSelect.value);
-
-        if (!month || !year) return;
-
-        const daysInMonth = getDaysInMonth(month, year);
-
-        // Vider les options existantes
-        daySelect.innerHTML = '<option>Jour</option>';
-
-        for (let d = 1; d <= daysInMonth; d++) {
-            const opt = document.createElement("option");
-            opt.value = d;
-            opt.textContent = d;
-            daySelect.appendChild(opt);
-        }
-        }
-
-        monthSelect.addEventListener("change", updateDays);
-        yearSelect.addEventListener("change", updateDays);
-
+      // Parsley config pour marges et style des messages
+      window.ParsleyConfig = {
+        errorsWrapper: '<div class="text-red-500 text-sm mt-1"></div>',
+        errorTemplate: '<div></div>',
+        errorClass: 'border-red-500 focus:ring-red-500',
+        successClass: 'border-green-500 focus:ring-green-500'
+      };
     </script>
-</body>
+  </body>
 </html>
