@@ -2,9 +2,7 @@
 @layout.app({title:"profil", notifications, user})
   @slot('main')
     <div class="flex justify-center  md:border-x border-gray-700  min-h-screen relative">
-      
       <section class="min-h-screen md:space-y-8 relative">
-          <!-- NAV BAR -->
           <nav class="nav-bar sticky -top-2 flex items-center justify-between px-2 py-4 md:p-4 border-b border-b-blue-400/50 z-50 bg-black/70 backdrop-blur-sm">
             <p class="capitalize font-semibold text-xl">home</p>
             <button class="open-drawer" data-drawer-target="main-drawer">
@@ -154,7 +152,6 @@
                             </p>
                           </div>
                           <div class="flex items-center gap-4">
-                            {{--  <img src="/public/uploads/love.svg" alt="" />  --}}
                             <div class="likes-content transition duration-200 ease">
                               <form action="/like/{{ tweet.id }}" method="POST">
                                 <button type="submit">
@@ -183,7 +180,6 @@
                   @end
                 </section>
               </div>
-
               <div x-show="tab === 'replies'">
                 <h1 class="text-2xl font-bold">
                   Who to replies
@@ -194,18 +190,6 @@
                   </p>
                 </section>
               </div>
-
-              {{-- <div class="hidden md:block" x-show="tab === 'highlights'" >
-                <h1 class="text-2xl font-bold">
-                  Highlights
-                </h1>
-                <section>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores...
-                  </p>
-                </section>
-              </div> --}}
-
               <div x-show="tab === 'articles'">
                 <h1 class="text-2xl font-bold">
                   Articles
@@ -216,7 +200,6 @@
                   </p>
                 </section>
               </div>
-
               <div x-show="tab === 'media'">
                 <h1 class="text-2xl font-bold">
                   Media
@@ -227,7 +210,6 @@
                   </p>
                 </section>
               </div>
-
               <div x-show="tab === 'likes'">
                 <h1 class="text-2xl font-bold">
                   Likes
@@ -240,32 +222,24 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </section>
     </div>
-     <!-- Drawer mobile overlay -->
      <div
      class="drawer-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden min-h-screen"
      data-drawer-id="main-drawer"
      >
      </div>
- 
-     <!-- Drawer panel -->
      <div
      class="drawer-panel fixed top-0 left-0 h-screen w-[70%] bg-black z-50 transform -translate-x-full transition-transform duration-300 md:hidden"
      data-drawer-id="main-drawer"
      >
      <button class="close-drawer absolute top-4 right-4 text-2xl">&times;</button>
- 
-     <!-- Drawer nav: même contenu que le <nav> du header -->
      <nav class="space-y-6 lg:space-y-2 mt-10 h-full">
        <section class="space-y-2 mt-6 mx-4">
          <div class="flex justify-start mb-12 ml-4">
            <img src="/public/uploads/twitter-logo.svg" alt="logo" />
          </div>
- 
          <div>
            <a href="/">
              <div
@@ -276,7 +250,6 @@
              </div>
            </a>
          </div>
- 
          <div>
            <a href="#">
              <div
@@ -287,7 +260,6 @@
              </div>
            </a>
          </div>
- 
          <div>
            <a href="/notifications">
              <div
@@ -327,7 +299,6 @@
              </div>
            </a>
          </div>
- 
          <div>
            <a href="#">
              <div
@@ -338,7 +309,6 @@
              </div>
            </a>
          </div>
- 
          <div>
            <a href="/profil">
              <div
@@ -349,7 +319,6 @@
              </div>
            </a>
          </div>
- 
          <div>
            <a href="#">
              <div
@@ -362,8 +331,44 @@
          </div>
        </section>
      </nav>
-     </div>
+    </div>
+    <div
+      id="profileModal"
+      class="fixed inset-0 z-50 hidden bg-black bg-opacity-60 flex items-center justify-center"
+    >
+      <div class="bg-[#15202b] text-white w-full max-w-md rounded-xl shadow-lg p-6 relative">
+        <button id="closeModal" class="absolute top-2 right-2 text-gray-400 hover:text-white text-xl">&times;</button>
+
+        <h2 class="text-xl font-bold mb-4">Modifier le profil</h2>
+
+        <form action="/profile/update" method="POST" enctype="multipart/form-data" class="space-y-4" data-parsley-validate>
+          <input type="text" name="fullName" placeholder="Nom complet" required
+            data-parsley-minlength="3"
+            class="w-full px-4 py-2 rounded bg-[#192734] text-white border border-[#2f3336] focus:outline-none" />
+
+          <input type="text" name="userName" placeholder="Nom d'utilisateur" required
+            data-parsley-pattern="^@.*_$"
+            data-parsley-pattern-message="Le nom d'utilisateur doit commencer par @ et se terminer par _."
+            class="w-full px-4 py-2 rounded bg-[#192734] text-white border border-[#2f3336] focus:outline-none" />
+
+          <input type="email" name="email" placeholder="Email" required
+            data-parsley-type-message="Veuillez entrer un email valide"
+            class="w-full px-4 py-2 rounded bg-[#192734] text-white border border-[#2f3336] focus:outline-none" />
+
+          <textarea name="bio" placeholder="Bio" maxlength="255"
+            class="w-full px-4 py-2 rounded bg-[#192734] text-white border border-[#2f3336] focus:outline-none"
+          ></textarea>
+
+          <input type="file" name="profilePhoto" accept="image/*"
+            class="block w-full text-sm text-gray-300 bg-[#192734] file:bg-[#1d9bf0] file:text-white file:rounded file:px-4 file:py-2 file:border-none file:cursor-pointer" />
+
+          <button type="submit"
+            class="w-full bg-[#1d9bf0] hover:bg-[#1a8cd8] py-2 rounded-full font-bold transition duration-200">
+            Enregistrer les modifications
+          </button>
+        </form>
+      </div>
+    </div>
 
   @endslot
-  
 @end

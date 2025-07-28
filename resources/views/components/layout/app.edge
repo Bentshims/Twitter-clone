@@ -469,7 +469,6 @@
             textarea.setSelectionRange(start + emoji.length, start + emoji.length);
           });
         }
-        // Fermer l'emoji picker si on clique à l'extérieur
         document.addEventListener("click", e => {
           const isClickInside = picker.contains(e.target) || emojiBtn.contains(e.target);
           if (!isClickInside) picker.style.display = "none";
@@ -569,20 +568,16 @@
             closeModal();
           }
         });
-      });
-      
-      const followBtn = document.querySelectorAll("#follow");
-      
-      followBtn.forEach(follow => {
-        follow.addEventListener("active", () => {
-          follow.classList.add("bg-white/50");
-          follow.classList.remove("bg-white");
-          follow.classList.remove("hover:bg-white/80");
+
+        const followBtn = document.querySelectorAll("#follow");
+        followBtn.forEach(follow => {
+          follow.addEventListener("active", () => {
+            follow.classList.add("bg-white/50");
+            follow.classList.remove("bg-white");
+            follow.classList.remove("hover:bg-white/80");
+          });
         });
-      });
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
+
         document.querySelectorAll(".open-drawer").forEach((btn) => {
           const drawerId = btn.getAttribute("data-drawer-target");
           const drawerPanel = document.querySelector(`.drawer-panel[data-drawer-id="${drawerId}"]`);
@@ -610,9 +605,23 @@
           closeBtn?.addEventListener("click", closeDrawer);
           drawerOverlay.addEventListener("click", closeDrawer);
         });
+        const openBtn = document.getElementById("editProfile");
+        const modal = document.getElementById("profileModal");
+        const closeBtn = document.getElementById("closeModal");
+
+        openBtn.addEventListener("click", () => {
+          modal.classList.remove("hidden");
+        });
+
+        closeBtn.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) modal.classList.add("hidden");
+        });
       });
+   
     </script>
-    
-    
   </body>
 </html>
