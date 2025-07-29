@@ -560,8 +560,7 @@
           document.getElementById("tweetModal").classList.add("hidden");
           document.getElementById("tweetModal").classList.remove("flex");
         }
-        // Optional: Fermer le modal en cliquant en dehors du contenu
-        ;
+      
         window.addEventListener("click", function(e) {
           const modal = document.getElementById("tweetModal");
           if (e.target === modal) {
@@ -621,7 +620,10 @@
           if (e.target === modal) modal.classList.add("hidden");
         });
       });
-   
+
+     
+
+     
     </script>
   </body>
 </html>
