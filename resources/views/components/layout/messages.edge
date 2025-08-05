@@ -189,10 +189,16 @@
           </div>
         </nav>
       </header>
-      <main class="flex flex-col min-h-screen  bg-black relative border-x border-zinc-800 md:w-[50%] lg:w-[30%]">
+      <main class=" hidden md:flex flex-col min-h-screen  bg-black relative border-x border-zinc-800 md:w-[50%] lg:w-[30%]">
         {{{ await $slots.center() }}}
       </main>
-      <aside class="hidden md:block md:w-[35%] lg:w-1/4 bg-zinc-950 h-screen flex-shrink-0 overflow-y-auto scrollbar-hide relative md:mx-4 md:my-2 border border-zinc-800 rounded-xl">
+      <aside class="w-full md:w-[35%] lg:w-1/4 bg-zinc-950 h-screen flex-shrink-0 overflow-y-auto scrollbar-hide relative md:mx-4 md:my-2 border border-zinc-800 rounded-xl">
+         <nav class="md:hidden nav-bar sticky -top-2 flex items-center justify-between px-2 py-4 md:p-4 border-b border-b-blue-400/50 z-50 bg-black/70 backdrop-blur-sm">
+          <p class="capitalize font-semibold text-xl">Messages</p>
+          <button class="open-drawer" data-drawer-target="main-drawer">
+            <img src="/public/uploads/logo1.svg" alt="home icon" class="w-6 h-6" />
+          </button>
+        </nav>
         {{{ await $slots.right() }}}
       </aside>
     </div>
