@@ -449,7 +449,17 @@
         </section>
       </nav>
     </div>
-    <script type="module">
+    <script>
+      // le loader 
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const loader = document.querySelector("#loader-screen");
+          const content = document.querySelector("#myAppContent");
+          loader.classList.add("hidden");
+          content.classList.remove("hidden");
+        }, 2000);
+      });
+
       document.addEventListener("DOMContentLoaded", () => {
         const picker = document.getElementById("emojiPicker");
         const textarea = document.getElementById("tweetContent");
@@ -493,14 +503,7 @@
             currentlyOpenTrash = null;
           }
         });
-        window.addEventListener("load", () => {
-          setTimeout(() => {
-            const loader = document.querySelector("#loader-screen");
-            const content = document.querySelector("#myAppContent");
-            loader.classList.add("hidden");
-            content.classList.remove("hidden");
-          }, 3e3);
-        });
+        
         // les likes
         document.querySelectorAll(".likes-content").forEach(content => {
           content.addEventListener("mouseover", () => {
